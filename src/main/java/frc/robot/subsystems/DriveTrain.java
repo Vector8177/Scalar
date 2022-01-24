@@ -104,7 +104,7 @@ public class DriveTrain extends SubsystemBase {
     public void setAutoMotorsLeft(double degrees){
       System.out.println("DEGREES: " + degrees);
       System.out.println("INITIAL YAW: " + Robot.ahrs.getYaw());
-      while(Robot.ahrs.getYaw() + (95 * RobotMap.AUTONOMOUS_SPEED) > -degrees){
+      while(Robot.ahrs.getYaw() - (95 * RobotMap.AUTONOMOUS_SPEED) > -degrees){
         setRightMotors(RobotMap.AUTONOMOUS_SPEED);
         setLeftMotors(-RobotMap.AUTONOMOUS_SPEED);
       }
