@@ -33,26 +33,26 @@ public class DriveTrain extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
+  public void setLeftMotors(double speed){
+    frontLeft.set(ControlMode.PercentOutput, speed);
+    backLeft.set(ControlMode.PercentOutput, speed);
+  }
+
   public void setRightMotors(double speed){
     frontRight.setSensorPhase(true);
     frontRight.set(ControlMode.PercentOutput, -speed);
     backRight.set(ControlMode.PercentOutput, -speed);
- }
+  }
 
-  public void setLeftMotors(double speed){
-    frontLeft.set(ControlMode.PercentOutput, speed);
-    backLeft.set(ControlMode.PercentOutput, speed);
-}
+  public void turnFullLeft(double speed){
+    setRightMotors(speed);
+    setLeftMotors(-speed);
+  }
 
-public void turnFullLeft(double speed){
-  setRightMotors(speed);
-  setLeftMotors(-speed);
-}
-
-public void turnFullRight(double speed){
-  setRightMotors(-speed);
-  setLeftMotors(speed);
-}
+  public void turnFullRight(double speed){
+    setRightMotors(-speed);
+    setLeftMotors(speed);
+  }
 
   public void changeMode(){
     frontRight.setSelectedSensorPosition(0);
@@ -65,17 +65,22 @@ public void turnFullRight(double speed){
 
   public void setAutoMotorsForward(double feet){
     while(Math.abs(encoderDegrees()) <= (feet/RobotMap.DISTANCE_PER_REVOLUTION_FT)){
-    frontRight.set(ControlMode.PercentOutput, - RobotMap.AUTONOMOUS_SPEED);
-    backRight.set(ControlMode.PercentOutput, - RobotMap.AUTONOMOUS_SPEED);
-    frontLeft.set(ControlMode.PercentOutput, RobotMap.AUTONOMOUS_SPEED);
-    backLeft.set(ControlMode.PercentOutput, RobotMap.AUTONOMOUS_SPEED);
+      setLeftMotors(RobotMap.AUTONOMOUS_SPEED);
+      setRightMotors(RobotMap.AUTONOMOUS_SPEED);
     }
     Robot.autonomous.end(true);
   }
   public void setAutoMotorsRight(double degrees){
     System.out.println("DEGREES: " + degrees);
-    System.out.println("POOP: " + Robot.ahrs.getYaw());
+    System.out.println("INITIAL YAW: " + Robot.ahrs.getYaw());
+    while(Robot.ahrs.getYaw() + (95 * RobotMap.AUTONOMOUS_SPEED) < degrees){
+      setRightMotors(-RobotMap.AUTONOMOUS_SPEED);
+      setLeftMotors(RobotMap.AUTONOMOUS_SPEED);
+    }
+    Robot.autonomous.end(true);
+
     /*
+      // == EXPERIMENTAL CODE FOR DEGREE TURNING == //
       while(Math.abs(encoderDegrees()) <= (degrees/RobotMap.DEGREES_PER_REVOLUTION)){
         Timer.delay(.005);
       frontRight.set(ControlMode.PercentOutput, RobotMap.AUTONOMOUS_SPEED);
@@ -93,10 +98,15 @@ public void turnFullRight(double speed){
           turnFullRight(RobotMap.CORRECTION_SPEED);
         }
       }
-      */                            
-    while(Robot.ahrs.getYaw() + (95 * RobotMap.AUTONOMOUS_SPEED) < degrees){
-      setRightMotors(-RobotMap.AUTONOMOUS_SPEED);
-      setLeftMotors(RobotMap.AUTONOMOUS_SPEED);
+    */
+  }
+
+    public void setAutoMotorsLeft(double degrees){
+      System.out.println("DEGREES: " + degrees);
+      System.out.println("INITIAL YAW: " + Robot.ahrs.getYaw());
+      while(Robot.ahrs.getYaw() + (95 * RobotMap.AUTONOMOUS_SPEED) > -degrees){
+        setRightMotors(RobotMap.AUTONOMOUS_SPEED);
+        setLeftMotors(-RobotMap.AUTONOMOUS_SPEED);
       }
       Robot.autonomous.end(true);
     }
