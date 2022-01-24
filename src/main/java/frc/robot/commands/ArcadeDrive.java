@@ -27,27 +27,29 @@ public class ArcadeDrive extends CommandBase {
     // Controller Values
     double rightTrigger = Robot.m_oi.GetDriverRightTrigger();
     double leftTrigger = Robot.m_oi.GetDriverLeftTrigger();
-    double leftX = Robot.m_oi.GetDriverRawJoystick(0);
+    double leftStickX = Robot.m_oi.GetDriverRawJoystick(0);
 
     // Speed Calculations
     double leftMotorSpeed = (rightTrigger*RobotMap.LEFT_MOTOR_SPEED_MODIFIER) - (leftTrigger*RobotMap.LEFT_MOTOR_SPEED_MODIFIER);
     double rightMotorSpeed = (rightTrigger*RobotMap.RIGHT_MOTOR_SPEED_MODIFIER) - (leftTrigger*RobotMap.RIGHT_MOTOR_SPEED_MODIFIER);
     
-    // Determining if robot should use pure joystick control
-    if(rightTrigger == 0 && leftTrigger == 0 && leftX != 0){
-      if(leftX > 0){
-        Robot.driveTrain.setLeftMotors(RobotMap.LEFT_MOTOR_SPEED_MODIFIER * Math.abs(leftX));
-        Robot.driveTrain.setRightMotors(-(RobotMap.RIGHT_MOTOR_SPEED_MODIFIER * Math.abs(leftX)));
-      } else if(leftX < 0){
-        Robot.driveTrain.setRightMotors(RobotMap.RIGHT_MOTOR_SPEED_MODIFIER * Math.abs(leftX));
-        Robot.driveTrain.setLeftMotors(-(RobotMap.LEFT_MOTOR_SPEED_MODIFIER * Math.abs(leftX)));
+    // Determining if robot should use joystick full-turning
+    if(rightTrigger == 0 && leftTrigger == 0 && leftStickX != 0){
+      if(leftStickX > 0){
+        Robot.driveTrain.setLeftMotors(RobotMap.LEFT_MOTOR_SPEED_MODIFIER * Math.abs(leftStickX));
+        Robot.driveTrain.setRightMotors(-(RobotMap.RIGHT_MOTOR_SPEED_MODIFIER * Math.abs(leftStickX)));
+      } else if(leftStickX < 0){
+        Robot.driveTrain.setRightMotors(RobotMap.RIGHT_MOTOR_SPEED_MODIFIER * Math.abs(leftStickX));
+        Robot.driveTrain.setLeftMotors(-(RobotMap.LEFT_MOTOR_SPEED_MODIFIER * Math.abs(leftStickX)));
       }
     }
-    else if(leftX > 0){
+
+    // Performing motor turning
+    else if(leftStickX > 0){
       Robot.driveTrain.setLeftMotors(leftMotorSpeed);
-      Robot.driveTrain.setRightMotors(rightMotorSpeed - (rightMotorSpeed*Math.abs(leftX) * RobotMap.LEFT_JOYSTICK_SPEED_MODIFIER));
-    } else if(leftX <= 0){
-      Robot.driveTrain.setLeftMotors(leftMotorSpeed - (leftMotorSpeed*(Math.abs(leftX) * RobotMap.LEFT_JOYSTICK_SPEED_MODIFIER)));
+      Robot.driveTrain.setRightMotors(rightMotorSpeed - (rightMotorSpeed*Math.abs(leftStickX) * RobotMap.LEFT_JOYSTICK_SPEED_MODIFIER));
+    } else if(leftStickX <= 0){
+      Robot.driveTrain.setLeftMotors(leftMotorSpeed - (leftMotorSpeed*(Math.abs(leftStickX) * RobotMap.LEFT_JOYSTICK_SPEED_MODIFIER)));
       Robot.driveTrain.setRightMotors(rightMotorSpeed);
     }
     
