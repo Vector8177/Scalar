@@ -7,7 +7,6 @@ public class RobotMap {
     public static final int FRONT_LEFT_MOTOR_ID = 3;
     public static final int BACK_LEFT_MOTOR_ID = 4;
     public static final int UNITS_PER_REVOLUTION = 12185;
-    //Automonous Motors
 
     //Controller
     public static final int DRIVER_CONTROLLER_PORT = 0;
@@ -24,8 +23,10 @@ public class RobotMap {
     public static final double LEFT_JOYSTICK_SPEED_MODIFIER = .8;
     public static final double AUTONOMOUS_SPEED = .4;
     public static final double CORRECTION_SPEED = .1;
+
     //Distance
     public static final double DISTANCE_PER_REVOLUTION_FT = 1.5708;
+
     //Degrees
     public static final double DEGREES_PER_REVOLUTION = 79.925;
 }
