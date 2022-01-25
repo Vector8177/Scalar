@@ -4,80 +4,108 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.commands.ArcadeDrive;
-import frc.robot.commands.Autonomous;
+import frc.robot.commands.teleop_ArcadeDrive;
+import frc.robot.commands.auto_DriveOffLine;
+import frc.robot.commands.auto_TurnRight;
 import frc.robot.subsystems.DriveTrain;
 import com.kauailabs.navx.frc.AHRS;
-// hi
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- * The VM is configured to automatically run this class, and to call the functions corresponding to
- * each mode, as described in the TimedRobot documentation. If you change the name of this class or
- * the package after creating this project, you must also update the build.gradle file in the
+ * The VM is configured to automatically run this class, and to call the
+ * functions corresponding to
+ * each mode, as described in the TimedRobot documentation. If you change the
+ * name of this class or
+ * the package after creating this project, you must also update the
+ * build.gradle file in the
  * project.
  */
-public class Robot extends TimedRobot{
-    public static DriveTrain driveTrain = new DriveTrain();
-    public static OI m_oi = new OI();
-    public static ArcadeDrive arcadeDrive = new ArcadeDrive();
-    public static Autonomous autonomous = new Autonomous();
-    public static AHRS ahrs = new AHRS(SPI.Port.kMXP);
+public class Robot extends TimedRobot {
+  public static teleop_ArcadeDrive arcadeDrive = new teleop_ArcadeDrive();
+  public static DriveTrain driveTrain = new DriveTrain();
+  public static OI m_oi;
+  private Command m_autonomousCommand;
+  private Preferences prefs;
+  public static AHRS ahrs = new AHRS(SPI.Port.kMXP);
 
   /**
-   * This function is run when the robot is first started up and should be used for any
+   * This function is run when the robot is first started up and should be used
+   * for any
    * initialization code.
    */
   @Override
   public void robotInit() {
-    // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
+    // Instantiate our RobotContainer. This will perform all our button bindings,
+    // and put our
     // autonomous chooser on the dashboard.
+    m_oi = new OI();
   }
 
   /**
-   * This function is called every robot packet, no matter the mode. Use this for items like
-   * diagnostics that you want ran during disabled, autonomous, teleoperated and test.
+   * This function is called every robot packet, no matter the mode. Use this for
+   * items like
+   * diagnostics that you want ran during disabled, autonomous, teleoperated and
+   * test.
    *
-   * <p>This runs after the mode specific periodic functions, but before LiveWindow and
+   * <p>
+   * This runs after the mode specific periodic functions, but before LiveWindow
+   * and
    * SmartDashboard integrated updating.
    */
   @Override
   public void robotPeriodic() {
-    // Runs the Scheduler.  This is responsible for polling buttons, adding newly-scheduled
-    // commands, running already-scheduled commands, removing finished or interrupted commands,
-    // and running subsystem periodic() methods.  This must be called from the robot's periodic
+    // Runs the Scheduler. This is responsible for polling buttons, adding
+    // newly-scheduled
+    // commands, running already-scheduled commands, removing finished or
+    // interrupted commands,
+    // and running subsystem periodic() methods. This must be called from the
+    // robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
+    updateShuffleboard();
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
-  public void disabledInit() {}
+  public void disabledInit() {
+  }
 
   @Override
-  public void disabledPeriodic() {}
+  public void disabledPeriodic() {
+  }
 
-  /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
+  /**
+   * This autonomous runs the autonomous command selected by your
+   * {@link RobotContainer} class.
+   */
   @Override
   public void autonomousInit() {
-    CommandScheduler.getInstance().cancelAll();
-    driveTrain.changeMode();
+    m_autonomousCommand = m_oi.getAutonomousCommand();
+
+    if (m_autonomousCommand != null) {
+      m_autonomousCommand.schedule();
+    }
 
   }
 
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
-    Robot.ahrs.zeroYaw();
-    autonomous.execute();
   }
 
   @Override
   public void teleopInit() {
-    CommandScheduler.getInstance().cancelAll();
+
+    if (m_autonomousCommand != null) {
+      m_autonomousCommand.cancel();
+    }
     driveTrain.changeMode();
     // This makes sure that the autonomous stops running when
     // teleop starts running. If you want the autonomous to
@@ -99,5 +127,23 @@ public class Robot extends TimedRobot{
 
   /** This function is called periodically during test mode. */
   @Override
-  public void testPeriodic() {}
+  public void testPeriodic() {
+  }
+
+  public static void updateShuffleboard() {
+    // Adds NavX values to Shuffle Board
+    SmartDashboard.putNumber("Yaw", ahrs.getYaw());
+    SmartDashboard.putBoolean("NavX calibrating", ahrs.isCalibrating());
+    SmartDashboard.putNumber("Acceleration X", (double) (Math.round(ahrs.getWorldLinearAccelX() * 1000)) / 1000);
+    SmartDashboard.putNumber("Acceleration Y", (double) (Math.round(ahrs.getWorldLinearAccelY() * 1000)) / 1000);
+    SmartDashboard.putNumber("Velocity X", (double) (Math.round(ahrs.getVelocityX() * 1000)) / 1000);
+    SmartDashboard.putNumber("Velocity Y", (double) (Math.round(ahrs.getVelocityY() * 1000)) / 1000);
+    SmartDashboard.putBoolean("Is moving", ahrs.isMoving());
+    SmartDashboard.putBoolean("Is rotating", ahrs.isRotating());
+
+    // Adds controller values to Shuffle Board
+    SmartDashboard.putNumber("Right Trigger", (double) (Math.round(m_oi.GetDriverRightTrigger() * 1000)) / 1000);
+    SmartDashboard.putNumber("Left Trigger", (double) (Math.round(m_oi.GetDriverLeftTrigger() * 1000)) / 1000);
+    SmartDashboard.putNumber("Left Stick", (double) (Math.round(m_oi.GetDriverRawJoystick(0) * 1000)) / 1000);
+  }
 }

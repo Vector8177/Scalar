@@ -1,0 +1,199 @@
+{
+  "tabPane": [
+    {
+      "title": "SmartDashboard",
+      "autoPopulate": true,
+      "autoPopulatePrefix": "SmartDashboard/",
+      "widgetPane": {
+        "gridSize": 128.0,
+        "showGrid": true,
+        "hgap": 16.0,
+        "vgap": 16.0,
+        "titleType": 0,
+        "tiles": {
+          "3,2": {
+            "size": [
+              3,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/NavX calibrating",
+              "_title": "NavX calibrating",
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
+            }
+          },
+          "3,0": {
+            "size": [
+              3,
+              2
+            ],
+            "content": {
+              "_type": "Subsystem Layout",
+              "_title": "Movement Checking",
+              "Layout/Label position": "BOTTOM",
+              "_children": [
+                {
+                  "_type": "Boolean Box",
+                  "_source0": "network_table:///SmartDashboard/Is rotating",
+                  "_title": "Is rotating",
+                  "Colors/Color when true": "#7CFC00FF",
+                  "Colors/Color when false": "#8B0000FF"
+                },
+                {
+                  "_type": "Boolean Box",
+                  "_source0": "network_table:///SmartDashboard/Is moving",
+                  "_title": "Is moving",
+                  "Colors/Color when true": "#7CFC00FF",
+                  "Colors/Color when false": "#8B0000FF"
+                }
+              ]
+            }
+          },
+          "6,0": {
+            "size": [
+              2,
+              4
+            ],
+            "content": {
+              "_type": "List Layout",
+              "_title": "List Layout",
+              "Layout/Label position": "BOTTOM",
+              "_children": [
+                {
+                  "_type": "Number Bar",
+                  "_source0": "network_table:///SmartDashboard/Left Stick",
+                  "_title": "Left Stick",
+                  "Range/Min": -1.0,
+                  "Range/Max": 1.0,
+                  "Range/Center": 0.0,
+                  "Visuals/Num tick marks": 5,
+                  "Visuals/Show text": true
+                },
+                {
+                  "_type": "Simple Dial",
+                  "_source0": "network_table:///SmartDashboard/Left Trigger",
+                  "_title": "Left Trigger",
+                  "Range/Min": 0.0,
+                  "Range/Max": 1.0,
+                  "Visuals/Show value": true
+                },
+                {
+                  "_type": "Simple Dial",
+                  "_source0": "network_table:///SmartDashboard/Right Trigger",
+                  "_title": "Right Trigger",
+                  "Range/Min": 0.0,
+                  "Range/Max": 1.0,
+                  "Visuals/Show value": true
+                }
+              ]
+            }
+          },
+          "0,0": {
+            "size": [
+              3,
+              3
+            ],
+            "content": {
+              "_type": "List Layout",
+              "_title": "Robot Measurments",
+              "Layout/Label position": "BOTTOM",
+              "_children": [
+                {
+                  "_type": "List Layout",
+                  "_title": "Velocity",
+                  "Layout/Label position": "BOTTOM",
+                  "_children": [
+                    {
+                      "_type": "Text View",
+                      "_source0": "network_table:///SmartDashboard/Velocity X",
+                      "_title": "Velocity X"
+                    },
+                    {
+                      "_type": "Text View",
+                      "_source0": "network_table:///SmartDashboard/Velocity Y",
+                      "_title": "Velocity Y"
+                    }
+                  ]
+                },
+                {
+                  "_type": "List Layout",
+                  "_title": "Acceleration",
+                  "Layout/Label position": "BOTTOM",
+                  "_children": [
+                    {
+                      "_type": "Text View",
+                      "_source0": "network_table:///SmartDashboard/Acceleration X",
+                      "_title": "Acceleration X"
+                    },
+                    {
+                      "_type": "Text View",
+                      "_source0": "network_table:///SmartDashboard/Acceleration Y",
+                      "_title": "Acceleration Y"
+                    }
+                  ]
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Yaw",
+                  "_title": "Yaw"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "LiveWindow",
+      "autoPopulate": true,
+      "autoPopulatePrefix": "LiveWindow/",
+      "widgetPane": {
+        "gridSize": 128.0,
+        "showGrid": true,
+        "hgap": 16.0,
+        "vgap": 16.0,
+        "titleType": 0,
+        "tiles": {
+          "0,0": {
+            "size": [
+              2,
+              4
+            ],
+            "content": {
+              "_type": "List Layout",
+              "_title": "List Layout",
+              "Layout/Label position": "BOTTOM",
+              "_children": [
+                {
+                  "_type": "Subsystem Layout",
+                  "_source0": "network_table:///LiveWindow/Ungrouped",
+                  "_title": "Ungrouped",
+                  "Layout/Label position": "BOTTOM",
+                  "_children": [
+                    {
+                      "_type": "Gyro",
+                      "_source0": "network_table:///LiveWindow/Ungrouped/navX-Sensor[4]",
+                      "_title": "navX-Sensor[4]",
+                      "Visuals/Major tick spacing": 45.0,
+                      "Visuals/Starting angle": 180.0,
+                      "Visuals/Show tick mark ring": true,
+                      "Visuals/Counter clockwise": false
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  ],
+  "windowGeometry": {
+    "x": -7.333333492279053,
+    "y": -7.333333492279053,
+    "width": 1294.6666259765625,
+    "height": 694.6666870117188
+  }
+}
