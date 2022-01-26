@@ -21,7 +21,7 @@ public class RobotMap {
     public static double LEFT_MOTOR_SPEED_MODIFIER = .5;
     public static double RIGHT_MOTOR_SPEED_MODIFIER = .5;
     public static final double LEFT_JOYSTICK_SPEED_MODIFIER = .8;
-    public static double AUTONOMOUS_SPEED = .1;
+    public static double AUTONOMOUS_SPEED = .4;
     public static final double CORRECTION_SPEED = .1;
 
     // Distance
@@ -29,4 +29,5 @@ public class RobotMap {
 
     // Degrees
     public static final double DEGREES_PER_REVOLUTION = 79.925;
+    public static final double EXTRA_DEGREES_PER_DEGREE = 1.75;
 }

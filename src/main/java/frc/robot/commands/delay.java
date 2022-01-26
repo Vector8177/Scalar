@@ -10,41 +10,31 @@ import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.DriveTrain;
 
-public class auto_TurnRight extends CommandBase {
-
-  Boolean isFinished = false;
+public class delay extends CommandBase {
 
   /** Creates a new ArcadeDrive. */
-  public auto_TurnRight() {
+  public delay() {
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Timer.delay(.05);
-    System.out.print("Motor Degrese: ");
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    // Robot.driveTrain.setAutoMotorsForward(2);
-    // end(true);
-    Robot.ahrs.zeroYaw();
-    Robot.driveTrain.setAutoMotorsRight(90);
-    isFinished = true;
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    Robot.driveTrain.setRightMotors(0);
-    Robot.driveTrain.setLeftMotors(0);
+    Timer.delay(.25);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return isFinished;
+    return true;
   }
 }

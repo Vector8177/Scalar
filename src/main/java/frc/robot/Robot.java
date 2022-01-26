@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.teleop_ArcadeDrive;
+import frc.robot.commands.TurnFull;
 import frc.robot.commands.auto_DriveOffLine;
 import frc.robot.commands.auto_TurnRight;
 import frc.robot.subsystems.DriveTrain;
@@ -17,6 +18,8 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import com.ctre.phoenix.music.Orchestra;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -31,6 +34,7 @@ public class Robot extends TimedRobot {
   public static teleop_ArcadeDrive arcadeDrive = new teleop_ArcadeDrive();
   public static DriveTrain driveTrain = new DriveTrain();
   public static OI m_oi;
+  public static Orchestra music;
   private Command m_autonomousCommand;
   private Preferences prefs;
   public static AHRS ahrs = new AHRS(SPI.Port.kMXP);
@@ -46,6 +50,7 @@ public class Robot extends TimedRobot {
     // and put our
     // autonomous chooser on the dashboard.
     m_oi = new OI();
+
   }
 
   /**
@@ -123,6 +128,13 @@ public class Robot extends TimedRobot {
   public void testInit() {
     // Cancels all running commands at the start of test mode.
     CommandScheduler.getInstance().cancelAll();
+    music = new Orchestra();
+    music.addInstrument(driveTrain.frontRight);
+    music.addInstrument(driveTrain.frontLeft);
+    music.addInstrument(driveTrain.backRight);
+    music.addInstrument(driveTrain.backLeft);
+    music.loadMusic("Meglo.chrp");
+    music.play();
   }
 
   /** This function is called periodically during test mode. */
@@ -140,10 +152,12 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Velocity Y", (double) (Math.round(ahrs.getVelocityY() * 1000)) / 1000);
     SmartDashboard.putBoolean("Is moving", ahrs.isMoving());
     SmartDashboard.putBoolean("Is rotating", ahrs.isRotating());
+    SmartDashboard.putBoolean("WORKING", TurnFull.running);
 
     // Adds controller values to Shuffle Board
     SmartDashboard.putNumber("Right Trigger", (double) (Math.round(m_oi.GetDriverRightTrigger() * 1000)) / 1000);
     SmartDashboard.putNumber("Left Trigger", (double) (Math.round(m_oi.GetDriverLeftTrigger() * 1000)) / 1000);
     SmartDashboard.putNumber("Left Stick", (double) (Math.round(m_oi.GetDriverRawJoystick(0) * 1000)) / 1000);
+    SmartDashboard.putNumber("Motor Units", driveTrain.frontRight.getSelectedSensorPosition());
   }
 }

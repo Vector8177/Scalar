@@ -21,6 +21,7 @@ public class MoveDirection extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    Timer.delay(.1);
     Robot.driveTrain.changeMode();
   }
 
@@ -41,6 +42,7 @@ public class MoveDirection extends CommandBase {
   public void end(boolean interrupted) {
     Robot.driveTrain.setRightMotors(0);
     Robot.driveTrain.setLeftMotors(0);
+    Robot.driveTrain.changeMode();
   }
 
   // Returns true when the command should end.
@@ -51,6 +53,7 @@ public class MoveDirection extends CommandBase {
     } else if(feet < 0){
         return (Math.abs(Robot.driveTrain.encoderDegrees()) < -(feet / RobotMap.DISTANCE_PER_REVOLUTION_FT));
     } else{
+        System.out.println(Robot.driveTrain.frontRight.getSelectedSensorPosition());
         return true;
     }
   }

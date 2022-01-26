@@ -15,12 +15,14 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 public class OI {
     SendableChooser<Command> m_chooser = new SendableChooser<>();
     private XboxController driverController = new XboxController(RobotMap.DRIVER_CONTROLLER_PORT);
-    private final Command m_DOL = new MoveDirection(4);
+    private final Command m_DOL = new auto_TurnRight();
     private final Command m_TurnRight = new SequentialCommandGroup(new MoveDirection(2), new TurnFull(90));
+    private final Command m_PracticeAuto = new SequentialCommandGroup(new MoveDirection(1), new TurnFull(90), new MoveDirection(1), new TurnFull(-90));
 
     public OI() {
         m_chooser.setDefaultOption("Drive off line", m_DOL);
         m_chooser.addOption("Move forward turn right", m_TurnRight);
+        m_chooser.addOption("Practice Autonomous", m_PracticeAuto);
 
         // Put the chooser on the dashboard
         Shuffleboard.getTab("Autonomous").add(m_chooser);

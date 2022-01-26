@@ -20,10 +20,10 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class DriveTrain extends SubsystemBase {
-  private TalonFX frontRight = new TalonFX(RobotMap.FRONT_RIGHT_MOTOR_ID);
-  private TalonFX backRight = new TalonFX(RobotMap.BACK_RIGHT_MOTOR_ID);
-  private TalonFX frontLeft = new TalonFX(RobotMap.FRONT_LEFT_MOTOR_ID);
-  private TalonFX backLeft = new TalonFX(RobotMap.BACK_LEFT_MOTOR_ID);
+  public TalonFX frontRight = new TalonFX(RobotMap.FRONT_RIGHT_MOTOR_ID);
+  public TalonFX backRight = new TalonFX(RobotMap.BACK_RIGHT_MOTOR_ID);
+  public TalonFX frontLeft = new TalonFX(RobotMap.FRONT_LEFT_MOTOR_ID);
+  public TalonFX backLeft = new TalonFX(RobotMap.BACK_LEFT_MOTOR_ID);
 
   /** Creates a new DriveTrian. */
   public DriveTrain() {
@@ -69,6 +69,7 @@ public class DriveTrain extends SubsystemBase {
       setLeftMotors(RobotMap.AUTONOMOUS_SPEED);
       setRightMotors(RobotMap.AUTONOMOUS_SPEED);
     }
+    System.out.println("Motor Position: " + -frontRight.getSelectedSensorPosition());
   }
 
   public void setAutoMotorsBackward(double feet) {
@@ -81,7 +82,7 @@ public class DriveTrain extends SubsystemBase {
   public void setAutoMotorsRight(double degrees) {
     System.out.println("DEGREES: " + degrees);
     System.out.println("INITIAL YAW: " + Robot.ahrs.getYaw());
-    while (Robot.ahrs.getYaw() + (95 * RobotMap.AUTONOMOUS_SPEED) < degrees) {
+    while (Robot.ahrs.getYaw() < degrees - ((int)(degrees / RobotMap.EXTRA_DEGREES_PER_DEGREE))) {
       setRightMotors(-RobotMap.AUTONOMOUS_SPEED);
       setLeftMotors(RobotMap.AUTONOMOUS_SPEED);
     }
