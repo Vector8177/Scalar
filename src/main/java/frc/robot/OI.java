@@ -26,7 +26,7 @@ public class OI {
 
     private final Command m_DOL = new MoveDirection(-4);
     private final Command m_TurnRight = new SequentialCommandGroup(new MoveDirection(2), new TurnFull(90));
-    private final Command m_PracticeAuto = new SequentialCommandGroup(new MoveDirection(1), new TurnFull(90),
+    private final Command m_PracticeAuto = new SequentialCommandGroup(new MoveDirection(3), new TurnFull(90),
             new MoveDirection(1), new TurnFull(-90));
 
     // CONTROLLER
