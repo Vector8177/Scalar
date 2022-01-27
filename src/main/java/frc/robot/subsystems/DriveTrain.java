@@ -10,7 +10,6 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.commands.teleop_ArcadeDrive;
-import frc.robot.commands.auto_DriveOffLine;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
@@ -62,60 +61,5 @@ public class DriveTrain extends SubsystemBase {
 
   public double encoderDegrees() {
     return (-frontRight.getSelectedSensorPosition() / RobotMap.UNITS_PER_REVOLUTION);
-  }
-
-  public void setAutoMotorsForward(double feet) {
-    while (Math.abs(encoderDegrees()) <= (feet / RobotMap.DISTANCE_PER_REVOLUTION_FT)) {
-      setLeftMotors(RobotMap.AUTONOMOUS_SPEED);
-      setRightMotors(RobotMap.AUTONOMOUS_SPEED);
-    }
-    System.out.println("Motor Position: " + -frontRight.getSelectedSensorPosition());
-  }
-
-  public void setAutoMotorsBackward(double feet) {
-    while (Math.abs(encoderDegrees()) >= -(feet / RobotMap.DISTANCE_PER_REVOLUTION_FT)) {
-      setLeftMotors(-RobotMap.AUTONOMOUS_SPEED);
-      setRightMotors(-RobotMap.AUTONOMOUS_SPEED);
-    }
-  }
-
-  public void setAutoMotorsRight(double degrees) {
-    System.out.println("DEGREES: " + degrees);
-    System.out.println("INITIAL YAW: " + Robot.ahrs.getYaw());
-    while (Robot.ahrs.getYaw() < degrees - ((int)(degrees / RobotMap.EXTRA_DEGREES_PER_DEGREE))) {
-      setRightMotors(-RobotMap.AUTONOMOUS_SPEED);
-      setLeftMotors(RobotMap.AUTONOMOUS_SPEED);
-    }
-
-    /*
-     * // == EXPERIMENTAL CODE FOR DEGREE TURNING == //
-     * while(Math.abs(encoderDegrees()) <=
-     * (degrees/RobotMap.DEGREES_PER_REVOLUTION)){
-     * Timer.delay(.005);
-     * frontRight.set(ControlMode.PercentOutput, RobotMap.AUTONOMOUS_SPEED);
-     * backRight.set(ControlMode.PercentOutput, RobotMap.AUTONOMOUS_SPEED);
-     * frontLeft.set(ControlMode.PercentOutput, RobotMap.AUTONOMOUS_SPEED);
-     * backLeft.set(ControlMode.PercentOutput, RobotMap.AUTONOMOUS_SPEED);
-     * }
-     */
-    /*
-     * while(Robot.ahrs.getYaw() != 90){
-     * if(Robot.ahrs.getYaw() > 90){
-     * turnFullLeft(RobotMap.CORRECTION_SPEED);
-     * }
-     * if(Robot.ahrs.getYaw() < 90){
-     * turnFullRight(RobotMap.CORRECTION_SPEED);
-     * }
-     * }
-     */
-  }
-
-  public void setAutoMotorsLeft(double degrees) {
-    System.out.println("DEGREES: " + degrees);
-    System.out.println("INITIAL YAW: " + Robot.ahrs.getYaw());
-    while (Robot.ahrs.getYaw() - (95 * RobotMap.AUTONOMOUS_SPEED) > -degrees) {
-      setRightMotors(RobotMap.AUTONOMOUS_SPEED);
-      setLeftMotors(-RobotMap.AUTONOMOUS_SPEED);
-    }
   }
 }

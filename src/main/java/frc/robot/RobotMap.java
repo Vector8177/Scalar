@@ -18,10 +18,10 @@ public class RobotMap {
     public static final int RIGHT_BUMPER = 6;
 
     // Speed
-    public static double LEFT_MOTOR_SPEED_MODIFIER = .5;
-    public static double RIGHT_MOTOR_SPEED_MODIFIER = .5;
+    public static final double LEFT_MOTOR_SPEED_MODIFIER = .5;
+    public static final double RIGHT_MOTOR_SPEED_MODIFIER = .5;
     public static final double LEFT_JOYSTICK_SPEED_MODIFIER = .8;
-    public static double AUTONOMOUS_SPEED = .4;
+    public static final double AUTONOMOUS_SPEED = .4;
     public static final double CORRECTION_SPEED = .1;
 
     // Distance

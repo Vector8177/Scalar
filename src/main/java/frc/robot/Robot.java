@@ -11,15 +11,14 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.teleop_ArcadeDrive;
 import frc.robot.commands.TurnFull;
-import frc.robot.commands.auto_DriveOffLine;
-import frc.robot.commands.auto_TurnRight;
 import frc.robot.subsystems.DriveTrain;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.ctre.phoenix.music.Orchestra;
-
+import edu.wpi.first.networktables.NetworkTableEntry;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -36,7 +35,6 @@ public class Robot extends TimedRobot {
   public static OI m_oi;
   public static Orchestra music;
   private Command m_autonomousCommand;
-  private Preferences prefs;
   public static AHRS ahrs = new AHRS(SPI.Port.kMXP);
 
   /**
@@ -145,14 +143,12 @@ public class Robot extends TimedRobot {
   public static void updateShuffleboard() {
     // Adds NavX values to Shuffle Board
     SmartDashboard.putNumber("Yaw", ahrs.getYaw());
-    SmartDashboard.putBoolean("NavX calibrating", ahrs.isCalibrating());
     SmartDashboard.putNumber("Acceleration X", (double) (Math.round(ahrs.getWorldLinearAccelX() * 1000)) / 1000);
     SmartDashboard.putNumber("Acceleration Y", (double) (Math.round(ahrs.getWorldLinearAccelY() * 1000)) / 1000);
     SmartDashboard.putNumber("Velocity X", (double) (Math.round(ahrs.getVelocityX() * 1000)) / 1000);
     SmartDashboard.putNumber("Velocity Y", (double) (Math.round(ahrs.getVelocityY() * 1000)) / 1000);
     SmartDashboard.putBoolean("Is moving", ahrs.isMoving());
     SmartDashboard.putBoolean("Is rotating", ahrs.isRotating());
-    SmartDashboard.putBoolean("WORKING", TurnFull.running);
 
     // Adds controller values to Shuffle Board
     SmartDashboard.putNumber("Right Trigger", (double) (Math.round(m_oi.GetDriverRightTrigger() * 1000)) / 1000);

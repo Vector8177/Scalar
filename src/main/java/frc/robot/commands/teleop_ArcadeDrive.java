@@ -28,19 +28,19 @@ public class teleop_ArcadeDrive extends CommandBase {
     double leftStickX = Robot.m_oi.GetDriverRawJoystick(0);
 
     // Speed Calculations
-    double leftMotorSpeed = (rightTrigger * RobotMap.LEFT_MOTOR_SPEED_MODIFIER)
-        - (leftTrigger * RobotMap.LEFT_MOTOR_SPEED_MODIFIER);
-    double rightMotorSpeed = (rightTrigger * RobotMap.RIGHT_MOTOR_SPEED_MODIFIER)
-        - (leftTrigger * RobotMap.RIGHT_MOTOR_SPEED_MODIFIER);
+    double leftMotorSpeed = (rightTrigger * Robot.m_oi.getTeleopSpeed())
+        - (leftTrigger * Robot.m_oi.getTeleopSpeed());
+    double rightMotorSpeed = (rightTrigger * Robot.m_oi.getTeleopSpeed())
+        - (leftTrigger * Robot.m_oi.getTeleopSpeed());
 
     // Determining if robot should use joystick full-turning
     if (rightTrigger == 0 && leftTrigger == 0 && leftStickX != 0) {
       if (leftStickX > 0) {
-        Robot.driveTrain.setLeftMotors(RobotMap.LEFT_MOTOR_SPEED_MODIFIER * Math.abs(leftStickX));
-        Robot.driveTrain.setRightMotors(-(RobotMap.RIGHT_MOTOR_SPEED_MODIFIER * Math.abs(leftStickX)));
+        Robot.driveTrain.setLeftMotors(Robot.m_oi.getTeleopSpeed() * Math.abs(leftStickX));
+        Robot.driveTrain.setRightMotors(-(Robot.m_oi.getTeleopSpeed() * Math.abs(leftStickX)));
       } else if (leftStickX < 0) {
-        Robot.driveTrain.setRightMotors(RobotMap.RIGHT_MOTOR_SPEED_MODIFIER * Math.abs(leftStickX));
-        Robot.driveTrain.setLeftMotors(-(RobotMap.LEFT_MOTOR_SPEED_MODIFIER * Math.abs(leftStickX)));
+        Robot.driveTrain.setRightMotors(Robot.m_oi.getTeleopSpeed() * Math.abs(leftStickX));
+        Robot.driveTrain.setLeftMotors(-(Robot.m_oi.getTeleopSpeed() * Math.abs(leftStickX)));
       }
     }
 

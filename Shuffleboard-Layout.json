@@ -11,19 +11,6 @@
         "vgap": 16.0,
         "titleType": 0,
         "tiles": {
-          "3,2": {
-            "size": [
-              3,
-              1
-            ],
-            "content": {
-              "_type": "Boolean Box",
-              "_source0": "network_table:///SmartDashboard/NavX calibrating",
-              "_title": "NavX calibrating",
-              "Colors/Color when true": "#7CFC00FF",
-              "Colors/Color when false": "#8B0000FF"
-            }
-          },
           "3,0": {
             "size": [
               3,
@@ -141,6 +128,17 @@
                 }
               ]
             }
+          },
+          "0,3": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Motor Units",
+              "_title": "Motor Units"
+            }
           }
         }
       }
@@ -191,9 +189,9 @@
     }
   ],
   "windowGeometry": {
-    "x": -7.333333492279053,
-    "y": -7.333333492279053,
-    "width": 1294.6666259765625,
-    "height": 694.6666870117188
+    "x": 514.0,
+    "y": 121.0,
+    "width": 1596.0,
+    "height": 998.0
   }
 }
