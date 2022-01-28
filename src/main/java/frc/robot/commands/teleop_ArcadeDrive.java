@@ -23,9 +23,17 @@ public class teleop_ArcadeDrive extends CommandBase {
   @Override
   public void execute() {
     // Controller Values
-    double rightTrigger = Robot.m_oi.GetDriverRightTrigger();
-    double leftTrigger = Robot.m_oi.GetDriverLeftTrigger();
-    double leftStickX = Robot.m_oi.GetDriverRawJoystick(0);
+    double rightTrigger = Robot.m_oi.getDriverRightTrigger();
+    double leftTrigger = Robot.m_oi.getDriverLeftTrigger();
+    double leftStickX = Robot.m_oi.getDriverRawJoystick(0);
+    boolean bButtonPressed = Robot.m_oi.bButtonPressed();
+
+    // Slowed down if B is pressed
+    if (bButtonPressed) {
+      rightTrigger /= 8.0;
+      leftTrigger /= 8.0;
+      leftStickX /= 3.0;
+    }
 
     // Speed Calculations
     double leftMotorSpeed = (rightTrigger * Robot.m_oi.getTeleopSpeed())

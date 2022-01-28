@@ -12,7 +12,6 @@ import frc.robot.subsystems.DriveTrain;
 
 public class TurnFull extends CommandBase {
   private final double degrees;
-  public static boolean running = false;
 
   /** Creates a new ArcadeDrive. */
   public TurnFull(double degreess) {
@@ -22,7 +21,6 @@ public class TurnFull extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    running = true;
     Robot.driveTrain.changeMode();
     Timer.delay(.1);
   }
@@ -44,7 +42,6 @@ public class TurnFull extends CommandBase {
   public void end(boolean interrupted) {
     Robot.driveTrain.setRightMotors(0);
     Robot.driveTrain.setLeftMotors(0);
-    running = false;
   }
 
   // Returns true when the command should end.
