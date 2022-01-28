@@ -132,7 +132,7 @@ public class Robot extends TimedRobot {
     music.addInstrument(driveTrain.frontLeft);
     music.addInstrument(driveTrain.backRight);
     music.addInstrument(driveTrain.backLeft);
-    music.loadMusic("Meglo.chrp");
+    music.loadMusic("gummy.chrp");
     music.play();
   }
 
