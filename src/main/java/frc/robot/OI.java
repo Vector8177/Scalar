@@ -27,12 +27,7 @@ public class OI {
 
     private final Command m_DOL = new MoveDirection(-4);
     private final Command m_TurnRight = new SequentialCommandGroup(new MoveDirection(2), new TurnFull(90));
-<<<<<<< Updated upstream
-    private final Command m_PracticeAuto = new SequentialCommandGroup(new MoveDirection(3), new TurnFull(90),
-            new MoveDirection(1), new TurnFull(-90));
-=======
     private final Command m_PracticeAuto = new auto_PracticeAuto();
->>>>>>> Stashed changes
 
     // CONTROLLER
     private XboxController driverController = new XboxController(RobotMap.DRIVER_CONTROLLER_PORT);
@@ -58,15 +53,15 @@ public class OI {
         return m_chooser.getSelected();
     }
 
-    public double GetDriverRawJoystick(int axis) {
+    public double getDriverRawJoystick(int axis) {
         return driverController.getLeftX();
     }
 
-    public double GetDriverRightTrigger() {
+    public double getDriverRightTrigger() {
         return driverController.getRightTriggerAxis();
     }
 
-    public double GetDriverLeftTrigger() {
+    public double getDriverLeftTrigger() {
         return driverController.getLeftTriggerAxis();
     }
 
