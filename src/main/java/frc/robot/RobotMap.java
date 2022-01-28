@@ -8,6 +8,12 @@ public class RobotMap {
     public static final int BACK_LEFT_MOTOR_ID = 4;
     public static final int UNITS_PER_REVOLUTION = 12185;
 
+    // PID control
+    public static final double kP = 0.03;
+    public static final double kI = 0.00;
+    public static final double kD = 0.00;
+    public static final double kF = 0.00;
+
     // Controller
     public static final int DRIVER_CONTROLLER_PORT = 0;
     public static final int BUTTON_A = 1;

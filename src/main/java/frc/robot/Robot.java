@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.teleop_ArcadeDrive;
 import frc.robot.commands.TurnFull;
+import frc.robot.commands.TurnFullPID;
 import frc.robot.subsystems.DriveTrain;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -151,9 +152,9 @@ public class Robot extends TimedRobot {
     SmartDashboard.putBoolean("Is rotating", ahrs.isRotating());
 
     // Adds controller values to Shuffle Board
-    SmartDashboard.putNumber("Right Trigger", (double) (Math.round(m_oi.GetDriverRightTrigger() * 1000)) / 1000);
-    SmartDashboard.putNumber("Left Trigger", (double) (Math.round(m_oi.GetDriverLeftTrigger() * 1000)) / 1000);
-    SmartDashboard.putNumber("Left Stick", (double) (Math.round(m_oi.GetDriverRawJoystick(0) * 1000)) / 1000);
+    SmartDashboard.putNumber("Right Trigger", (double) (Math.round(m_oi.getDriverRightTrigger() * 1000)) / 1000);
+    SmartDashboard.putNumber("Left Trigger", (double) (Math.round(m_oi.getDriverLeftTrigger() * 1000)) / 1000);
+    SmartDashboard.putNumber("Left Stick", (double) (Math.round(m_oi.getDriverRawJoystick(0) * 1000)) / 1000);
     SmartDashboard.putNumber("Motor Units", driveTrain.frontRight.getSelectedSensorPosition());
   }
 }

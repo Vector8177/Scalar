@@ -48,9 +48,9 @@ public class TurnFull extends CommandBase {
   @Override
   public boolean isFinished() {
     if (degrees > 0) {
-      return !(Robot.ahrs.getYaw() < degrees - ((int) (degrees / RobotMap.EXTRA_DEGREES_PER_DEGREE)));
+      return Robot.ahrs.getYaw() > degrees - ((int) (degrees / RobotMap.EXTRA_DEGREES_PER_DEGREE));
     } else if (degrees < 0) {
-      return !(Robot.ahrs.getYaw() > degrees - ((int) (degrees / RobotMap.EXTRA_DEGREES_PER_DEGREE)));
+      return Robot.ahrs.getYaw() < degrees - ((int) (degrees / RobotMap.EXTRA_DEGREES_PER_DEGREE));
     } else {
       return true;
     }

@@ -4,18 +4,9 @@
 
 package frc.robot.subsystems;
 
-import frc.robot.Robot;
 import frc.robot.RobotMap;
-import com.kauailabs.navx.frc.AHRS;
-import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import frc.robot.commands.teleop_ArcadeDrive;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
-import com.ctre.phoenix.sensors.CANCoder;
-import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class DriveTrain extends SubsystemBase {
@@ -62,4 +53,5 @@ public class DriveTrain extends SubsystemBase {
   public double encoderDegrees() {
     return (-frontRight.getSelectedSensorPosition() / RobotMap.UNITS_PER_REVOLUTION);
   }
+
 }
