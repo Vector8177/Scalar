@@ -19,15 +19,15 @@ public class TurnFullPID extends CommandBase {
 
     /** Creates a new ArcadeDrive. */
     public TurnFullPID(double degreess) {
-        pid.setTolerance(5, 10);
-        pid.enableContinuousInput(-180, 180);
         degrees = degreess;
     }
 
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        Robot.driveTrain.changeMode();
+        Robot.ahrs.zeroYaw();
+        pid.setTolerance(5, 10);
+        pid.enableContinuousInput(-180, 180);
         Timer.delay(.1);
     }
 
