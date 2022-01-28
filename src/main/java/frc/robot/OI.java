@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.shuffleboard.*;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Preferences;
 import frc.robot.commands.TurnFull;
+import frc.robot.commands.auto_PracticeAuto;
 import frc.robot.commands.MoveDirection;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
@@ -26,8 +27,12 @@ public class OI {
 
     private final Command m_DOL = new MoveDirection(-4);
     private final Command m_TurnRight = new SequentialCommandGroup(new MoveDirection(2), new TurnFull(90));
+<<<<<<< Updated upstream
     private final Command m_PracticeAuto = new SequentialCommandGroup(new MoveDirection(3), new TurnFull(90),
             new MoveDirection(1), new TurnFull(-90));
+=======
+    private final Command m_PracticeAuto = new auto_PracticeAuto();
+>>>>>>> Stashed changes
 
     // CONTROLLER
     private XboxController driverController = new XboxController(RobotMap.DRIVER_CONTROLLER_PORT);
@@ -65,4 +70,7 @@ public class OI {
         return driverController.getLeftTriggerAxis();
     }
 
+    public boolean bButtonPressed() {
+        return driverController.getBButton();
+    }
 }
