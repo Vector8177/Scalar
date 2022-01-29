@@ -20,23 +20,15 @@ private static boolean cycleOnce = false;
     @Override
     public void execute() {
         Robot.pneu.openCompressor();
-        Robot.pneu.openForwardSolenoid();
-        Timer.delay(2);
-        Robot.pneu.closeSolenoid();
-        Timer.delay(1);
         Robot.pneu.openReverseSolenoid();
-        Timer.delay(2);
-        Robot.pneu.closeSolenoid();
-        Timer.delay(1);
+        Timer.delay(8);
         Robot.pneu.openForwardSolenoid();
-        Timer.delay(2);
-        Robot.pneu.closeSolenoid();
-        Timer.delay(1);
+        Timer.delay(8);
         Robot.pneu.openReverseSolenoid();
-        Timer.delay(2);
+        Timer.delay(8);
+        Robot.pneu.openForwardSolenoid();
+        Timer.delay(8);
         end(true);
-
-
     }
 
     // Called once the command ends or is interrupted.

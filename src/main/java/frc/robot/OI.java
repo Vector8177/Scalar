@@ -30,7 +30,7 @@ public class OI {
      * == COMMANDS ==
      */
     private final Command m_DOL = new MoveDirection(9);
-    private final Command m_TurnRight = new SequentialCommandGroup(new MoveDirection(2), new TurnFull(90));
+    private final Command m_TurnRight = new SequentialCommandGroup(new MoveDirection(3), new TurnFullPID(90), new MoveDirection(3), new TurnFullPID(90), new MoveDirection(3), new TurnFullPID(90), new MoveDirection(3), new TurnFullPID(90));
     private final Command m_PracticeAuto = new auto_PracticeAuto();
     private final Command m_TurnFullPID = new TurnFullPID(90);
     private final Command m_Pneumatics = new testPnuematics();
