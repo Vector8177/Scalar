@@ -23,6 +23,9 @@ public class RobotMap {
     public static final int LEFT_BUMPER = 5;
     public static final int RIGHT_BUMPER = 6;
 
+    // Pneumatics
+    public static final int PHEUMATICS_ID = 0;
+
     // Speed
     public static final double LEFT_MOTOR_SPEED_MODIFIER = .5;
     public static final double RIGHT_MOTOR_SPEED_MODIFIER = .5;

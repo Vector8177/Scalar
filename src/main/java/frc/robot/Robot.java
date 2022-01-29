@@ -149,7 +149,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Right Trigger", (double) (Math.round(m_oi.getDriverRightTrigger() * 1000)) / 1000);
     SmartDashboard.putNumber("Left Trigger", (double) (Math.round(m_oi.getDriverLeftTrigger() * 1000)) / 1000);
     SmartDashboard.putNumber("Left Stick", (double) (Math.round(m_oi.getDriverRawJoystick() * 1000)) / 1000);
-    //Adds Pneumatics to Shuffle Board
-    SmartDashboard.putNumber("Compresser Pressure", pneu.compresserPressure());
+    // Adds Pneumatics to Shuffle Board
+    SmartDashboard.putNumber("Compresser Pressure", pneu.compressorReading());
   }
 }

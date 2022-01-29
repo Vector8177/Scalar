@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.shuffleboard.*;
 import frc.robot.commands.TurnFull;
 import frc.robot.commands.TurnFullPID;
 import frc.robot.commands.auto_PracticeAuto;
+import frc.robot.commands.testPnuematics;
 import frc.robot.commands.MoveDirection;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
@@ -28,7 +29,7 @@ public class OI {
     /*
      * == COMMANDS ==
      */
-    private final Command m_DOL = new MoveDirection(-4);
+    private final Command m_DOL = new testPnuematics();
     private final Command m_TurnRight = new SequentialCommandGroup(new MoveDirection(2), new TurnFull(90));
     private final Command m_PracticeAuto = new auto_PracticeAuto();
     private final Command m_TurnFullPID = new TurnFullPID(90);
