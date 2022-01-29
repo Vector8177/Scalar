@@ -9,9 +9,9 @@ public class RobotMap {
     public static final int UNITS_PER_REVOLUTION = 12185;
 
     // PID control
-    public static final double kP = 1;
-    public static final double kI = 0.3;
-    public static final double kD = 0.07;
+    public static final double kP = .8;
+    public static final double kI = 0.02;
+    public static final double kD = 0.08;
     public static final double kF = 0.00;
 
     // Controller

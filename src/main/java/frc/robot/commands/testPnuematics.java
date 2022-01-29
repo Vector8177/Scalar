@@ -20,7 +20,6 @@ public class testPnuematics extends CommandBase {
     public void execute() {
         Robot.pneu.openCompressor();
         Robot.pneu.openForwardSolenoid();
-        Robot.pneu.openReverseSolenoid();
         Timer.delay(5);
         end(true);
 
