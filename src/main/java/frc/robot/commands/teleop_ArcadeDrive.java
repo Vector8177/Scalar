@@ -7,7 +7,6 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
-import frc.robot.subsystems.DriveTrain;
 
 public class teleop_ArcadeDrive extends CommandBase {
   /** Creates a new ArcadeDrive. */
@@ -25,7 +24,7 @@ public class teleop_ArcadeDrive extends CommandBase {
     // Controller Values
     double rightTrigger = Robot.m_oi.getDriverRightTrigger();
     double leftTrigger = Robot.m_oi.getDriverLeftTrigger();
-    double leftStickX = Robot.m_oi.getDriverRawJoystick(0);
+    double leftStickX = Robot.m_oi.getDriverRawJoystick();
     boolean bButtonPressed = Robot.m_oi.bButtonPressed();
 
     // Slowed down if B is pressed

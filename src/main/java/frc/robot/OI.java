@@ -3,8 +3,6 @@ package frc.robot;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.shuffleboard.*;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.Preferences;
 import frc.robot.commands.TurnFull;
 import frc.robot.commands.TurnFullPID;
 import frc.robot.commands.auto_PracticeAuto;
@@ -62,7 +60,7 @@ public class OI {
      */
     private XboxController driverController = new XboxController(RobotMap.DRIVER_CONTROLLER_PORT);
 
-    public double getDriverRawJoystick(int axis) {
+    public double getDriverRawJoystick() {
         return driverController.getLeftX();
     }
 

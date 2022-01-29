@@ -10,16 +10,10 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.teleop_ArcadeDrive;
-import frc.robot.commands.TurnFull;
-import frc.robot.commands.TurnFullPID;
 import frc.robot.subsystems.DriveTrain;
 import com.kauailabs.navx.frc.AHRS;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.ctre.phoenix.music.Orchestra;
-import edu.wpi.first.networktables.NetworkTableEntry;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -148,13 +142,10 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Acceleration Y", (double) (Math.round(ahrs.getWorldLinearAccelY() * 1000)) / 1000);
     SmartDashboard.putNumber("Velocity X", (double) (Math.round(ahrs.getVelocityX() * 1000)) / 1000);
     SmartDashboard.putNumber("Velocity Y", (double) (Math.round(ahrs.getVelocityY() * 1000)) / 1000);
-    SmartDashboard.putBoolean("Is moving", ahrs.isMoving());
-    SmartDashboard.putBoolean("Is rotating", ahrs.isRotating());
 
     // Adds controller values to Shuffle Board
     SmartDashboard.putNumber("Right Trigger", (double) (Math.round(m_oi.getDriverRightTrigger() * 1000)) / 1000);
     SmartDashboard.putNumber("Left Trigger", (double) (Math.round(m_oi.getDriverLeftTrigger() * 1000)) / 1000);
-    SmartDashboard.putNumber("Left Stick", (double) (Math.round(m_oi.getDriverRawJoystick(0) * 1000)) / 1000);
-    SmartDashboard.putNumber("Motor Units", driveTrain.frontRight.getSelectedSensorPosition());
+    SmartDashboard.putNumber("Left Stick", (double) (Math.round(m_oi.getDriverRawJoystick() * 1000)) / 1000);
   }
 }

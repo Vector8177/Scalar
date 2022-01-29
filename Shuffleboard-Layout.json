@@ -5,47 +5,20 @@
       "autoPopulate": true,
       "autoPopulatePrefix": "SmartDashboard/",
       "widgetPane": {
-        "gridSize": 128.0,
+        "gridSize": 124.0,
         "showGrid": true,
         "hgap": 16.0,
         "vgap": 16.0,
-        "titleType": 0,
+        "titleType": 1,
         "tiles": {
-          "3,0": {
-            "size": [
-              3,
-              2
-            ],
-            "content": {
-              "_type": "Subsystem Layout",
-              "_title": "Movement Checking",
-              "Layout/Label position": "BOTTOM",
-              "_children": [
-                {
-                  "_type": "Boolean Box",
-                  "_source0": "network_table:///SmartDashboard/Is rotating",
-                  "_title": "Is rotating",
-                  "Colors/Color when true": "#7CFC00FF",
-                  "Colors/Color when false": "#8B0000FF"
-                },
-                {
-                  "_type": "Boolean Box",
-                  "_source0": "network_table:///SmartDashboard/Is moving",
-                  "_title": "Is moving",
-                  "Colors/Color when true": "#7CFC00FF",
-                  "Colors/Color when false": "#8B0000FF"
-                }
-              ]
-            }
-          },
-          "6,0": {
+          "7,0": {
             "size": [
               2,
               4
             ],
             "content": {
               "_type": "List Layout",
-              "_title": "List Layout",
+              "_title": "Controller",
               "Layout/Label position": "BOTTOM",
               "_children": [
                 {
@@ -129,18 +102,7 @@
               ]
             }
           },
-          "0,3": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Motor Units",
-              "_title": "Motor Units"
-            }
-          },
-          "2,3": {
+          "3,0": {
             "size": [
               1,
               2
@@ -151,7 +113,7 @@
               "_title": "PID Controller"
             }
           },
-          "3,2": {
+          "4,0": {
             "size": [
               3,
               3
@@ -160,11 +122,11 @@
               "_type": "Graph",
               "_source0": "network_table:///SmartDashboard/PID Output",
               "_title": "PID Output",
-              "Graph/Visible time": 10.0,
+              "Graph/Visible time": 5.0,
               "Graph/X-axis auto scrolling": true,
               "Y-axis/Automatic bounds": false,
               "Y-axis/Upper bound": 1.0,
-              "Y-axis/Lower bound": -1.0,
+              "Y-axis/Lower bound": 0.0,
               "Y-axis/Unit": "ul",
               "Visible data/SmartDashboard/PID Output": true
             }

@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
-import frc.robot.subsystems.DriveTrain;
 
 public class MoveDirection extends CommandBase {
   private final double feet;
