@@ -12,7 +12,6 @@ public class RobotMap {
     public static final double kP = 0.8;
     public static final double kI = 0.2;
     public static final double kD = 0.08;
-    public static final double kF = 0.00;
 
     // Controller
     public static final int DRIVER_CONTROLLER_PORT = 0;
