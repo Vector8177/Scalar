@@ -17,6 +17,7 @@ public class MoveDirection extends CommandBase {
     feet = feet_distance;
   }
 
+  // hi
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
