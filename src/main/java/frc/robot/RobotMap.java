@@ -9,9 +9,9 @@ public class RobotMap {
     public static final int UNITS_PER_REVOLUTION = 12185;
 
     // PID control
-    public static final double kP = 1;
-    public static final double kI = 0.3;
-    public static final double kD = 0.07;
+    public static final double kP = 0.8;
+    public static final double kI = 0.2;
+    public static final double kD = 0.08;
     public static final double kF = 0.00;
 
     // Controller
@@ -23,11 +23,14 @@ public class RobotMap {
     public static final int LEFT_BUMPER = 5;
     public static final int RIGHT_BUMPER = 6;
 
+    // Pneumatics
+    public static final int PHEUMATICS_ID = 0;
+    
     // Speed
     public static final double LEFT_MOTOR_SPEED_MODIFIER = .5;
     public static final double RIGHT_MOTOR_SPEED_MODIFIER = .5;
     public static final double LEFT_JOYSTICK_SPEED_MODIFIER = .8;
-    public static final double AUTONOMOUS_SPEED = .4;
+    public static final double AUTONOMOUS_SPEED = .3;
     public static final double CORRECTION_SPEED = .1;
 
     // Distance
