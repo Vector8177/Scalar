@@ -25,13 +25,12 @@ public class RobotMap {
 
     // Pneumatics
     public static final int PHEUMATICS_ID = 0;
-    
+
     // Speed
     public static final double LEFT_MOTOR_SPEED_MODIFIER = .5;
     public static final double RIGHT_MOTOR_SPEED_MODIFIER = .5;
     public static final double LEFT_JOYSTICK_SPEED_MODIFIER = .8;
     public static final double AUTONOMOUS_SPEED = .3;
-    public static final double CORRECTION_SPEED = .1;
 
     // Distance
     public static final double DISTANCE_PER_REVOLUTION_FT = 1.5708;
