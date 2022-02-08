@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Pneumatics extends SubsystemBase {
   Compressor compressor = new Compressor(RobotMap.PHEUMATICS_ID, PneumaticsModuleType.CTREPCM);
-  DoubleSolenoid solenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 1, 2);
+  DoubleSolenoid solenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 0, 1);
 
   public Pneumatics() {
     solenoid.set(Value.kOff);
@@ -35,7 +35,7 @@ public class Pneumatics extends SubsystemBase {
   }
 
   public void openReverseSolenoid() {
-    solenoid.set(Value.kReverse);
+     solenoid.set(Value.kReverse);
   }
 
   public void closeSolenoid() {
