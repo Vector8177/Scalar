@@ -8,32 +8,42 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
+import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.math.MathUtil;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class TurnFull extends CommandBase {
   private final double degrees;
+  private final double yaw;
+  PIDController pid = new PIDController(RobotMap.kP, RobotMap.kI, RobotMap.kD);
+  private double pidcalc;
 
   /** Creates a new ArcadeDrive. */
-  public TurnFull(double degreess) {
+  public TurnFull(double degreess, double yaw) {
     degrees = degreess;
+    this.yaw = yaw;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Robot.driveTrain.changeMode();
+    pid.setTolerance(5, 10);
+    pid.enableContinuousInput(-180, 180);
     Timer.delay(.1);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (degrees > 0) {
-      Robot.driveTrain.setLeftMotors(Robot.m_oi.getAutoSpeed());
-      Robot.driveTrain.setRightMotors(-Robot.m_oi.getAutoSpeed());
-    } else if (degrees < 0) {
-      Robot.driveTrain.setLeftMotors(-Robot.m_oi.getAutoSpeed());
-      Robot.driveTrain.setRightMotors(Robot.m_oi.getAutoSpeed());
-    }
+    pidcalc = MathUtil.clamp(pid.calculate(yaw, degrees), -Robot.m_oi.getAutoSpeed(), Robot.m_oi.getAutoSpeed());
+    SmartDashboard.putNumber("PID Output", pidcalc);
+    SmartDashboard.putData("PID Controller", pid);
+    Robot.driveTrain.setLeftMotors(pidcalc);
+    Robot.driveTrain.setRightMotors(-pidcalc);
+  }
+
+  public double getPIDOutput() {
+    return pidcalc;
   }
 
   // Called once the command ends or is interrupted.
@@ -46,12 +56,6 @@ public class TurnFull extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (degrees > 0) {
-      return Robot.ahrs.getYaw() > degrees - ((int) (degrees / RobotMap.EXTRA_DEGREES_PER_DEGREE));
-    } else if (degrees < 0) {
-      return Robot.ahrs.getYaw() < degrees - ((int) (degrees / RobotMap.EXTRA_DEGREES_PER_DEGREE));
-    } else {
-      return true;
-    }
+    return true;
   }
 }

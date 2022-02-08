@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.teleop_ArcadeDrive;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.Pneumatics;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -28,11 +29,12 @@ import com.ctre.phoenix.music.Orchestra;
 public class Robot extends TimedRobot {
   public static teleop_ArcadeDrive arcadeDrive = new teleop_ArcadeDrive();
   public static DriveTrain driveTrain = new DriveTrain();
+  public static Limelight limelight = new Limelight();
   public static OI m_oi;
   public static Orchestra music;
   private Command m_autonomousCommand;
   public static AHRS ahrs = new AHRS(SPI.Port.kMXP);
-  public static Pneumatics pneu = new Pneumatics();
+  public static Pneumatics pneu = null; // new Pneumatics();
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -150,6 +152,6 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Left Trigger", (double) (Math.round(m_oi.getDriverLeftTrigger() * 1000)) / 1000);
     SmartDashboard.putNumber("Left Stick", (double) (Math.round(m_oi.getDriverRawJoystick() * 1000)) / 1000);
     // Adds Pneumatics to Shuffle Board
-    SmartDashboard.putNumber("Compresser Pressure", pneu.compressorReading());
+    // SmartDashboard.putNumber("Compresser Pressure", pneu.compressorReading());
   }
 }

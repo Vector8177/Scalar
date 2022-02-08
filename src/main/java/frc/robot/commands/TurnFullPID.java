@@ -14,8 +14,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class TurnFullPID extends CommandBase {
     private final double degrees;
-    PIDController pid = new PIDController(RobotMap.kP, RobotMap.kI, RobotMap.kD);
     private double pidcalc;
+    public PIDController pid = new PIDController(RobotMap.kP, RobotMap.kI, RobotMap.kD);
 
     /** Creates a new ArcadeDrive. */
     public TurnFullPID(double degreess) {
@@ -26,7 +26,7 @@ public class TurnFullPID extends CommandBase {
     @Override
     public void initialize() {
         Robot.ahrs.zeroYaw();
-        pid.setTolerance(5, 10);
+        pid.setTolerance(2, 5);
         pid.enableContinuousInput(-180, 180);
         Timer.delay(.1);
     }

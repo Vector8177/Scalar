@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.shuffleboard.*;
 import frc.robot.commands.TurnFull;
 import frc.robot.commands.TurnFullPID;
-import frc.robot.commands.auto_PracticeAuto;
+import frc.robot.commands.TurnToBall;
 import frc.robot.commands.testPnuematics;
 import frc.robot.commands.MoveDirection;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -30,15 +30,13 @@ public class OI {
      * == COMMANDS ==
      */
     private final Command m_DOL = new MoveDirection(9);
-    private final Command m_TurnRight = new SequentialCommandGroup(new MoveDirection(2), new TurnFull(90));
-    private final Command m_PracticeAuto = new auto_PracticeAuto();
+    private final Command m_TurnRight = new TurnToBall();
     private final Command m_TurnFullPID = new TurnFullPID(90);
     private final Command m_Pneumatics = new testPnuematics();
 
     public OI() {
         m_chooser.setDefaultOption("Drive off line", m_DOL);
         m_chooser.addOption("Move forward turn right", m_TurnRight);
-        m_chooser.addOption("Practice Autonomous", m_PracticeAuto);
         m_chooser.addOption("Turn Full PID 90", m_TurnFullPID);
         m_chooser.addOption("Pnuematics Test", m_Pneumatics);
 
