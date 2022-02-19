@@ -60,6 +60,7 @@ public class OI {
      * == CONTROLLER ==
      */
     private XboxController driverController = new XboxController(RobotMap.DRIVER_CONTROLLER_PORT);
+    private XboxController intakeController = new XboxController(RobotMap.INTAKE_CONTROLLER_PORT);
 
     public double getDriverRawJoystick() {
         return driverController.getLeftX();
@@ -73,7 +74,27 @@ public class OI {
         return driverController.getLeftTriggerAxis();
     }
 
+        public double getIntakeRightTrigger(){
+            return intakeController.getRightTriggerAxis();
+        }
+    
+        public double getIntakeLeftTrigger(){
+            return intakeController.getLeftTriggerAxis();
+        }
+
     public boolean bButtonPressed() {
         return driverController.getBButton();
+    }
+
+    public boolean bIntakeButtonPressed(){
+        return intakeController.getBButton();
+    }
+
+    public boolean aIntakeButtonPressed(){
+        return intakeController.getAButton();
+    }
+
+    public boolean yIntakeButtonPressed(){
+        return intakeController.getYButton();
     }
 }
