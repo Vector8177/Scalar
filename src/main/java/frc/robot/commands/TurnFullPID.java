@@ -26,7 +26,7 @@ public class TurnFullPID extends CommandBase {
     @Override
     public void initialize() {
         Robot.ahrs.zeroYaw();
-        pid.setTolerance(2, 5);
+        pid.setTolerance(1);
         pid.enableContinuousInput(-180, 180);
         Timer.delay(.1);
     }
