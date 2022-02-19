@@ -8,39 +8,45 @@ import frc.robot.RobotMap;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import org.photonvision.*;
-import org.photonvision.targeting.PhotonPipelineResult;
-import org.photonvision.targeting.PhotonTrackedTarget;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Limelight extends SubsystemBase {
-    PhotonCamera camera;
-    PhotonPipelineResult result;
+    NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+    NetworkTableEntry tx = table.getEntry("tx");
+    NetworkTableEntry ty = table.getEntry("ty");
+    NetworkTableEntry ta = table.getEntry("ta");
+    NetworkTableEntry tv = table.getEntry("tv");
+    double x = tx.getDouble(0.0);
+    double y = ty.getDouble(0.0);
+    double area = ta.getDouble(0.0);
 
     /** Creates a new DriveTrian. */
     public Limelight() {
-        camera = new PhotonCamera("gloworm");
+        table = NetworkTableInstance.getDefault().getTable("limelight");
     }
 
     @Override
     public void periodic() {
-        // This method will be called once per scheduler run
+        x = tx.getDouble(0.0);
+        y = ty.getDouble(0.0);
+        area = ta.getDouble(0.0);
+        SmartDashboard.putNumber("LimelightX", x);
+        SmartDashboard.putNumber("LimelightY", y);
+        SmartDashboard.putNumber("LimelightArea", area);
     }
 
-    public PhotonPipelineResult getLatestResult() {
-        return camera.getLatestResult();
+    public double getYaw() {
+        return x;
     }
 
-    public void setDriverMode(boolean driver) {
-        camera.setDriverMode(driver);
-    }
-
-    public PhotonTrackedTarget retriveBestTarget() {
-        result = getLatestResult();
-        System.out.println(result.hasTargets());
-        if (result.hasTargets()) {
-            return result.getBestTarget();
+    public boolean targetAvailable() {
+        if (tv.getDouble(0.0) == 0) {
+            return false;
+        } else {
+            return true;
         }
-        return null;
     }
-
 }

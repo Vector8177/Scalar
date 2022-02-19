@@ -18,7 +18,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.math.MathUtil;
 
 public class TurnToBall extends CommandBase {
-  PhotonTrackedTarget target;
+  double targetYaw = Robot.limelight.getYaw();
   public PIDController pid = new PIDController(RobotMap.kP, RobotMap.kI, RobotMap.kD);
 
   /** Creates a new ArcadeDrive. */
@@ -28,7 +28,6 @@ public class TurnToBall extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    target = Robot.limelight.retriveBestTarget();
     Robot.ahrs.zeroYaw();
     pid.setTolerance(2, 5);
     pid.enableContinuousInput(-180, 180);
@@ -37,14 +36,10 @@ public class TurnToBall extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    target = Robot.limelight.retriveBestTarget();
     SmartDashboard.putData("PID Controller 2", pid);
-    if (target != null) {
-      double targetYaw = target.getYaw();
+    if (Robot.limelight.targetAvailable()) {
+      targetYaw = Robot.limelight.getYaw();
       float yaw = 0;
-      System.out.println(target);
-      System.out.println(targetYaw);
-      System.out.println(yaw);
 
       turnPID(yaw, targetYaw, Robot.m_oi.getAutoSpeed());
     } else {
