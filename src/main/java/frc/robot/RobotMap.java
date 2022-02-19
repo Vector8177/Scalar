@@ -15,7 +15,8 @@ public class RobotMap {
     public static final double kF = 0.00;
 
     // Controller
-    public static final int DRIVER_CONTROLLER_PORT = 0;
+    public static final int DRIVER_CONTROLLER_PORT = 3;
+    public static final int INTAKE_CONTROLLER_PORT = 0;
     public static final int BUTTON_A = 1;
     public static final int BUTTON_B = 2;
     public static final int BUTTON_X = 3;
@@ -25,6 +26,7 @@ public class RobotMap {
 
     // Pneumatics
     public static final int PHEUMATICS_ID = 0;
+    public static final double INTAKE_MOTOR_MODIFIER = .4;
 
     // Speed
     public static final double LEFT_MOTOR_SPEED_MODIFIER = .5;

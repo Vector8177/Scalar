@@ -11,7 +11,10 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.teleop_ArcadeDrive;
+import frc.robot.commands.testIntake;
+import frc.robot.commands.testPnuematics;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.Pneumatics;
 import com.kauailabs.navx.frc.AHRS;
@@ -35,7 +38,10 @@ public class Robot extends TimedRobot {
   public static Orchestra music;
   private Command m_autonomousCommand;
   public static AHRS ahrs = new AHRS(SPI.Port.kMXP);
-  public static Pneumatics pneu = null; // new Pneumatics();
+  public static Pneumatics pneu = new Pneumatics();
+  public static testPnuematics tPneu = new testPnuematics();
+  public static testIntake tIntake = new testIntake();
+  public static  Intake intake = new Intake();
 
   /**
    * This function is run when the robot is first started up and should be used

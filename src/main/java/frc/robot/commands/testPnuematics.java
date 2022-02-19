@@ -7,9 +7,10 @@ import frc.robot.subsystems.Pneumatics;
 
 public class testPnuematics extends CommandBase {
 private static boolean cycleOnce = false;
+private static Boolean forwardOpen = null;
     public testPnuematics() {
     }
-
+    
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
@@ -19,16 +20,24 @@ private static boolean cycleOnce = false;
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        Robot.pneu.openCompressor();
-        Robot.pneu.openReverseSolenoid();
-        Timer.delay(8);
-        Robot.pneu.openForwardSolenoid();
-        Timer.delay(8);
-        Robot.pneu.openReverseSolenoid();
-        Timer.delay(8);
-        Robot.pneu.openForwardSolenoid();
-        Timer.delay(8);
-        end(true);
+            if(Robot.m_oi.aIntakeButtonPressed()){
+                forwardOpen = true;
+            }
+            if(Robot.m_oi.yIntakeButtonPressed()){
+                forwardOpen = false;
+            }
+             if(forwardOpen != null && !forwardOpen){
+                Robot.pneu.openReverseSolenoid();
+            }
+            else if(forwardOpen != null && forwardOpen){
+                Robot.pneu.openForwardSolenoid();
+            }
+            if(Robot.m_oi.bIntakeButtonPressed()){
+                forwardOpen = null;
+                end(true);
+            }
+
+
     }
 
     // Called once the command ends or is interrupted.
