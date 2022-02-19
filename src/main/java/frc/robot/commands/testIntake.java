@@ -11,20 +11,20 @@ public class testIntake extends CommandBase{
     boolean off = false;
     private static Boolean forwardOpen = null;
     public void execute(){
-        if(!off){
+        if(!off) {
         Robot.intake.setIntakeMotor(Robot.m_oi.getIntakeRightTrigger());
         }
-        if(Robot.m_oi.aIntakeButtonPressed() && !off){
+        if(Robot.m_oi.aIntakeButtonPressed() && !off) {
             forwardOpen = true;
         }
         if(Robot.m_oi.yIntakeButtonPressed() && !off){
             forwardOpen = false;
         }
-         if(forwardOpen != null && !forwardOpen && !off){
+        if(forwardOpen != null && !forwardOpen && !off){
             Robot.pneu.openReverseSolenoid();
         }
-        else if(forwardOpen != null && forwardOpen && !off){
-            Robot.pneu.openForwardSolenoid();
+        else if(forwardOpen != null && forwardOpen && !off) { 
+            Robot.pneu.openForwardSolenoid(); 
         }
         if(Robot.m_oi.bIntakeButtonPressed()){
             forwardOpen = null;
