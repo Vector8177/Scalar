@@ -6,17 +6,23 @@ public class RobotMap {
     public static final int BACK_RIGHT_MOTOR_ID = 2;
     public static final int FRONT_LEFT_MOTOR_ID = 3;
     public static final int BACK_LEFT_MOTOR_ID = 4;
-    public static final int UNITS_PER_REVOLUTION = 12185;
+    public static final int UNITS_PER_REVOLUTION = 21934;
 
     // PID control
     public static final double kP = .02;
-    public static final double kI = 0.0;
+    public static final double kI = 0.0008;
     public static final double kD = 0.0022;
     public static final double kF = 0.00;
 
+    // PID for straight forward
+    public static final double aP = .1;
+    public static final double aI = 0;
+    public static final double aD = 0;
+    public static final double aF = 0.00;
+
     // Controller
-    public static final int DRIVER_CONTROLLER_PORT = 3;
-    public static final int INTAKE_CONTROLLER_PORT = 0;
+    public static final int DRIVER_CONTROLLER_PORT = 0;
+    public static final int INTAKE_CONTROLLER_PORT = 1;
     public static final int BUTTON_A = 1;
     public static final int BUTTON_B = 2;
     public static final int BUTTON_X = 3;
@@ -28,6 +34,10 @@ public class RobotMap {
     public static final int PHEUMATICS_ID = 0;
     public static final double INTAKE_MOTOR_MODIFIER = .4;
 
+    //Shooter
+    public static final int SHOOTER_FRONT_MOTOR_ID = 5;
+    public static final int SHOOTER_BACK_MOTOR_ID = 6;
+
     // Speed
     public static final double LEFT_MOTOR_SPEED_MODIFIER = .5;
     public static final double RIGHT_MOTOR_SPEED_MODIFIER = .5;
@@ -35,7 +45,9 @@ public class RobotMap {
     public static final double AUTONOMOUS_SPEED = .3;
 
     // Distance
-    public static final double DISTANCE_PER_REVOLUTION_FT = 1.5708;
+    public static final double FT_PER_ENCODER_DEGREE = 8929;
+    public static final double DISTANCE_PER_REVOLUTION_FT = 5*Math.PI/12;
+    // 1.5708
 
     // Degrees
     public static final double DEGREES_PER_REVOLUTION = 79.925;

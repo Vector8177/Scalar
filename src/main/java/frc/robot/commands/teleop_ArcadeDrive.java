@@ -25,7 +25,7 @@ public class teleop_ArcadeDrive extends CommandBase {
     double rightTrigger = Robot.m_oi.getDriverRightTrigger();
     double leftTrigger = Robot.m_oi.getDriverLeftTrigger();
     double leftStickX = Robot.m_oi.getDriverRawJoystick();
-    boolean bButtonPressed = Robot.m_oi.bButtonPressed();
+    boolean bButtonPressed = Robot.m_oi.bDriverButtonPressed();
 
     // Slowed down if B is pressed
     if (bButtonPressed) {
@@ -54,14 +54,24 @@ public class teleop_ArcadeDrive extends CommandBase {
     // Performing motor turning
     else if (leftStickX > 0) {
       System.out.println(leftMotorSpeed + " " + rightMotorSpeed);
-      Robot.driveTrain.setLeftMotors(leftMotorSpeed);
+      if(rightTrigger < leftTrigger){
+      Robot.driveTrain.setLeftMotors(rightMotorSpeed - (rightMotorSpeed * Math.abs(leftStickX) * RobotMap.LEFT_JOYSTICK_SPEED_MODIFIER));
+      Robot.driveTrain.setRightMotors(leftMotorSpeed);
+      } else{
+        Robot.driveTrain.setLeftMotors(leftMotorSpeed);
       Robot.driveTrain.setRightMotors(
           rightMotorSpeed - (rightMotorSpeed * Math.abs(leftStickX) * RobotMap.LEFT_JOYSTICK_SPEED_MODIFIER));
+      }
     } else if (leftStickX <= 0) {
       System.out.println(leftMotorSpeed + " " + rightMotorSpeed);
-      Robot.driveTrain.setLeftMotors(
+      if(rightTrigger < leftTrigger){
+      Robot.driveTrain.setLeftMotors(rightMotorSpeed);
+      Robot.driveTrain.setRightMotors(leftMotorSpeed - (leftMotorSpeed * (Math.abs(leftStickX) * RobotMap.LEFT_JOYSTICK_SPEED_MODIFIER)));
+      }else{
+        Robot.driveTrain.setLeftMotors(
           leftMotorSpeed - (leftMotorSpeed * (Math.abs(leftStickX) * RobotMap.LEFT_JOYSTICK_SPEED_MODIFIER)));
       Robot.driveTrain.setRightMotors(rightMotorSpeed);
+      }
     }
 
     System.out.print("Motor Degree: " + Robot.driveTrain.encoderDegrees() + " ");

@@ -10,9 +10,9 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class testIntake extends CommandBase{
     boolean off = false;
     private static Boolean forwardOpen = null;
-    public void execute(){
+    public void execute(){    
         if(!off) {
-        Robot.intake.setIntakeMotor(Robot.m_oi.getIntakeRightTrigger());
+        
         }
         if(Robot.m_oi.aIntakeButtonPressed() && !off) {
             forwardOpen = true;
@@ -32,10 +32,10 @@ public class testIntake extends CommandBase{
             end();
             return;
         }
+        
     }
 
     public void end(){
-        Robot.intake.setIntakeMotor(0);
         Robot.pneu.closeSolenoid();
         Robot.pneu.closeCompressor();
     }

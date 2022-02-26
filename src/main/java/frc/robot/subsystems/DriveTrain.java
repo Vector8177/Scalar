@@ -47,11 +47,18 @@ public class DriveTrain extends SubsystemBase {
 
   public void changeMode() {
     frontRight.setSelectedSensorPosition(0);
+    frontLeft.setSelectedSensorPosition(0);
+    backRight.setSelectedSensorPosition(0);
+    backLeft.setSelectedSensorPosition(0);
 
   }
 
   public double encoderDegrees() {
-    return (-frontRight.getSelectedSensorPosition() / RobotMap.UNITS_PER_REVOLUTION);
+    return -frontRight.getSelectedSensorPosition();
+  }
+
+  public String allEncoder(){
+    return "" + (-frontRight.getSelectedSensorPosition()) + " " + (-frontLeft.getSelectedSensorPosition() / RobotMap.UNITS_PER_REVOLUTION) + " " + (-backLeft.getSelectedSensorPosition() / RobotMap.UNITS_PER_REVOLUTION) + " " +  (-backRight.getSelectedSensorPosition() / RobotMap.UNITS_PER_REVOLUTION);
   }
 
 }

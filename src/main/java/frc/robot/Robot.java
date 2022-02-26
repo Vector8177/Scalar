@@ -11,12 +11,15 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.teleop_ArcadeDrive;
+import frc.robot.commands.teleop_Shooter;
 import frc.robot.commands.testIntake;
 import frc.robot.commands.testPnuematics;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.Pneumatics;
+import frc.robot.subsystems.Shooter;
+
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.ctre.phoenix.music.Orchestra;
@@ -42,6 +45,8 @@ public class Robot extends TimedRobot {
   public static testPnuematics tPneu = new testPnuematics();
   public static testIntake tIntake = new testIntake();
   public static  Intake intake = new Intake();
+  public static Shooter shooter = new Shooter();
+  public static teleop_Shooter tShooter = new teleop_Shooter();
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -96,6 +101,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
+    driveTrain.changeMode();
     m_autonomousCommand = m_oi.getAutonomousCommand();
 
     if (m_autonomousCommand != null) {
@@ -116,6 +122,7 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
     driveTrain.changeMode();
+    Robot.pneu.openCompressor();
     // This makes sure that the autonomous stops running when
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
@@ -126,6 +133,8 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     arcadeDrive.execute();
+    tShooter.execute();
+    tPneu.execute();
   }
 
   @Override
@@ -153,6 +162,8 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Acceleration Y", (double) (Math.round(ahrs.getWorldLinearAccelY() * 1000)) / 1000);
     SmartDashboard.putNumber("Velocity X", (double) (Math.round(ahrs.getVelocityX() * 1000)) / 1000);
     SmartDashboard.putNumber("Velocity Y", (double) (Math.round(ahrs.getVelocityY() * 1000)) / 1000);
+
+    SmartDashboard.putString("Encoder Degrees", Robot.driveTrain.allEncoder());
 
     // Adds controller values to Shuffle Board
     SmartDashboard.putNumber("Right Trigger", (double) (Math.round(m_oi.getDriverRightTrigger() * 1000)) / 1000);
