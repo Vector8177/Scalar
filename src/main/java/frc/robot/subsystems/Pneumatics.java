@@ -19,9 +19,7 @@ public class Pneumatics extends SubsystemBase {
   Compressor compressor = new Compressor(RobotMap.PHEUMATICS_ID, PneumaticsModuleType.CTREPCM);
   DoubleSolenoid solenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 0, 1);
   testPnuematics test = new testPnuematics();
-
   public Pneumatics() {
-    solenoid.set(Value.kOff);
 
   }
 

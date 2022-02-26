@@ -26,9 +26,8 @@ public class TurnFullPID extends CommandBase {
     @Override
     public void initialize() {
         Robot.ahrs.zeroYaw();
-        pid.setTolerance(1);
+        pid.setTolerance(1.5);
         pid.enableContinuousInput(-180, 180);
-        Timer.delay(.1);
     }
 
     // Called every time the scheduler runs while the command is scheduled.
@@ -56,6 +55,11 @@ public class TurnFullPID extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return pid.atSetpoint();
+        if(pid.atSetpoint()){
+            
+             Robot.driveTrain.changeMode();
+             return true;
+        }
+        return false;
     }
 }

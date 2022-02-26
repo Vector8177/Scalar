@@ -16,8 +16,13 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+import com.ctre.phoenix.motorcontrol.TalonSRXControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
 public class Intake extends SubsystemBase {
-  Spark intakeMotor = new Spark(0);
+    TalonSRX elevatorSRX = new TalonSRX(7);
+    TalonSRX intakeSRX = new TalonSRX(8);
+ 
 
   public Intake() {
   }
@@ -26,9 +31,14 @@ public class Intake extends SubsystemBase {
   public void periodic() {
   }
 
-  public void setIntakeMotor(double speed){
-       intakeMotor.set(speed * RobotMap.INTAKE_MOTOR_MODIFIER);
+  public void setElevatorMotor(double power){
+    elevatorSRX.set(TalonSRXControlMode.PercentOutput, power);
   }
+
+  public void setIntakeMotor(double power){
+    intakeSRX.set(TalonSRXControlMode.PercentOutput, power);
+  }
+
 
   
 
