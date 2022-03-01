@@ -6,7 +6,7 @@ import frc.robot.Robot;
 import frc.robot.subsystems.Intake;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class testIntake extends CommandBase {
+public class testClimber extends CommandBase {
     boolean off = false;
     private Boolean forwardOpen = null;
 
@@ -14,22 +14,17 @@ public class testIntake extends CommandBase {
         if (!off) {
 
         }
-        if (Robot.m_oi.aIntakeButtonPressed() && !off) {
+        if (false && Robot.m_oi.rightIntakeBumperPressed() && !off) {
             forwardOpen = true;
         }
-        if (Robot.m_oi.yIntakeButtonPressed() && !off) {
+        if (false && Robot.m_oi.leftIntakeBumperPressed() && !off) {
             forwardOpen = false;
         }
         if (forwardOpen != null && !forwardOpen && !off) {
-            Robot.intake.openIntakeReverseSolenoid();
+            Robot.climber.openClimberReverseSolenoid();
         } else if (forwardOpen != null && forwardOpen && !off) {
-            Robot.intake.openIntakeForwardSolenoid();
+            Robot.climber.openClimberForwardSolenoid();
         }
 
-    }
-
-    public void end() {
-        Robot.intake.closeIntakeSolenoid();
-        Robot.intake.closeCompressor();
     }
 }

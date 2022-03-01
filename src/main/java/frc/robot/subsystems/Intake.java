@@ -7,7 +7,6 @@ package frc.robot.subsystems;
 
 import frc.robot.Robot;
 import frc.robot.RobotMap;
-import frc.robot.commands.testPnuematics;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
@@ -20,9 +19,8 @@ import com.ctre.phoenix.motorcontrol.TalonSRXControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 public class Intake extends SubsystemBase {
-    TalonSRX elevatorSRX = new TalonSRX(7);
-    TalonSRX intakeSRX = new TalonSRX(8);
- 
+  TalonSRX elevatorSRX = new TalonSRX(7);
+  TalonSRX intakeSRX = new TalonSRX(8);
 
   public Intake() {
   }
@@ -31,15 +29,40 @@ public class Intake extends SubsystemBase {
   public void periodic() {
   }
 
-  public void setElevatorMotor(double power){
+  public void setElevatorMotor(double power) {
     elevatorSRX.set(TalonSRXControlMode.PercentOutput, power);
   }
 
-  public void setIntakeMotor(double power){
+  public void setIntakeMotor(double power) {
     intakeSRX.set(TalonSRXControlMode.PercentOutput, power);
   }
 
+  Compressor compressor = new Compressor(RobotMap.PHEUMATICS_ID, PneumaticsModuleType.CTREPCM);
+  DoubleSolenoid solenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 0, 1);
 
-  
+  public double compressorReading() {
+    return compressor.getPressure();
+  }
+
+  public void openIntakeForwardSolenoid() {
+    solenoid.set(Value.kForward);
+  }
+
+  public void openIntakeReverseSolenoid() {
+    solenoid.set(Value.kReverse);
+  }
+
+  public void closeIntakeSolenoid() {
+    solenoid.set(Value.kOff);
+  }
+
+  public void closeCompressor() {
+    compressor.disable();
+  }
+
+  public void openCompressor() {
+    compressor.enableDigital();
+
+  }
 
 }

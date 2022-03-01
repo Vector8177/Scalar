@@ -29,16 +29,16 @@ public class teleop_ArcadeDrive extends CommandBase {
 
     // Slowed down if B is pressed
     if (bButtonPressed) {
-      rightTrigger /= 8.0;
-      leftTrigger /= 8.0;
+      rightTrigger /= 4.0;
+      leftTrigger /= 4.0;
       leftStickX /= 3.0;
     }
 
     // Speed Calculations
-    double leftMotorSpeed = (rightTrigger * Robot.m_oi.getTeleopSpeed())
-        - (leftTrigger * Robot.m_oi.getTeleopSpeed());
-    double rightMotorSpeed = (rightTrigger * Robot.m_oi.getTeleopSpeed())
-        - (leftTrigger * Robot.m_oi.getTeleopSpeed());
+    double leftMotorSpeed = ((rightTrigger * RobotMap.TURN_SPEED_MODIFIER) * Robot.m_oi.getTeleopSpeed())
+        - ((leftTrigger * RobotMap.TURN_SPEED_MODIFIER) * Robot.m_oi.getTeleopSpeed());
+    double rightMotorSpeed = ((rightTrigger * RobotMap.TURN_SPEED_MODIFIER) * Robot.m_oi.getTeleopSpeed())
+        - ((leftTrigger * RobotMap.TURN_SPEED_MODIFIER) * Robot.m_oi.getTeleopSpeed());
 
     // Determining if robot should use joystick full-turning
     if (rightTrigger == 0 && leftTrigger == 0 && leftStickX != 0) {
@@ -54,23 +54,25 @@ public class teleop_ArcadeDrive extends CommandBase {
     // Performing motor turning
     else if (leftStickX > 0) {
       System.out.println(leftMotorSpeed + " " + rightMotorSpeed);
-      if(rightTrigger < leftTrigger){
-      Robot.driveTrain.setLeftMotors(rightMotorSpeed - (rightMotorSpeed * Math.abs(leftStickX) * RobotMap.LEFT_JOYSTICK_SPEED_MODIFIER));
-      Robot.driveTrain.setRightMotors(leftMotorSpeed);
-      } else{
+      if (rightTrigger < leftTrigger) {
+        Robot.driveTrain.setLeftMotors(
+            rightMotorSpeed - (rightMotorSpeed * Math.abs(leftStickX) * RobotMap.LEFT_JOYSTICK_SPEED_MODIFIER));
+        Robot.driveTrain.setRightMotors(leftMotorSpeed);
+      } else {
         Robot.driveTrain.setLeftMotors(leftMotorSpeed);
-      Robot.driveTrain.setRightMotors(
-          rightMotorSpeed - (rightMotorSpeed * Math.abs(leftStickX) * RobotMap.LEFT_JOYSTICK_SPEED_MODIFIER));
+        Robot.driveTrain.setRightMotors(
+            rightMotorSpeed - (rightMotorSpeed * Math.abs(leftStickX) * RobotMap.LEFT_JOYSTICK_SPEED_MODIFIER));
       }
     } else if (leftStickX <= 0) {
       System.out.println(leftMotorSpeed + " " + rightMotorSpeed);
-      if(rightTrigger < leftTrigger){
-      Robot.driveTrain.setLeftMotors(rightMotorSpeed);
-      Robot.driveTrain.setRightMotors(leftMotorSpeed - (leftMotorSpeed * (Math.abs(leftStickX) * RobotMap.LEFT_JOYSTICK_SPEED_MODIFIER)));
-      }else{
+      if (rightTrigger < leftTrigger) {
+        Robot.driveTrain.setLeftMotors(rightMotorSpeed);
+        Robot.driveTrain.setRightMotors(
+            leftMotorSpeed - (leftMotorSpeed * (Math.abs(leftStickX) * RobotMap.LEFT_JOYSTICK_SPEED_MODIFIER)));
+      } else {
         Robot.driveTrain.setLeftMotors(
-          leftMotorSpeed - (leftMotorSpeed * (Math.abs(leftStickX) * RobotMap.LEFT_JOYSTICK_SPEED_MODIFIER)));
-      Robot.driveTrain.setRightMotors(rightMotorSpeed);
+            leftMotorSpeed - (leftMotorSpeed * (Math.abs(leftStickX) * RobotMap.LEFT_JOYSTICK_SPEED_MODIFIER)));
+        Robot.driveTrain.setRightMotors(rightMotorSpeed);
       }
     }
 

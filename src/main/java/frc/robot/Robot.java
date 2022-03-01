@@ -12,12 +12,12 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.teleop_ArcadeDrive;
 import frc.robot.commands.teleop_Shooter;
+import frc.robot.commands.testClimber;
 import frc.robot.commands.testIntake;
-import frc.robot.commands.testPnuematics;
+import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Limelight;
-import frc.robot.subsystems.Pneumatics;
 import frc.robot.subsystems.Shooter;
 
 import com.kauailabs.navx.frc.AHRS;
@@ -41,12 +41,12 @@ public class Robot extends TimedRobot {
   public static Orchestra music;
   private Command m_autonomousCommand;
   public static AHRS ahrs = new AHRS(SPI.Port.kMXP);
-  public static Pneumatics pneu = new Pneumatics();
-  public static testPnuematics tPneu = new testPnuematics();
   public static testIntake tIntake = new testIntake();
-  public static  Intake intake = new Intake();
+  public static Intake intake = new Intake();
+  public static Climber climber = new Climber();
   public static Shooter shooter = new Shooter();
   public static teleop_Shooter tShooter = new teleop_Shooter();
+  public static testClimber tClimber = new testClimber();
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -122,7 +122,7 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
     driveTrain.changeMode();
-    Robot.pneu.openCompressor();
+    Robot.intake.openCompressor();
     // This makes sure that the autonomous stops running when
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
@@ -134,7 +134,8 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     arcadeDrive.execute();
     tShooter.execute();
-    tPneu.execute();
+    tIntake.execute();
+    tClimber.execute();
   }
 
   @Override
@@ -146,6 +147,8 @@ public class Robot extends TimedRobot {
     music.addInstrument(driveTrain.frontLeft);
     music.addInstrument(driveTrain.backRight);
     music.addInstrument(driveTrain.backLeft);
+    music.addInstrument(shooter.backMotor);
+    music.addInstrument(shooter.frontMotor);
     music.loadMusic("gummy.chrp");
     music.play();
   }

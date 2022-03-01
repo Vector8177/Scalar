@@ -34,7 +34,7 @@ public class RobotMap {
     public static final int PHEUMATICS_ID = 0;
     public static final double INTAKE_MOTOR_MODIFIER = .4;
 
-    //Shooter
+    // Shooter
     public static final int SHOOTER_FRONT_MOTOR_ID = 5;
     public static final int SHOOTER_BACK_MOTOR_ID = 6;
 
@@ -42,11 +42,18 @@ public class RobotMap {
     public static final double LEFT_MOTOR_SPEED_MODIFIER = .5;
     public static final double RIGHT_MOTOR_SPEED_MODIFIER = .5;
     public static final double LEFT_JOYSTICK_SPEED_MODIFIER = .8;
+    public static final double TURN_SPEED_MODIFIER = .8;
     public static final double AUTONOMOUS_SPEED = .3;
+
+    // LOW GOAL : BIG, .22 SMALL, -.3
+    // HIGH GOAL : BIG, .38 SMALL, -.5
+    // HIGH GOAL TARMAC: BIG, .70 SMALL, .10
+    public static final double BIG_WHEEL_SPEED = .375;
+    public static final double SMALL_WHEEL_SPEED = -.5;
 
     // Distance
     public static final double FT_PER_ENCODER_DEGREE = 8929;
-    public static final double DISTANCE_PER_REVOLUTION_FT = 5*Math.PI/12;
+    public static final double DISTANCE_PER_REVOLUTION_FT = 5 * Math.PI / 12;
     // 1.5708
 
     // Degrees
