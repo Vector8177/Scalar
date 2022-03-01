@@ -4,7 +4,6 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
@@ -55,10 +54,10 @@ public class TurnFullPID extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        if(pid.atSetpoint()){
-            
-             Robot.driveTrain.changeMode();
-             return true;
+        if (pid.atSetpoint()) {
+
+            Robot.driveTrain.changeMode();
+            return true;
         }
         return false;
     }

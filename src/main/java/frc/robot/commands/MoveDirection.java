@@ -4,14 +4,12 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 
 public class MoveDirection extends CommandBase {
   private final double feet;
-  
 
   /** Creates a new ArcadeDrive. */
   public MoveDirection(double feet_distance) {
@@ -47,13 +45,13 @@ public class MoveDirection extends CommandBase {
   @Override
   public boolean isFinished() {
     if (feet > 0) {
-      if((Math.abs(Robot.driveTrain.encoderDegrees()) > (feet / RobotMap.DISTANCE_PER_REVOLUTION_FT))){
+      if ((Math.abs(Robot.driveTrain.encoderDegrees()) > (feet / RobotMap.DISTANCE_PER_REVOLUTION_FT))) {
         Robot.driveTrain.changeMode();
         return true;
       }
       return false;
     } else if (feet < 0) {
-      if((Math.abs(Robot.driveTrain.encoderDegrees()) < -(feet / RobotMap.DISTANCE_PER_REVOLUTION_FT))){
+      if ((Math.abs(Robot.driveTrain.encoderDegrees()) < -(feet / RobotMap.DISTANCE_PER_REVOLUTION_FT))) {
         Robot.driveTrain.changeMode();
         return true;
       }
