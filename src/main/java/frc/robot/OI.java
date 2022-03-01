@@ -3,10 +3,8 @@ package frc.robot;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.shuffleboard.*;
-import frc.robot.commands.TurnFull;
 import frc.robot.commands.TurnFullPID;
 import frc.robot.commands.TurnToBall;
-import frc.robot.commands.MoveDirection;
 import frc.robot.commands.MoveDirectionPID;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
@@ -128,4 +126,13 @@ public class OI {
     public boolean rightIntakeBumperPressed() {
         return intakeController.getRightBumper();
     }
+
+    public boolean rightDriverBumperPressed() {
+        return driverController.getRightBumper();
+    }
+
+    public boolean leftDriverBumperPressed() {
+        return driverController.getLeftBumper();
+    }
+
 }

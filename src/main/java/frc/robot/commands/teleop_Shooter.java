@@ -4,10 +4,11 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
 public class teleop_Shooter extends CommandBase {
-
+    @Override
     public void initialize() {
     }
 
+    @Override
     public void execute() {
         double rightTrigger = Robot.m_oi.getIntakeRightTrigger();
         double leftTrigger = -Robot.m_oi.getIntakeLeftTrigger();
