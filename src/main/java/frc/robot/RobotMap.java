@@ -17,7 +17,7 @@ public class RobotMap {
     // PID for straight forward
     public static final double aP = .1;
     public static final double aI = 0;
-    public static final double aD = 0;
+    public static final double aD = 0.0001;
     public static final double aF = 0.00;
 
     // Controller
@@ -37,6 +37,8 @@ public class RobotMap {
     // Shooter
     public static final int SHOOTER_FRONT_MOTOR_ID = 5;
     public static final int SHOOTER_BACK_MOTOR_ID = 6;
+    // public static final double DISTANCE_CALCULATOR = equation based on distance
+    // testing
 
     // Speed
     public static final double LEFT_MOTOR_SPEED_MODIFIER = .5;
@@ -52,7 +54,7 @@ public class RobotMap {
     public static final double SMALL_WHEEL_SPEED = -.5;
 
     // Distance
-    public static final double FT_PER_ENCODER_DEGREE = 8929;
+    public static final double FT_PER_ENCODER_DEGREE = 13703;
     public static final double DISTANCE_PER_REVOLUTION_FT = 5 * Math.PI / 12;
     // 1.5708
 

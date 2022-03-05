@@ -4,23 +4,20 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
 public class testIntake extends CommandBase {
-    private Boolean forwardOpen = null;
-    private boolean retract = false;
+    private boolean forwardOpen = true;
 
     @Override
     public void execute() {
-        if (Robot.m_oi.aIntakeButtonPressed() && retract) {
+        if (Robot.m_oi.aIntakeButtonPressed()) {
             forwardOpen = true;
-            retract = false;
         }
-        if (Robot.m_oi.aIntakeButtonPressed() && !retract) {
+        if (Robot.m_oi.yIntakeButtonPressed()) {
             forwardOpen = false;
-            retract = true;
         }
-        if (forwardOpen != null && !forwardOpen && retract) {
-            Robot.intake.openIntakeReverseSolenoid();
-        } else if (forwardOpen != null && forwardOpen && !retract) {
+        if (forwardOpen) {
             Robot.intake.openIntakeForwardSolenoid();
+        } else {
+            Robot.intake.openIntakeReverseSolenoid();
         }
 
     }

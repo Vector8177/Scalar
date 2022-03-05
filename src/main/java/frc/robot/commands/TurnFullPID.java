@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class TurnFullPID extends CommandBase {
     private final double degrees;
     private double pidcalc;
-    public PIDController pid = new PIDController(RobotMap.kP, RobotMap.kI, RobotMap.kD);
+    public PIDController pid = new PIDController(.02, .001, .002);
 
     /** Creates a new ArcadeDrive. */
     public TurnFullPID(double degreess) {

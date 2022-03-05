@@ -74,17 +74,6 @@
               "_title": "Compresser Pressure"
             }
           },
-          "1,2": {
-            "size": [
-              1,
-              2
-            ],
-            "content": {
-              "_type": "PID Controller",
-              "_source0": "network_table:///SmartDashboard/PID Controller 2",
-              "_title": "PID Controller 2"
-            }
-          },
           "1,4": {
             "size": [
               1,
@@ -269,17 +258,6 @@
               "_title": "asdasd"
             }
           },
-          "3,2": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Encoder Degrees",
-              "_title": "Encoder Degrees"
-            }
-          },
           "6,0": {
             "size": [
               3,
@@ -373,6 +351,39 @@
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Left Stick",
               "_title": "Left Stick"
+            }
+          },
+          "1,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/PID Output",
+              "_title": "PID Output"
+            }
+          },
+          "1,3": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/PID Controller/p",
+              "_title": "PID Controller/p"
+            }
+          },
+          "3,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/PID Controller/i",
+              "_title": "PID Controller/i"
             }
           }
         }
@@ -678,6 +689,28 @@
               "_type": "Text View",
               "_source0": "network_table:///LiveWindow/Ungrouped/PIDController[7]/p",
               "_title": "Ungrouped/PIDController[7]/p"
+            }
+          },
+          "0,5": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///LiveWindow/Ungrouped/PIDController[4]/setpoint",
+              "_title": "Ungrouped/PIDController[4]/setpoint"
+            }
+          },
+          "1,5": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///LiveWindow/Ungrouped/PIDController[8]/i",
+              "_title": "Ungrouped/PIDController[8]/i"
             }
           }
         }

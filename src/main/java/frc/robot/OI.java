@@ -6,6 +6,8 @@ import edu.wpi.first.wpilibj.shuffleboard.*;
 import frc.robot.commands.TurnFullPID;
 import frc.robot.commands.TurnToBall;
 import frc.robot.commands.MoveDirectionPID;
+import frc.robot.commands.ThreeBallAuto;
+import frc.robot.commands.IntakeBall;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import java.util.Map;
@@ -35,14 +37,14 @@ public class OI {
     /*
      * == COMMANDS ==
      */
-    private final Command m_DOL = new SequentialCommandGroup(new MoveDirectionPID(6.208), new TurnFullPID(122.08),
-            new MoveDirectionPID(10), new TurnFullPID(-67.313), new TurnFullPID(123.187), new MoveDirectionPID(14.333),
-            new TurnFullPID(-53));
+
+    // big : .69 small: -.51 - teleop
+    private final Command m_DOL = new ThreeBallAuto();
     // new MoveDirection(6.208), new TurnFullPID(122.08), new MoveDirection(10.5),
     // new TurnFullPID(-67.313), new TurnFullPID(119.187), new
     // MoveDirection(15.833), new TurnFullPID(-53)
-    private final Command m_TurnRight = new TurnToBall();
-    private final Command m_TurnFullPID = new MoveDirectionPID(10);
+    private final Command m_TurnRight = new MoveDirectionPID(5);
+    private final Command m_TurnFullPID = new TurnFullPID(90);
 
     public OI() {
         m_chooser.setDefaultOption("Drive off line", m_DOL);
@@ -101,6 +103,10 @@ public class OI {
 
     public boolean bDriverButtonPressed() {
         return driverController.getBButton();
+    }
+
+    public boolean yDriverButtonPressed() {
+        return driverController.getYButton();
     }
 
     public boolean aDriverButtonPressed() {

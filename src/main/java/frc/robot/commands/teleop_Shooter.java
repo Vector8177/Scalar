@@ -29,5 +29,12 @@ public class teleop_Shooter extends CommandBase {
             Robot.shooter.setBackMotor(0);
             Robot.shooter.setFrontMotor(0);
         }
+
+        if (Robot.m_oi.aDriverButtonPressed()) {
+            // Set shooter motors based on limelight reading and calculation based on
+            // distance from reflective tape)
+            // Ex. Robot.shooter.setMotors(Robot.limelight.getReflectDistance() *
+            // RobotMap.DISTANCE_CALCULATOR)
+        }
     }
 }

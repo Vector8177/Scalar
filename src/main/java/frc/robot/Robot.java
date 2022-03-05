@@ -35,7 +35,7 @@ public class Robot extends TimedRobot {
   public static teleop_ArcadeDrive arcadeDrive = new teleop_ArcadeDrive();
   public static DriveTrain driveTrain = new DriveTrain();
   public static Limelight limelight = new Limelight();
-  public static OI m_oi;
+  public static OI m_oi = new OI();
   public static Orchestra music;
   private Command m_autonomousCommand;
   public static AHRS ahrs = new AHRS(SPI.Port.kMXP);
@@ -54,9 +54,8 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     // Instantiate our RobotContainer. This will perform all our button bindings,
-    // and put our
+    // and put ourq
     // autonomous chooser on the dashboard.
-    m_oi = new OI();
 
   }
 
@@ -105,6 +104,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
+    Robot.intake.openCompressor();
 
   }
 
