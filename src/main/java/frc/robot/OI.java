@@ -4,12 +4,10 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.shuffleboard.*;
 import frc.robot.commands.TurnDegrees;
-import frc.robot.commands.TurnToBall;
 import frc.robot.commands.MoveDirection;
+import frc.robot.commands.PlayMusic;
 import frc.robot.commands.auto_ThreeBallAuto;
-import frc.robot.commands.IntakeBall;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import java.util.Map;
 import edu.wpi.first.networktables.NetworkTableEntry;
 
@@ -20,18 +18,18 @@ public class OI {
     SendableChooser<Command> m_chooser = new SendableChooser<>();
 
     private static ShuffleboardTab tab = Shuffleboard.getTab("Speed");
-    public NetworkTableEntry teleMaxSpeed = tab.add("Teleop Max Speed", RobotMap.DRIVE_SPEED_MODIFIER)
+    NetworkTableEntry teleMaxSpeed = tab.add("Teleop Max Speed", RobotMap.DRIVE_SPEED_MODIFIER)
             .withSize(2, 1).withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min", 0))
             .getEntry();
-    public NetworkTableEntry autoMaxSpeed = tab.add("Autonomous Max Speed", RobotMap.AUTONOMOUS_SPEED)
-            .withSize(2, 1).withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min", 0))
-            .getEntry();
-
-    public NetworkTableEntry bigWheelSpeed = tab.add("Big Wheel Speed", RobotMap.BIG_WHEEL_SPEED)
+    NetworkTableEntry autoMaxSpeed = tab.add("Autonomous Max Speed", RobotMap.AUTONOMOUS_SPEED)
             .withSize(2, 1).withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min", 0))
             .getEntry();
 
-    public NetworkTableEntry smallWheelSpeed = tab.add("Small Wheel Speed", RobotMap.SMALL_WHEEL_SPEED)
+    NetworkTableEntry bigWheelSpeed = tab.add("Big Wheel Speed", RobotMap.BIG_WHEEL_SPEED)
+            .withSize(2, 1).withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min", 0))
+            .getEntry();
+
+    NetworkTableEntry smallWheelSpeed = tab.add("Small Wheel Speed", RobotMap.SMALL_WHEEL_SPEED)
             .withSize(2, 1).withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min", -1))
             .getEntry();
 
@@ -40,14 +38,19 @@ public class OI {
      */
 
     // big : .69 small: -.51 - teleop
+    // LOW GOAL : BIG, .22 SMALL, -.3
+    // HIGH GOAL : BIG, .38 SMALL, -.5
+    // HIGH GOAL TARMAC: BIG, .70 SMALL, .10
     private final Command m_DOL = new MoveDirection(5);
     private final Command m_TurnRight = new TurnDegrees(90);
     private final Command m_ThreeBallAuto = new auto_ThreeBallAuto();
+    private final Command m_PlayGummy = new PlayMusic("gummy.chrp");
 
     public OI() {
         m_chooser.setDefaultOption("Drive off line (5 ft)", m_DOL);
         m_chooser.addOption("Turn 90 degrees", m_TurnRight);
         m_chooser.addOption("Three Ball Auto", m_ThreeBallAuto);
+        m_chooser.addOption("Play Gummy Bear Song", m_PlayGummy);
 
         // Put the chooser on the dashboard
         Shuffleboard.getTab("Autonomous").add("Autonomous modes", m_chooser).withSize(2, 1);

@@ -38,16 +38,12 @@ public class RobotMap {
     public static final int SHOOTER_FRONT_MOTOR_ID = 5;
     public static final int SHOOTER_BACK_MOTOR_ID = 6;
     // public static final double DISTANCE_CALCULATOR = equation based on distance
-    // testing
 
     // Speed
     public static final double DRIVE_SPEED_MODIFIER = .75;
     public static final double LEFT_JOYSTICK_SPEED_MODIFIER = .8;
     public static final double TURN_SPEED_MODIFIER = .8;
     public static final double AUTONOMOUS_SPEED = .35;
-    // LOW GOAL : BIG, .22 SMALL, -.3
-    // HIGH GOAL : BIG, .38 SMALL, -.5
-    // HIGH GOAL TARMAC: BIG, .70 SMALL, .10
     public static final double BIG_WHEEL_SPEED = .375;
     public static final double SMALL_WHEEL_SPEED = -.5;
 

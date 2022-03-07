@@ -13,12 +13,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class MoveDirection extends CommandBase {
   private final double feet;
-  private double pidcalc;
-  public PIDController pid = new PIDController(RobotMap.aP, RobotMap.aI, RobotMap.aD);
+  double pidcalc;
+  PIDController pid = new PIDController(RobotMap.aP, RobotMap.aI, RobotMap.aD);
 
   /** Creates a new ArcadeDrive. */
-  public MoveDirection(double feet_distance) {
-    feet = feet_distance;
+  public MoveDirection(double feet) {
+    this.feet = feet;
   }
 
   // Called when the command is initially scheduled.
@@ -33,10 +33,10 @@ public class MoveDirection extends CommandBase {
   public void execute() {
     pidcalc = MathUtil.clamp(pid.calculate(Robot.driveTrain.encoderDegrees(), feet * RobotMap.FT_PER_ENCODER_DEGREE),
         -Robot.m_oi.getAutoSpeed(), Robot.m_oi.getAutoSpeed());
-    SmartDashboard.putNumber("PID OutputSF", pidcalc);
-    SmartDashboard.putData("PID ControllerSF", pid);
-    SmartDashboard.putNumber("have", Robot.driveTrain.encoderDegrees());
-    SmartDashboard.putNumber("want", feet * RobotMap.FT_PER_ENCODER_DEGREE);
+    SmartDashboard.putNumber("Direction PID Output", pidcalc);
+    SmartDashboard.putData("Direction PID", pid);
+    SmartDashboard.putNumber("Current Position", Robot.driveTrain.encoderDegrees());
+    SmartDashboard.putNumber("Goal Position", feet * RobotMap.FT_PER_ENCODER_DEGREE);
     Robot.driveTrain.setLeftMotors(pidcalc);
     Robot.driveTrain.setRightMotors(pidcalc);
   }

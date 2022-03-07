@@ -15,7 +15,7 @@ import edu.wpi.first.math.MathUtil;
 
 public class TurnToBall extends CommandBase {
   double targetYaw = Robot.limelight.getYaw();
-  public PIDController pid = new PIDController(RobotMap.kP, RobotMap.kI, RobotMap.kD);
+  PIDController pid = new PIDController(RobotMap.kP, RobotMap.kI, RobotMap.kD);
 
   /** Creates a new ArcadeDrive. */
   public TurnToBall() {

@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class TurnDegrees extends CommandBase {
     private final double degrees;
     private double pidcalc;
-    public PIDController pid = new PIDController(.02, .001, .002);
+    PIDController pid = new PIDController(.02, .001, .002);
 
     /** Creates a new ArcadeDrive. */
     public TurnDegrees(double degreess) {
@@ -35,8 +35,10 @@ public class TurnDegrees extends CommandBase {
         float yaw = Robot.ahrs.getYaw();
         pidcalc = MathUtil.clamp(pid.calculate(yaw, degrees), -Robot.m_oi.getAutoSpeed() * RobotMap.TURN_SPEED_MODIFIER,
                 Robot.m_oi.getAutoSpeed() * RobotMap.TURN_SPEED_MODIFIER);
-        SmartDashboard.putNumber("PID Output", pidcalc);
-        SmartDashboard.putData("PID Controller", pid);
+        SmartDashboard.putNumber("Turning PID Output", pidcalc);
+        SmartDashboard.putData("Turning PID", pid);
+        SmartDashboard.putNumber("Goal Angle", degrees);
+
         Robot.driveTrain.setLeftMotors(pidcalc);
         Robot.driveTrain.setRightMotors(-pidcalc);
     }

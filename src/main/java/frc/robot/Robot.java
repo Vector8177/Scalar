@@ -20,7 +20,6 @@ import frc.robot.subsystems.Shooter;
 
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import com.ctre.phoenix.music.Orchestra;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -32,19 +31,24 @@ import com.ctre.phoenix.music.Orchestra;
  * project.
  */
 public class Robot extends TimedRobot {
-  public static teleop_ArcadeDrive arcadeDrive = new teleop_ArcadeDrive();
-  public static DriveTrain driveTrain = new DriveTrain();
-  public static Limelight limelight = new Limelight();
-  public static OI m_oi = new OI();
-  public static Orchestra music;
+  // NavX
+  public static final AHRS ahrs = new AHRS(SPI.Port.kMXP);
+
+  // Teleop Commands
+  teleop_ArcadeDrive arcadeDrive = new teleop_ArcadeDrive();
+  teleop_Shooter tShooter = new teleop_Shooter();
+  teleop_Climber tClimber = new teleop_Climber();
+  teleop_Intake tIntake = new teleop_Intake();
+
+  // Subsystems
+  public static final DriveTrain driveTrain = new DriveTrain();
+  public static final Limelight limelight = new Limelight();
+  public static final Intake intake = new Intake();
+  public static final Climber climber = new Climber();
+  public static final Shooter shooter = new Shooter();
+
+  public static final OI m_oi = new OI();
   private Command m_autonomousCommand;
-  public static AHRS ahrs = new AHRS(SPI.Port.kMXP);
-  public static teleop_Intake tIntake = new teleop_Intake();
-  public static Intake intake = new Intake();
-  public static Climber climber = new Climber();
-  public static Shooter shooter = new Shooter();
-  public static teleop_Shooter tShooter = new teleop_Shooter();
-  public static teleop_Climber tClimber = new teleop_Climber();
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -104,7 +108,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
-    Robot.intake.openCompressor();
+    intake.openCompressor();
 
   }
 
@@ -120,7 +124,7 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
     driveTrain.changeMode();
-    Robot.intake.openCompressor();
+    intake.openCompressor();
     // This makes sure that the autonomous stops running when
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
@@ -140,15 +144,7 @@ public class Robot extends TimedRobot {
   public void testInit() {
     // Cancels all running commands at the start of test mode.
     CommandScheduler.getInstance().cancelAll();
-    music = new Orchestra();
-    music.addInstrument(driveTrain.frontRight);
-    music.addInstrument(driveTrain.frontLeft);
-    music.addInstrument(driveTrain.backRight);
-    music.addInstrument(driveTrain.backLeft);
-    music.addInstrument(shooter.backMotor);
-    music.addInstrument(shooter.frontMotor);
-    music.loadMusic("gummy.chrp");
-    music.play();
+
   }
 
   /** This function is called periodically during test mode. */
@@ -158,18 +154,14 @@ public class Robot extends TimedRobot {
 
   public static void updateShuffleboard() {
     // Adds NavX values to Shuffle Board
-    SmartDashboard.putNumber("Yaw", ahrs.getYaw());
-    SmartDashboard.putNumber("Acceleration X", (double) (Math.round(ahrs.getWorldLinearAccelX() * 1000)) / 1000);
-    SmartDashboard.putNumber("Acceleration Y", (double) (Math.round(ahrs.getWorldLinearAccelY() * 1000)) / 1000);
-    SmartDashboard.putNumber("Velocity X", (double) (Math.round(ahrs.getVelocityX() * 1000)) / 1000);
-    SmartDashboard.putNumber("Velocity Y", (double) (Math.round(ahrs.getVelocityY() * 1000)) / 1000);
+    SmartDashboard.putNumber("Current Angle", ahrs.getYaw());
 
-    SmartDashboard.putString("Encoder Degrees", Robot.driveTrain.allEncoder());
+    // SmartDashboard.putString("Encoder Degrees", Robot.driveTrain.allEncoder());
 
     // Adds controller values to Shuffle Board
-    SmartDashboard.putNumber("Right Trigger", (double) (Math.round(m_oi.getDriverRightTrigger() * 1000)) / 1000);
-    SmartDashboard.putNumber("Left Trigger", (double) (Math.round(m_oi.getDriverLeftTrigger() * 1000)) / 1000);
-    SmartDashboard.putNumber("Left Stick", (double) (Math.round(m_oi.getDriverRawJoystick() * 1000)) / 1000);
+    SmartDashboard.putNumber("Driver Right Trigger", (double) (Math.round(m_oi.getDriverRightTrigger() * 1000)) / 1000);
+    SmartDashboard.putNumber("Intake Right Trigger", (double) (Math.round(m_oi.getIntakeRightTrigger() * 1000)) / 1000);
+
     // Adds Pneumatics to Shuffle Board
     // SmartDashboard.putNumber("Compresser Pressure", pneu.compressorReading());
   }
