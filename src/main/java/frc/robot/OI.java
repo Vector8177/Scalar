@@ -19,7 +19,7 @@ public class OI {
      */
     SendableChooser<Command> m_chooser = new SendableChooser<>();
     private static ShuffleboardTab tab = Shuffleboard.getTab("Speed");
-    public NetworkTableEntry teleMaxSpeed = tab.add("Teleop Max Speed", RobotMap.LEFT_MOTOR_SPEED_MODIFIER)
+    public NetworkTableEntry teleMaxSpeed = tab.add("Teleop Max Speed", RobotMap.DRIVE_SPEED_MODIFIER)
             .withSize(2, 1).withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min", 0))
             .getEntry();
     public NetworkTableEntry autoMaxSpeed = tab.add("Autonomous Max Speed", RobotMap.AUTONOMOUS_SPEED)
@@ -56,7 +56,7 @@ public class OI {
     }
 
     public double getTeleopSpeed() {
-        return teleMaxSpeed.getDouble(RobotMap.LEFT_MOTOR_SPEED_MODIFIER);
+        return teleMaxSpeed.getDouble(RobotMap.DRIVE_SPEED_MODIFIER);
     }
 
     public double getBigWheelSpeed() {

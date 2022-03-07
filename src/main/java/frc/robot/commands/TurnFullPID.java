@@ -33,7 +33,8 @@ public class TurnFullPID extends CommandBase {
     @Override
     public void execute() {
         float yaw = Robot.ahrs.getYaw();
-        pidcalc = MathUtil.clamp(pid.calculate(yaw, degrees), -Robot.m_oi.getAutoSpeed(), Robot.m_oi.getAutoSpeed());
+        pidcalc = MathUtil.clamp(pid.calculate(yaw, degrees), -Robot.m_oi.getAutoSpeed() * RobotMap.TURN_SPEED_MODIFIER,
+                Robot.m_oi.getAutoSpeed() * RobotMap.TURN_SPEED_MODIFIER);
         SmartDashboard.putNumber("PID Output", pidcalc);
         SmartDashboard.putData("PID Controller", pid);
         Robot.driveTrain.setLeftMotors(pidcalc);

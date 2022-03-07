@@ -41,12 +41,10 @@ public class RobotMap {
     // testing
 
     // Speed
-    public static final double LEFT_MOTOR_SPEED_MODIFIER = .5;
-    public static final double RIGHT_MOTOR_SPEED_MODIFIER = .5;
+    public static final double DRIVE_SPEED_MODIFIER = .75;
     public static final double LEFT_JOYSTICK_SPEED_MODIFIER = .8;
     public static final double TURN_SPEED_MODIFIER = .8;
-    public static final double AUTONOMOUS_SPEED = .3;
-
+    public static final double AUTONOMOUS_SPEED = .35;
     // LOW GOAL : BIG, .22 SMALL, -.3
     // HIGH GOAL : BIG, .38 SMALL, -.5
     // HIGH GOAL TARMAC: BIG, .70 SMALL, .10
