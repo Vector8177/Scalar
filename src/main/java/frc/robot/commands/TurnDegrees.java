@@ -11,13 +11,13 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class TurnFullPID extends CommandBase {
+public class TurnDegrees extends CommandBase {
     private final double degrees;
     private double pidcalc;
     public PIDController pid = new PIDController(.02, .001, .002);
 
     /** Creates a new ArcadeDrive. */
-    public TurnFullPID(double degreess) {
+    public TurnDegrees(double degreess) {
         degrees = degreess;
     }
 

@@ -11,13 +11,13 @@ import edu.wpi.first.math.MathUtil;
 import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class MoveDirectionPID extends CommandBase {
+public class MoveDirection extends CommandBase {
   private final double feet;
   private double pidcalc;
   public PIDController pid = new PIDController(RobotMap.aP, RobotMap.aI, RobotMap.aD);
 
   /** Creates a new ArcadeDrive. */
-  public MoveDirectionPID(double feet_distance) {
+  public MoveDirection(double feet_distance) {
     feet = feet_distance;
   }
 
