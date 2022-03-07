@@ -10,8 +10,8 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.teleop_ArcadeDrive;
 import frc.robot.commands.teleop_Shooter;
-import frc.robot.commands.testClimber;
-import frc.robot.commands.testIntake;
+import frc.robot.commands.teleop_Climber;
+import frc.robot.commands.teleop_Intake;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Intake;
@@ -39,12 +39,12 @@ public class Robot extends TimedRobot {
   public static Orchestra music;
   private Command m_autonomousCommand;
   public static AHRS ahrs = new AHRS(SPI.Port.kMXP);
-  public static testIntake tIntake = new testIntake();
+  public static teleop_Intake tIntake = new teleop_Intake();
   public static Intake intake = new Intake();
   public static Climber climber = new Climber();
   public static Shooter shooter = new Shooter();
   public static teleop_Shooter tShooter = new teleop_Shooter();
-  public static testClimber tClimber = new testClimber();
+  public static teleop_Climber tClimber = new teleop_Climber();
 
   /**
    * This function is run when the robot is first started up and should be used
