@@ -54,6 +54,7 @@ public class teleop_ArcadeDrive extends CommandBase {
     // Performing motor turning
     else if (leftStickX > 0) {
       System.out.println(leftMotorSpeed + " " + rightMotorSpeed);
+      // Flipping controls if going backwards
       if (rightTrigger < leftTrigger) {
         Robot.driveTrain.setLeftMotors(
             rightMotorSpeed - (rightMotorSpeed * Math.abs(leftStickX) * RobotMap.LEFT_JOYSTICK_SPEED_MODIFIER));
