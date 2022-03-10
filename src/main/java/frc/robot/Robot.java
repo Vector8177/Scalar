@@ -108,7 +108,6 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
-    intake.openCompressor();
 
   }
 
@@ -159,6 +158,7 @@ public class Robot extends TimedRobot {
     // SmartDashboard.putString("Encoder Degrees", Robot.driveTrain.allEncoder());
 
     // Adds controller values to Shuffle Board
+    SmartDashboard.putNumber("DPAD", m_oi.getDriverDpad());
     SmartDashboard.putNumber("Driver Right Trigger", (double) (Math.round(m_oi.getDriverRightTrigger() * 1000)) / 1000);
     SmartDashboard.putNumber("Intake Right Trigger", (double) (Math.round(m_oi.getIntakeRightTrigger() * 1000)) / 1000);
 

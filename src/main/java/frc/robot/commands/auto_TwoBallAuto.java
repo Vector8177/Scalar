@@ -8,14 +8,14 @@ import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
  * A complex auto command that drives forward, releases a hatch, and then drives
  * backward.
  */
-public class auto_ThreeBallAuto extends SequentialCommandGroup {
+public class auto_TwoBallAuto extends SequentialCommandGroup {
         /**
          * Creates a new ComplexAuto.
          *
          * @param drive The drive subsystem this command will run on
          * @param hatch The hatch subsystem this command will run on
          */
-        public auto_ThreeBallAuto() {
+        public auto_TwoBallAuto() {
                 Robot.intake.openCompressor();
                 addCommands(
                                 new ParallelCommandGroup(
@@ -25,18 +25,6 @@ public class auto_ThreeBallAuto extends SequentialCommandGroup {
                                 new ParallelCommandGroup(
                                                 new TurnDegrees(12),
                                                 new ShootBall(-.55, .41, .75)),
-                                new ParallelCommandGroup(
-                                                new ShootBall(-.55, .41, 1.5),
-                                                new IntakeBall(1, 1.5),
-                                                new MoveElevator(1, 1.5)),
-                                new TurnDegrees(72.85),
-                                new ParallelCommandGroup(
-                                                new MoveDirection(7.825),
-                                                new MoveElevator(1, 2.5),
-                                                new IntakeBall(1, 2.5)),
-                                new MoveDirection(-7.825),
-                                new TurnDegrees(-72.85),
-                                new ShootBall(-.55, .41, .75),
                                 new ParallelCommandGroup(
                                                 new ShootBall(-.55, .41, 1.5),
                                                 new IntakeBall(1, 1.5),

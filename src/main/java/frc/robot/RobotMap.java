@@ -15,9 +15,9 @@ public class RobotMap {
     public static final double kF = 0.00;
 
     // PID for straight forward
-    public static final double aP = .1;
+    public static final double aP = 0.000025;
     public static final double aI = 0;
-    public static final double aD = 0.0001;
+    public static final double aD = 0.000000006;
     public static final double aF = 0.00;
 
     // Controller
@@ -41,9 +41,9 @@ public class RobotMap {
 
     // Speed
     public static final double DRIVE_SPEED_MODIFIER = .75;
-    public static final double LEFT_JOYSTICK_SPEED_MODIFIER = .8;
+    public static final double LEFT_JOYSTICK_SPEED_MODIFIER = 1;
     public static final double TURN_SPEED_MODIFIER = .8;
-    public static final double AUTONOMOUS_SPEED = .35;
+    public static final double AUTONOMOUS_SPEED = .40;
     public static final double BIG_WHEEL_SPEED = .375;
     public static final double SMALL_WHEEL_SPEED = -.5;
 

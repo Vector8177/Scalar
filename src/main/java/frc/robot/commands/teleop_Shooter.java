@@ -13,6 +13,7 @@ public class teleop_Shooter extends CommandBase {
         double rightTrigger = Robot.m_oi.getIntakeRightTrigger();
         double leftTrigger = -Robot.m_oi.getIntakeLeftTrigger();
         boolean rightBumper = Robot.m_oi.rightIntakeBumperPressed();
+        boolean leftBumper = Robot.m_oi.leftIntakeBumperPressed();
         boolean bButton = Robot.m_oi.bIntakeButtonPressed();
 
         Robot.intake.setElevatorMotor(leftTrigger + rightTrigger);
@@ -23,11 +24,10 @@ public class teleop_Shooter extends CommandBase {
         }
 
         if (rightBumper) {
-            Robot.shooter.setBackMotor(Robot.m_oi.getSmallWheelSpeed());
-            Robot.shooter.setFrontMotor(Robot.m_oi.getBigWheelSpeed());
-        } else {
-            Robot.shooter.setBackMotor(0);
-            Robot.shooter.setFrontMotor(0);
+            new auto_fenderSequence().schedule();
+        }
+        if (leftBumper) {
+            new auto_tarmacSequence().schedule();
         }
 
         if (Robot.m_oi.aDriverButtonPressed()) {

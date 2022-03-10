@@ -35,10 +35,10 @@ public class teleop_ArcadeDrive extends CommandBase {
     }
 
     // Speed Calculations
-    double leftMotorSpeed = ((rightTrigger * RobotMap.TURN_SPEED_MODIFIER) * Robot.m_oi.getTeleopSpeed())
-        - ((leftTrigger * RobotMap.TURN_SPEED_MODIFIER) * Robot.m_oi.getTeleopSpeed());
-    double rightMotorSpeed = ((rightTrigger * RobotMap.TURN_SPEED_MODIFIER) * Robot.m_oi.getTeleopSpeed())
-        - ((leftTrigger * RobotMap.TURN_SPEED_MODIFIER) * Robot.m_oi.getTeleopSpeed());
+    double leftMotorSpeed = ((rightTrigger) * Robot.m_oi.getTeleopSpeed())
+        - ((leftTrigger) * Robot.m_oi.getTeleopSpeed());
+    double rightMotorSpeed = ((rightTrigger) * Robot.m_oi.getTeleopSpeed())
+        - ((leftTrigger) * Robot.m_oi.getTeleopSpeed());
 
     // Determining if robot should use joystick full-turning
     if (rightTrigger == 0 && leftTrigger == 0 && leftStickX != 0) {

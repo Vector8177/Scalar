@@ -24,7 +24,7 @@ public class MoveDirection extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    pid.setTolerance(500);
+    pid.setTolerance(300);
     Robot.driveTrain.changeMode();
   }
 
