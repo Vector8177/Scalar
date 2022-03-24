@@ -9,12 +9,14 @@ import frc.robot.Robot;
 import frc.robot.RobotMap;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.MathUtil;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class TurnDegrees extends CommandBase {
     private final double degrees;
     private double pidcalc;
-    PIDController pid = new PIDController(.02, .001, .002);
+    PIDController pid = new PIDController(0.02, 0, 0.00106);
+    Timer time = new Timer();
 
     /** Creates a new ArcadeDrive. */
     public TurnDegrees(double degreess) {
@@ -24,8 +26,10 @@ public class TurnDegrees extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
+        time.start();
+        time.reset();
         Robot.ahrs.zeroYaw();
-        pid.setTolerance(1.5);
+        pid.setTolerance(1);
         pid.enableContinuousInput(-180, 180);
     }
 
@@ -57,7 +61,7 @@ public class TurnDegrees extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        if (pid.atSetpoint()) {
+        if (pid.atSetpoint() || time.get() > .75) {
 
             Robot.driveTrain.changeMode();
             return true;

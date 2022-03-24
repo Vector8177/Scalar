@@ -15,10 +15,15 @@ import frc.robot.commands.teleop_Intake;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Intake;
-import frc.robot.subsystems.Limelight;
+import frc.robot.subsystems.PhotonVision;
+// import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.Shooter;
+import edu.wpi.first.cameraserver.CameraServer;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.TalonFXInvertType;
 import com.kauailabs.navx.frc.AHRS;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -42,7 +47,9 @@ public class Robot extends TimedRobot {
 
   // Subsystems
   public static final DriveTrain driveTrain = new DriveTrain();
-  public static final Limelight limelight = new Limelight();
+  // public static final Limelight limelight = new Limelight();
+
+  public static final PhotonVision limelight = new PhotonVision();
   public static final Intake intake = new Intake();
   public static final Climber climber = new Climber();
   public static final Shooter shooter = new Shooter();
@@ -57,6 +64,11 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    climber.changeMode();
+    CameraServer.startAutomaticCapture();
+
+    driveTrain.configMotors();
+
     // Instantiate our RobotContainer. This will perform all our button bindings,
     // and put ourq
     // autonomous chooser on the dashboard.
@@ -123,7 +135,11 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
     driveTrain.changeMode();
+    climber.changeMode();
     intake.openCompressor();
+
+    // limelight.driverMode();
+
     // This makes sure that the autonomous stops running when
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
@@ -155,7 +171,10 @@ public class Robot extends TimedRobot {
     // Adds NavX values to Shuffle Board
     SmartDashboard.putNumber("Current Angle", ahrs.getYaw());
 
-    // SmartDashboard.putString("Encoder Degrees", Robot.driveTrain.allEncoder());
+    SmartDashboard.putNumber("Distance", Robot.shooter.getSmallWheelPowerPV());
+
+    SmartDashboard.putNumber("Left Degrees", Robot.climber.getLeftEncoder());
+    SmartDashboard.putNumber("Right Degrees", Robot.climber.getRightEncoder());
 
     // Adds controller values to Shuffle Board
     SmartDashboard.putNumber("DPAD", m_oi.getDriverDpad());

@@ -20,23 +20,25 @@ public class auto_ThreeBallAuto extends SequentialCommandGroup {
                 addCommands(
                                 new ParallelCommandGroup(
                                                 new MoveDirection(3.425),
-                                                new IntakeBall(1.0, 1.5)),
-                                new MoveDirection(-4.7),
+                                                new IntakeBall(1.0, 1.0)),
+                                new MoveDirection(-4.905),
                                 new ParallelCommandGroup(
                                                 new TurnDegrees(12),
-                                                new ShootBall(-.55, .41, .75)),
+                                                new ShootBall(-.55, .41, 1.25)),
+                                new MoveElevator(-.5, .2),
                                 new ParallelCommandGroup(
                                                 new ShootBall(-.55, .41, 1.5),
                                                 new IntakeBall(1, 1.5),
                                                 new MoveElevator(1, 1.5)),
-                                new TurnDegrees(72.85),
+                                new TurnDegrees(68),
                                 new ParallelCommandGroup(
                                                 new MoveDirection(7.825),
-                                                new MoveElevator(1, 2.5),
+                                                new MoveElevator(1, 2),
                                                 new IntakeBall(1, 2.5)),
                                 new MoveDirection(-7.825),
-                                new TurnDegrees(-72.85),
-                                new ShootBall(-.55, .41, .75),
+                                new TurnDegrees(-67),
+                                new MoveElevator(-.5, .2),
+                                new ShootBall(-.55, .41, 1.25),
                                 new ParallelCommandGroup(
                                                 new ShootBall(-.55, .41, 1.5),
                                                 new IntakeBall(1, 1.5),

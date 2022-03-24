@@ -5,18 +5,25 @@
 package frc.robot.subsystems;
 
 import frc.robot.RobotMap;
-import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.TalonFXInvertType;
+
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class DriveTrain extends SubsystemBase {
-  public TalonFX frontRight = new TalonFX(RobotMap.FRONT_RIGHT_MOTOR_ID);
-  public TalonFX backRight = new TalonFX(RobotMap.BACK_RIGHT_MOTOR_ID);
-  public TalonFX frontLeft = new TalonFX(RobotMap.FRONT_LEFT_MOTOR_ID);
-  public TalonFX backLeft = new TalonFX(RobotMap.BACK_LEFT_MOTOR_ID);
+  public WPI_TalonFX frontRight = new WPI_TalonFX(RobotMap.FRONT_RIGHT_MOTOR_ID);
+  public WPI_TalonFX backRight = new WPI_TalonFX(RobotMap.BACK_RIGHT_MOTOR_ID);
+  public WPI_TalonFX frontLeft = new WPI_TalonFX(RobotMap.FRONT_LEFT_MOTOR_ID);
+  public WPI_TalonFX backLeft = new WPI_TalonFX(RobotMap.BACK_LEFT_MOTOR_ID);
+
+  public DifferentialDrive motors = new DifferentialDrive(frontLeft, frontRight);
 
   /** Creates a new DriveTrian. */
   public DriveTrain() {
+
   }
 
   @Override
@@ -26,13 +33,11 @@ public class DriveTrain extends SubsystemBase {
 
   public void setLeftMotors(double speed) {
     frontLeft.set(ControlMode.PercentOutput, speed);
-    backLeft.set(ControlMode.PercentOutput, speed);
   }
 
   public void setRightMotors(double speed) {
     frontRight.setSensorPhase(true);
-    frontRight.set(ControlMode.PercentOutput, -speed);
-    backRight.set(ControlMode.PercentOutput, -speed);
+    frontRight.set(ControlMode.PercentOutput, speed);
   }
 
   public void turnFullLeft(double speed) {
@@ -57,8 +62,26 @@ public class DriveTrain extends SubsystemBase {
     return -frontRight.getSelectedSensorPosition();
   }
 
-  public String allEncoder(){
-    return "" + (-frontRight.getSelectedSensorPosition()) + " " + (-frontLeft.getSelectedSensorPosition() / RobotMap.UNITS_PER_REVOLUTION) + " " + (-backLeft.getSelectedSensorPosition() / RobotMap.UNITS_PER_REVOLUTION) + " " +  (-backRight.getSelectedSensorPosition() / RobotMap.UNITS_PER_REVOLUTION);
+  public String allEncoder() {
+    return "" + (-frontRight.getSelectedSensorPosition()) + " "
+        + (-frontLeft.getSelectedSensorPosition() / RobotMap.UNITS_PER_REVOLUTION) + " "
+        + (-backLeft.getSelectedSensorPosition() / RobotMap.UNITS_PER_REVOLUTION) + " "
+        + (-backRight.getSelectedSensorPosition() / RobotMap.UNITS_PER_REVOLUTION);
+  }
+
+  public void configMotors() {
+    frontLeft.setInverted(TalonFXInvertType.CounterClockwise);
+    frontRight.setInverted(TalonFXInvertType.Clockwise);
+    backLeft.setInverted(TalonFXInvertType.CounterClockwise);
+    backRight.setInverted(TalonFXInvertType.Clockwise);
+
+    backLeft.follow(frontLeft);
+    backRight.follow(frontRight);
+
+    frontLeft.setNeutralMode(NeutralMode.Brake);
+    frontRight.setNeutralMode(NeutralMode.Brake);
+    backLeft.setNeutralMode(NeutralMode.Brake);
+    backRight.setNeutralMode(NeutralMode.Brake);
   }
 
 }

@@ -8,10 +8,10 @@ public class teleop_Intake extends CommandBase {
 
     @Override
     public void execute() {
-        if (Robot.m_oi.aIntakeButtonPressed()) {
+        if (Robot.m_oi.yIntakeButtonPressed()) {
             forwardOpen = true;
         }
-        if (Robot.m_oi.yIntakeButtonPressed()) {
+        if (Robot.m_oi.aIntakeButtonPressed()) {
             forwardOpen = false;
         }
         if (forwardOpen) {

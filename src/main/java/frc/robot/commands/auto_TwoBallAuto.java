@@ -19,14 +19,16 @@ public class auto_TwoBallAuto extends SequentialCommandGroup {
                 Robot.intake.openCompressor();
                 addCommands(
                                 new ParallelCommandGroup(
-                                                new MoveDirection(3.425),
-                                                new IntakeBall(1.0, 1.5)),
-                                new MoveDirection(-4.7),
+                                                new MoveDirection(4.25),
+                                                new IntakeBall(1.0, 1.75)),
+                                new MoveDirection(-5.95),
+                                new ShootBall(-.52, .39, 1),
                                 new ParallelCommandGroup(
-                                                new TurnDegrees(12),
-                                                new ShootBall(-.55, .41, .75)),
+                                                new ShootBall(-.52, .39, 1),
+                                                new IntakeBall(1, 1),
+                                                new MoveElevator(1, .25)),
                                 new ParallelCommandGroup(
-                                                new ShootBall(-.55, .41, 1.5),
+                                                new ShootBall(-.52, .39, 1.5),
                                                 new IntakeBall(1, 1.5),
                                                 new MoveElevator(1, 1.5)));
 

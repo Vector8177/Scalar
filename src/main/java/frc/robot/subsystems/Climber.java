@@ -29,9 +29,23 @@ public class Climber extends SubsystemBase {
         climberSolenoid.set(Value.kOff);
     }
 
+    public void changeMode() {
+        leftClimber.setSelectedSensorPosition(0);
+        rightClimber.setSelectedSensorPosition(0);
+
+    }
+
     public void setClimberMotors(double speed) {
         leftClimber.set(ControlMode.PercentOutput, speed);
         rightClimber.set(ControlMode.PercentOutput, speed);
+    }
+
+    public double getLeftEncoder() {
+        return leftClimber.getSelectedSensorPosition();
+    }
+
+    public double getRightEncoder() {
+        return rightClimber.getSelectedSensorPosition();
     }
 
 }

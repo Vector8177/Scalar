@@ -1,6 +1,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.Robot;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 
 /**
@@ -16,11 +17,12 @@ public class auto_tarmacSequence extends SequentialCommandGroup {
      */
     public auto_tarmacSequence() {
         addCommands(
-                new MoveElevator(-1, .2),
-                new ShootBall(-.67, .48, .3),
+                new TurnDegrees(Robot.limelight.getYaw()),
+                new MoveElevator(-8, .2),
+                new ShootBall(Robot.shooter.getSmallWheelPowerPV(), Robot.m_oi.getBigWheelSpeed(), .5),
                 new ParallelCommandGroup(
-                        new ShootBall(-.67, .48, 1.5),
-                        new MoveElevator(1, 1.5)));
+                        new ShootBall(Robot.shooter.getSmallWheelPowerPV(), Robot.m_oi.getBigWheelSpeed(), 2),
+                        new MoveElevator(1, 2)));
 
     }
 }

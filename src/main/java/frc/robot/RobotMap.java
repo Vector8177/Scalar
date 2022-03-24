@@ -9,9 +9,9 @@ public class RobotMap {
     public static final int UNITS_PER_REVOLUTION = 21934;
 
     // PID control
-    public static final double kP = .02;
-    public static final double kI = 0.0008;
-    public static final double kD = 0.0022;
+    public static final double kP = 0.008;
+    public static final double kI = 0.001;
+    public static final double kD = .00008;
     public static final double kF = 0.00;
 
     // PID for straight forward
@@ -42,10 +42,13 @@ public class RobotMap {
     // Speed
     public static final double DRIVE_SPEED_MODIFIER = .75;
     public static final double LEFT_JOYSTICK_SPEED_MODIFIER = 1;
-    public static final double TURN_SPEED_MODIFIER = .8;
+    public static final double TURN_SPEED_MODIFIER = .4;
     public static final double AUTONOMOUS_SPEED = .40;
-    public static final double BIG_WHEEL_SPEED = .375;
+    public static final double BIG_WHEEL_SPEED = .25;
     public static final double SMALL_WHEEL_SPEED = -.5;
+    public static final double CLIMBER_TELEOP_SPEED = .85;
+
+    public static final double RAMPING_MULTIPLIER = 1;
 
     // Distance
     public static final double FT_PER_ENCODER_DEGREE = 13703;

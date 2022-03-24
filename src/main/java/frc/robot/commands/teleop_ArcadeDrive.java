@@ -4,11 +4,14 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 
 public class teleop_ArcadeDrive extends CommandBase {
+  SlewRateLimiter ramp = new SlewRateLimiter(2);
+
   /** Creates a new ArcadeDrive. */
   public teleop_ArcadeDrive() {
   }
@@ -34,50 +37,12 @@ public class teleop_ArcadeDrive extends CommandBase {
       leftStickX /= 3.0;
     }
 
-    // Speed Calculations
-    double leftMotorSpeed = ((rightTrigger) * Robot.m_oi.getTeleopSpeed())
-        - ((leftTrigger) * Robot.m_oi.getTeleopSpeed());
-    double rightMotorSpeed = ((rightTrigger) * Robot.m_oi.getTeleopSpeed())
-        - ((leftTrigger) * Robot.m_oi.getTeleopSpeed());
+    double speed = (rightTrigger - leftTrigger) * Robot.m_oi.getTeleopSpeed();
 
-    // Determining if robot should use joystick full-turning
-    if (rightTrigger == 0 && leftTrigger == 0 && leftStickX != 0) {
-      if (leftStickX > 0) {
-        Robot.driveTrain.setLeftMotors(Robot.m_oi.getTeleopSpeed() * Math.abs(leftStickX));
-        Robot.driveTrain.setRightMotors(-(Robot.m_oi.getTeleopSpeed() * Math.abs(leftStickX)));
-      } else if (leftStickX < 0) {
-        Robot.driveTrain.setRightMotors(Robot.m_oi.getTeleopSpeed() * Math.abs(leftStickX));
-        Robot.driveTrain.setLeftMotors(-(Robot.m_oi.getTeleopSpeed() * Math.abs(leftStickX)));
-      }
-    }
+    double rampSpeed = ramp.calculate(speed);
+    double turnSpeed = (leftStickX * RobotMap.TURN_SPEED_MODIFIER);
 
-    // Performing motor turning
-    else if (leftStickX > 0) {
-      System.out.println(leftMotorSpeed + " " + rightMotorSpeed);
-      if (rightTrigger < leftTrigger) {
-        Robot.driveTrain.setLeftMotors(
-            rightMotorSpeed - (rightMotorSpeed * Math.abs(leftStickX) * RobotMap.LEFT_JOYSTICK_SPEED_MODIFIER));
-        Robot.driveTrain.setRightMotors(leftMotorSpeed);
-      } else {
-        Robot.driveTrain.setLeftMotors(leftMotorSpeed);
-        Robot.driveTrain.setRightMotors(
-            rightMotorSpeed - (rightMotorSpeed * Math.abs(leftStickX) * RobotMap.LEFT_JOYSTICK_SPEED_MODIFIER));
-      }
-    } else if (leftStickX <= 0) {
-      System.out.println(leftMotorSpeed + " " + rightMotorSpeed);
-      if (rightTrigger < leftTrigger) {
-        Robot.driveTrain.setLeftMotors(rightMotorSpeed);
-        Robot.driveTrain.setRightMotors(
-            leftMotorSpeed - (leftMotorSpeed * (Math.abs(leftStickX) * RobotMap.LEFT_JOYSTICK_SPEED_MODIFIER)));
-      } else {
-        Robot.driveTrain.setLeftMotors(
-            leftMotorSpeed - (leftMotorSpeed * (Math.abs(leftStickX) * RobotMap.LEFT_JOYSTICK_SPEED_MODIFIER)));
-        Robot.driveTrain.setRightMotors(rightMotorSpeed);
-      }
-    }
-
-    System.out.print("Motor Degree: " + Robot.driveTrain.encoderDegrees() + " ");
-
+    Robot.driveTrain.motors.curvatureDrive(rampSpeed, turnSpeed, leftTrigger == 0);
   }
 
   // Called once the command ends or is interrupted.

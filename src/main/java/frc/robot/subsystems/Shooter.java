@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 
 public class Shooter extends SubsystemBase {
@@ -28,4 +29,8 @@ public class Shooter extends SubsystemBase {
         setBackMotor(speed);
     }
 
+    public double getSmallWheelPowerPV() {
+        double dist = Robot.limelight.getDistance();
+        return (-.00158 * dist * dist) + (-.0354 * dist) + -.395;
+    }
 }
