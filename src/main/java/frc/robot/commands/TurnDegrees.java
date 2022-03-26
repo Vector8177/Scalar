@@ -8,6 +8,9 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 import edu.wpi.first.math.controller.PIDController;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -15,7 +18,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class TurnDegrees extends CommandBase {
     private final double degrees;
     private double pidcalc;
-    PIDController pid = new PIDController(0.02, 0, 0.00106);
+    PIDController pid = new PIDController(0.02, 0.001, 0.002);
     Timer time = new Timer();
 
     /** Creates a new ArcadeDrive. */
@@ -43,8 +46,8 @@ public class TurnDegrees extends CommandBase {
         SmartDashboard.putData("Turning PID", pid);
         SmartDashboard.putNumber("Goal Angle", degrees);
 
-        Robot.driveTrain.setLeftMotors(pidcalc);
-        Robot.driveTrain.setRightMotors(-pidcalc);
+        Robot.driveTrain.frontLeft.set(ControlMode.PercentOutput, pidcalc);
+        Robot.driveTrain.frontRight.set(ControlMode.PercentOutput, -pidcalc);
     }
 
     public double getPIDOutput() {
@@ -54,8 +57,8 @@ public class TurnDegrees extends CommandBase {
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-        Robot.driveTrain.setRightMotors(0);
-        Robot.driveTrain.setLeftMotors(0);
+        Robot.driveTrain.frontLeft.set(0);
+        Robot.driveTrain.frontRight.set(0);
     }
 
     // Returns true when the command should end.

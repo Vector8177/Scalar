@@ -24,10 +24,10 @@ public class teleop_Shooter extends CommandBase {
         }
 
         if (rightBumper) {
-            new auto_FenderSequence().schedule();
+            new auto_fenderSequence().schedule();
         }
         if (leftBumper) {
-            new auto_TarmacSequence().schedule();
+            new auto_tarmacSequence().schedule();
         }
 
         if (Robot.m_oi.aDriverButtonPressed()) {

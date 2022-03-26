@@ -114,7 +114,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
+    driveTrain.configMotors();
     driveTrain.changeMode();
+    Robot.driveTrain.motors.feed();
     m_autonomousCommand = m_oi.getAutonomousCommand();
 
     if (m_autonomousCommand != null) {
@@ -130,6 +132,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
+    driveTrain.configMotors();
 
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
@@ -165,13 +168,15 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during test mode. */
   @Override
   public void testPeriodic() {
+    driveTrain.setLeftMotors(.5);
+    driveTrain.setRightMotors(.5);
   }
 
   public static void updateShuffleboard() {
     // Adds NavX values to Shuffle Board
     SmartDashboard.putNumber("Current Angle", ahrs.getYaw());
 
-    SmartDashboard.putNumber("Distance", Robot.shooter.getSmallWheelPowerPV());
+    SmartDashboard.putNumber("Distance", limelight.getDistance());
 
     SmartDashboard.putNumber("Left Degrees", Robot.climber.getLeftEncoder());
     SmartDashboard.putNumber("Right Degrees", Robot.climber.getRightEncoder());

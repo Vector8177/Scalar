@@ -23,7 +23,7 @@ public class DriveTrain extends SubsystemBase {
 
   /** Creates a new DriveTrian. */
   public DriveTrain() {
-
+    configMotors();
   }
 
   @Override
@@ -32,11 +32,14 @@ public class DriveTrain extends SubsystemBase {
   }
 
   public void setLeftMotors(double speed) {
-    frontLeft.set(ControlMode.PercentOutput, speed);
+    frontLeft.set(ControlMode.PercentOutput,speed);
+    backLeft.set(ControlMode.PercentOutput,speed);
+
   }
 
   public void setRightMotors(double speed) {
     frontRight.setSensorPhase(true);
+    backRight.set(ControlMode.PercentOutput,speed);
     frontRight.set(ControlMode.PercentOutput, speed);
   }
 
@@ -53,13 +56,10 @@ public class DriveTrain extends SubsystemBase {
   public void changeMode() {
     frontRight.setSelectedSensorPosition(0);
     frontLeft.setSelectedSensorPosition(0);
-    backRight.setSelectedSensorPosition(0);
-    backLeft.setSelectedSensorPosition(0);
-
   }
 
   public double encoderDegrees() {
-    return -frontRight.getSelectedSensorPosition();
+    return frontRight.getSelectedSensorPosition();
   }
 
   public String allEncoder() {
@@ -70,6 +70,11 @@ public class DriveTrain extends SubsystemBase {
   }
 
   public void configMotors() {
+    frontLeft.setNeutralMode(NeutralMode.Brake);
+    frontRight.setNeutralMode(NeutralMode.Brake);
+    backLeft.setNeutralMode(NeutralMode.Brake);
+    backRight.setNeutralMode(NeutralMode.Brake);
+
     frontLeft.setInverted(TalonFXInvertType.CounterClockwise);
     frontRight.setInverted(TalonFXInvertType.Clockwise);
     backLeft.setInverted(TalonFXInvertType.CounterClockwise);
@@ -77,11 +82,6 @@ public class DriveTrain extends SubsystemBase {
 
     backLeft.follow(frontLeft);
     backRight.follow(frontRight);
-
-    frontLeft.setNeutralMode(NeutralMode.Brake);
-    frontRight.setNeutralMode(NeutralMode.Brake);
-    backLeft.setNeutralMode(NeutralMode.Brake);
-    backRight.setNeutralMode(NeutralMode.Brake);
   }
 
 }

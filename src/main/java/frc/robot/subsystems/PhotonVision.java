@@ -43,8 +43,8 @@ public class PhotonVision extends SubsystemBase {
     public double getDistance() {
         if (result.hasTargets()) {
             return Units.metersToFeet(
-                    PhotonUtils.calculateDistanceToTargetMeters(Units.inchesToMeters(31), Units.inchesToMeters(105.75),
-                            Units.degreesToRadians(50),
+                    PhotonUtils.calculateDistanceToTargetMeters(Units.inchesToMeters(29.5), Units.inchesToMeters(104.5),
+                            Units.degreesToRadians(45),
                             Units.degreesToRadians(bestTarget().getPitch())));
         }
         return 1;
