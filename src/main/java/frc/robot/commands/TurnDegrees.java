@@ -9,8 +9,6 @@ import frc.robot.Robot;
 import frc.robot.RobotMap;
 import edu.wpi.first.math.controller.PIDController;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -18,7 +16,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class TurnDegrees extends CommandBase {
     private final double degrees;
     private double pidcalc;
-    PIDController pid = new PIDController(0.02, 0.001, 0.002);
+    PIDController pid = new PIDController(0.075, 0.0, 0.012);
     Timer time = new Timer();
 
     /** Creates a new ArcadeDrive. */
@@ -40,14 +38,13 @@ public class TurnDegrees extends CommandBase {
     @Override
     public void execute() {
         float yaw = Robot.ahrs.getYaw();
-        pidcalc = MathUtil.clamp(pid.calculate(yaw, degrees), -Robot.m_oi.getAutoSpeed() * RobotMap.TURN_SPEED_MODIFIER,
-                Robot.m_oi.getAutoSpeed() * RobotMap.TURN_SPEED_MODIFIER);
+        pidcalc = MathUtil.clamp(pid.calculate(yaw, degrees), -Robot.m_oi.getAutoSpeed(),
+                Robot.m_oi.getAutoSpeed());
         SmartDashboard.putNumber("Turning PID Output", pidcalc);
         SmartDashboard.putData("Turning PID", pid);
         SmartDashboard.putNumber("Goal Angle", degrees);
 
-        Robot.driveTrain.frontLeft.set(ControlMode.PercentOutput, pidcalc);
-        Robot.driveTrain.frontRight.set(ControlMode.PercentOutput, -pidcalc);
+        Robot.driveTrain.motors.tankDrive(pidcalc, -pidcalc);
     }
 
     public double getPIDOutput() {
@@ -57,8 +54,7 @@ public class TurnDegrees extends CommandBase {
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-        Robot.driveTrain.frontLeft.set(0);
-        Robot.driveTrain.frontRight.set(0);
+        Robot.driveTrain.motors.tankDrive(0, 0);
     }
 
     // Returns true when the command should end.

@@ -6,6 +6,7 @@ package frc.robot.subsystems;
 
 import frc.robot.RobotMap;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.TalonFXInvertType;
@@ -32,14 +33,14 @@ public class DriveTrain extends SubsystemBase {
   }
 
   public void setLeftMotors(double speed) {
-    frontLeft.set(ControlMode.PercentOutput,speed);
-    backLeft.set(ControlMode.PercentOutput,speed);
+    frontLeft.set(ControlMode.PercentOutput, speed);
+    backLeft.set(ControlMode.PercentOutput, speed);
 
   }
 
   public void setRightMotors(double speed) {
     frontRight.setSensorPhase(true);
-    backRight.set(ControlMode.PercentOutput,speed);
+    backRight.set(ControlMode.PercentOutput, speed);
     frontRight.set(ControlMode.PercentOutput, speed);
   }
 

@@ -16,6 +16,7 @@ public class OI {
     /*
      * == SMARTDASHBOARD / SHUFFLEBOARD ==
      */
+
     SendableChooser<Command> m_chooser = new SendableChooser<>();
 
     private static ShuffleboardTab tab = Shuffleboard.getTab("Speed");
@@ -42,11 +43,11 @@ public class OI {
     // LOW GOAL : BIG, .22 SMALL, -.3
     // HIGH GOAL : BIG, .38 SMALL, -.5
     // HIGH GOAL TARMAC: BIG, .70 SMALL, .10
-    private final Command m_DOL = new MoveDirection(4);
+    private final Command m_DOL = new MoveDirection(5);
     private final Command m_TurnRight = new TurnDegrees(90);
     private final Command m_ThreeBallAuto = new auto_ThreeBallAuto();
     private final Command m_TwoBallAuto = new auto_TwoBallAuto();
-    private final Command m_PlayGummy = new PlayMusic("Tyler.chrp");
+    private final Command m_PlayGummy = new PlayMusic("gummy.chrp");
 
     public OI() {
         m_chooser.addOption("Drive Off Line (5 ft)", m_DOL);

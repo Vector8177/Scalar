@@ -15,8 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class MoveDirection extends CommandBase {
   private final double feet;
   double pidcalc;
-  SlewRateLimiter ramp = new SlewRateLimiter(2);
-  PIDController pid = new PIDController(0.01, 0, 0);
+  PIDController pid = new PIDController(1, .2, .1);
 
   /** Creates a new ArcadeDrive. */
   public MoveDirection(double feet) {
@@ -38,18 +37,15 @@ public class MoveDirection extends CommandBase {
         -Robot.m_oi.getAutoSpeed(), Robot.m_oi.getAutoSpeed());
     SmartDashboard.putNumber("Direction PID Output", pidcalc);
     SmartDashboard.putData("Direction PID", pid);
-    SmartDashboard.putNumber("Current Position", Robot.driveTrain.encoderDegrees());
-    SmartDashboard.putNumber("Goal Position", feet * RobotMap.FT_PER_ENCODER_DEGREE);
-    double rampspeed = ramp.calculate(pidcalc);
-    Robot.driveTrain.setLeftMotors(rampspeed);
-    Robot.driveTrain.setRightMotors(rampspeed);
+    SmartDashboard.putNumber("Current Position", Robot.driveTrain.encoderDegrees() / RobotMap.FT_PER_ENCODER_DEGREE);
+    SmartDashboard.putNumber("Goal Position", feet);
+    Robot.driveTrain.motors.tankDrive(pidcalc, pidcalc);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    Robot.driveTrain.setRightMotors(0);
-    Robot.driveTrain.setLeftMotors(0);
+    Robot.driveTrain.motors.tankDrive(0, 0);
   }
 
   // Returns true when the command should end.
