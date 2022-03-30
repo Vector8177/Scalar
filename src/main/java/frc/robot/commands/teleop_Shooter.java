@@ -4,6 +4,8 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
 public class teleop_Shooter extends CommandBase {
+    boolean xPressed = false;
+
     @Override
     public void initialize() {
     }
@@ -15,6 +17,7 @@ public class teleop_Shooter extends CommandBase {
         boolean rightBumper = Robot.m_oi.rightIntakeBumperPressed();
         boolean leftBumper = Robot.m_oi.leftIntakeBumperPressed();
         boolean bButton = Robot.m_oi.bIntakeButtonPressed();
+        boolean xButton = Robot.m_oi.xIntakeButtonPressed();
 
         Robot.intake.setElevatorMotor(leftTrigger + rightTrigger);
         Robot.intake.setIntakeMotor(leftTrigger + rightTrigger);
@@ -28,6 +31,12 @@ public class teleop_Shooter extends CommandBase {
         }
         if (leftBumper) {
             new auto_tarmacSequence().schedule();
+        }
+        if (xButton && !xPressed) {
+            new auto_customSequence().schedule();
+            xPressed = true;
+        } else {
+            xPressed = false;
         }
 
         if (Robot.m_oi.aDriverButtonPressed()) {

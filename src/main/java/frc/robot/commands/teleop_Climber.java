@@ -16,14 +16,14 @@ public class teleop_Climber extends CommandBase {
         if (Robot.m_oi.leftDriverBumperPressed()) {
             Robot.climber.setClimberMotors(RobotMap.CLIMBER_TELEOP_SPEED);
         } else if (Robot.m_oi.rightDriverBumperPressed()) {
-            if (forwardOpen
-                    && (Robot.climber.getLeftEncoder() >= -326195 || Robot.climber.getRightEncoder() >= -341016)) { // out
+            if (!forwardOpen && (Robot.climber.getLeftEncoder() >= -211362
+                    || Robot.climber.getRightEncoder() >= -216791)) { // out
                 Robot.climber.setClimberMotors(-RobotMap.CLIMBER_TELEOP_SPEED);
-            } else if (!forwardOpen
-                    && (Robot.climber.getLeftEncoder() >= -181938 || Robot.climber.getRightEncoder() >= -187825)) {
+            } else if (forwardOpen && (Robot.climber.getLeftEncoder() >= -274750
+                    || Robot.climber.getRightEncoder() >= -289374)) { // out
                 Robot.climber.setClimberMotors(-RobotMap.CLIMBER_TELEOP_SPEED);
-            } else { // in
-                Robot.climber.setClimberMotors(0.0);
+            } else {
+                Robot.climber.setClimberMotors(0);
             }
         } else { // retracted is positive
             Robot.climber.setClimberMotors(0);

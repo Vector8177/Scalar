@@ -18,12 +18,13 @@ public class auto_tarmacSequence extends SequentialCommandGroup {
         public auto_tarmacSequence() {
                 addCommands(
                                 new ParallelCommandGroup(new TurnDegrees(Robot.limelight.getYaw()),
-                                                new MoveElevator(-.8, .2)),
-                                new ShootBall(Robot.shooter.getSmallWheelPowerPV(), Robot.m_oi.getBigWheelSpeed(), .5),
+                                                new MoveElevator(-1, .25)),
+                                new ShootBall(Robot.shooter.getSmallWheelPowerPV() * 1.2,
+                                                Robot.shooter.getBigWheelPowerPV(), .5),
                                 new ParallelCommandGroup(
                                                 new ShootBall(Robot.shooter.getSmallWheelPowerPV(),
-                                                                Robot.m_oi.getBigWheelSpeed(), 2),
-                                                new MoveElevator(.5, 2)));
+                                                                Robot.shooter.getBigWheelPowerPV(), 2),
+                                                new MoveElevator(.75, 2)));
 
         }
 }

@@ -1,5 +1,6 @@
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Robot;
 
@@ -17,10 +18,26 @@ public class auto_ThreeBallAuto2 extends SequentialCommandGroup {
         public auto_ThreeBallAuto2() {
                 Robot.intake.openCompressor();
                 addCommands(
-                                new auto_fenderSequence(),
-                                new MoveDirection(6.5),
-                                new TurnDegrees(120),
-                                new MoveDirection(9.25));
+                                new ParallelCommandGroup(
+                                                new MoveDirection(3.33),
+                                                new IntakeBall(1.0, 1.0)),
+                                new MoveElevator(-1, .15),
+                                new ShootBall(-.74 * 1.2, .22, 1),
+                                new ParallelCommandGroup(
+                                                new ShootBall(-.74 * 1.2, .22, 1.5),
+                                                new MoveElevator(.8, 1.5),
+                                                new IntakeBall(1.0, 1.5)),
+                                new TurnDegrees(107.67),
+                                new ParallelCommandGroup(
+                                                new MoveDirection(8.7583),
+                                                new IntakeBall(1.0, 2)),
+                                new TurnDegrees(-67.67),
+                                new MoveDirection(-2),
+                                new ShootBall(-.74 * 1.2, .22, 1),
+                                new ParallelCommandGroup(
+                                                new ShootBall(-.74 * 1.2, .22, 1.5),
+                                                new MoveElevator(.8, 1.5),
+                                                new IntakeBall(1.0, 1.0)));
 
         }
 }

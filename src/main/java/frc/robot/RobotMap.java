@@ -43,10 +43,10 @@ public class RobotMap {
     public static final double DRIVE_SPEED_MODIFIER = .75;
     public static final double LEFT_JOYSTICK_SPEED_MODIFIER = 1;
     public static final double TURN_SPEED_MODIFIER = .4;
-    public static final double AUTONOMOUS_SPEED = .40;
+    public static final double AUTONOMOUS_SPEED = .65;
     public static final double BIG_WHEEL_SPEED = .25;
     public static final double SMALL_WHEEL_SPEED = -.5;
-    public static final double CLIMBER_TELEOP_SPEED = .85;
+    public static final double CLIMBER_TELEOP_SPEED = 1;
 
     public static final double RAMPING_MULTIPLIER = 1;
 

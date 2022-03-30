@@ -7,7 +7,6 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.math.MathUtil;
 import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -15,7 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class MoveDirection extends CommandBase {
   private final double feet;
   double pidcalc;
-  PIDController pid = new PIDController(1, .2, .1);
+  PIDController pid = new PIDController(1, 0.05, 0.01);
 
   /** Creates a new ArcadeDrive. */
   public MoveDirection(double feet) {
@@ -25,7 +24,7 @@ public class MoveDirection extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    pid.setTolerance(.1);
+    pid.setTolerance(.05);
 
     Robot.driveTrain.changeMode();
   }

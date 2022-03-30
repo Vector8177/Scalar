@@ -31,6 +31,11 @@ public class Shooter extends SubsystemBase {
 
     public double getSmallWheelPowerPV() {
         double dist = Robot.limelight.getDistance();
-        return ((-.00506 * dist * dist) + (-.0044 * dist) + -.481);
+        return ((-.00556 * dist * dist) + (-.0038 * dist) + -.431);
+    }
+
+    public double getBigWheelPowerPV() {
+        double dist = Robot.limelight.getDistance();
+        return ((-.00395 * dist * dist * dist) + (.06214 * dist * dist) + (-.3118 * dist) + .7117);
     }
 }

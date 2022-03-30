@@ -7,6 +7,7 @@ import frc.robot.commands.TurnDegrees;
 import frc.robot.commands.MoveDirection;
 import frc.robot.commands.PlayMusic;
 import frc.robot.commands.auto_ThreeBallAuto;
+import frc.robot.commands.auto_ThreeBallAuto2;
 import frc.robot.commands.auto_TwoBallAuto;
 import edu.wpi.first.wpilibj2.command.Command;
 import java.util.Map;
@@ -153,6 +154,10 @@ public class OI {
 
     public boolean rightIntakeBumperPressed() {
         return intakeController.getRightBumper();
+    }
+
+    public boolean xIntakeButtonPressed() {
+        return intakeController.getXButton();
     }
 
 }
