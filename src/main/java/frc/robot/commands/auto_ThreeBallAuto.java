@@ -25,21 +25,21 @@ public class auto_ThreeBallAuto extends SequentialCommandGroup {
                                 new MoveIntake(false),
                                 new TurnDegrees(30),
                                 new ParallelCommandGroup(
-                                                new ShootBall(-.35, .37, 1.25)),
+                                                new ShootBall(-.36, .38, .5)),
                                 new MoveElevator(-.5, .2),
                                 new ParallelCommandGroup(
-                                                new ShootBall(-.35, .37, 1.5),
+                                                new ShootBall(-.36, .38, 1.5),
                                                 new IntakeBall(1, 1.5),
                                                 new MoveElevator(1, 1.5)),
                                 new TurnDegrees(44),
                                 new ParallelCommandGroup(
                                                 new MoveDirection(7.825),
                                                 new MoveElevator(1, 2),
-                                                new IntakeBall(1, 2.5)),
-                                new MoveDirection(-7.825),
-                                new TurnDegrees(-47),
+                                                new IntakeBall(1, 2.25)),
+                                new MoveDirection(-7.525),
+                                new TurnDegrees(-51),
                                 new MoveElevator(-.5, .2),
-                                new ShootBall(-.45, .37, 1.25),
+                                new ShootBall(-.45, .37, .75),
                                 new ParallelCommandGroup(
                                                 new ShootBall(-.35, .37, 1.5),
                                                 new IntakeBall(1, 1.5),
