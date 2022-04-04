@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.auto_newTeleClimber;
 import frc.robot.commands.teleop_ArcadeDrive;
 import frc.robot.commands.teleop_Shooter;
 import frc.robot.commands.teleop_Climber;
@@ -40,7 +41,7 @@ public class Robot extends TimedRobot {
   // Teleop Commands
   teleop_ArcadeDrive arcadeDrive = new teleop_ArcadeDrive();
   teleop_Shooter tShooter = new teleop_Shooter();
-  teleop_Climber tClimber = new teleop_Climber();
+  auto_newTeleClimber tClimber = new auto_newTeleClimber();
   teleop_Intake tIntake = new teleop_Intake();
 
   // Subsystems

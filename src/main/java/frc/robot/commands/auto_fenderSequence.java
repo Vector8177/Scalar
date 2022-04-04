@@ -17,9 +17,9 @@ public class auto_fenderSequence extends SequentialCommandGroup {
     public auto_fenderSequence() {
         addCommands(
                 new MoveElevator(-1, .2),
-                new ShootBall(-.33, .375, .3),
+                new ShootBall(-.30, .38, .3),
                 new ParallelCommandGroup(
-                        new ShootBall(-.33, .375, 1.5),
+                        new ShootBall(-.30, .38, 1.5),
                         new MoveElevator(.75, 1.5)));
 
     }

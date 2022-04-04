@@ -37,6 +37,14 @@ public class Climber extends SubsystemBase {
 
     public void setClimberMotors(double speed) {
         leftClimber.set(ControlMode.PercentOutput, speed);
+        rightClimber.set(ControlMode.PercentOutput, -speed);
+    }
+
+    public void setLeftClimber(double speed) {
+        leftClimber.set(ControlMode.PercentOutput, speed);
+    }
+
+    public void setRightClimber(double speed) {
         rightClimber.set(ControlMode.PercentOutput, speed);
     }
 
