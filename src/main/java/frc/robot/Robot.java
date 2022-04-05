@@ -187,5 +187,9 @@ public class Robot extends TimedRobot {
 
     // Adds Pneumatics to Shuffle Board
     // SmartDashboard.putNumber("Compresser Pressure", pneu.compressorReading());
+
+
+    SmartDashboard.putNumber("Front wheel velocity", shooter.getFrontMotorVelocity()*600/2048);
+    SmartDashboard.putNumber("Back wheel velocity", shooter.getBackMotorVelocity()*600/2048);
   }
 }

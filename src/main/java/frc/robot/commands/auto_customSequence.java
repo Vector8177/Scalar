@@ -18,11 +18,11 @@ public class auto_customSequence extends SequentialCommandGroup {
     public auto_customSequence() {
         addCommands(
                 new MoveElevator(-1, .15),
-                new ShootBall(Robot.m_oi.getSmallWheelSpeed() * 1.2,
-                        Robot.m_oi.getBigWheelSpeed(), 1),
+                new ShootBall2(-1875 ,
+                        2500, 1),
                 new ParallelCommandGroup(
-                        new ShootBall(Robot.m_oi.getSmallWheelSpeed(),
-                                Robot.m_oi.getBigWheelSpeed(), 2),
+                        new ShootBall2(-1875,
+                                2500, 2),
                         new MoveElevator(.8, 2)));
 
     }

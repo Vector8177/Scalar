@@ -24,6 +24,14 @@ public class Shooter extends SubsystemBase {
         backMotor.set(ControlMode.PercentOutput, speed);
     }
 
+    public double getFrontMotorVelocity(){
+        return frontMotor.getSelectedSensorVelocity();
+    }
+
+    public double getBackMotorVelocity(){
+        return backMotor.getSelectedSensorVelocity();
+    }
+
     public void setMotors(double speed) {
         setFrontMotor(speed);
         setBackMotor(speed);
