@@ -1,8 +1,13 @@
-package frc.robot.commands;
+package frc.robot.commands.Sequences;
 
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Robot;
+import frc.robot.commands.IntakeBall;
+import frc.robot.commands.MoveDirection;
+import frc.robot.commands.MoveElevator;
+import frc.robot.commands.ShootBall;
+import frc.robot.commands.TurnDegrees;
 
 /**
  * A complex auto command that drives forward, releases a hatch, and then drives

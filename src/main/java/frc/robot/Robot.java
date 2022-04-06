@@ -8,16 +8,14 @@ import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.commands.auto_newTeleClimber;
-import frc.robot.commands.teleop_ArcadeDrive;
-import frc.robot.commands.teleop_Shooter;
-import frc.robot.commands.teleop_Climber;
-import frc.robot.commands.teleop_Intake;
+import frc.robot.commands.Teleop.teleop_ArcadeDrive;
+import frc.robot.commands.Teleop.teleop_Climber;
+import frc.robot.commands.Teleop.teleop_Intake;
+import frc.robot.commands.Teleop.teleop_Shooter;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.PhotonVision;
-// import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.Shooter;
 import edu.wpi.first.cameraserver.CameraServer;
 
@@ -41,12 +39,11 @@ public class Robot extends TimedRobot {
   // Teleop Commands
   teleop_ArcadeDrive arcadeDrive = new teleop_ArcadeDrive();
   teleop_Shooter tShooter = new teleop_Shooter();
-  auto_newTeleClimber tClimber = new auto_newTeleClimber();
+  teleop_Climber tClimber = new teleop_Climber();
   teleop_Intake tIntake = new teleop_Intake();
 
   // Subsystems
   public static final DriveTrain driveTrain = new DriveTrain();
-  // public static final Limelight limelight = new Limelight();
 
   public static final PhotonVision limelight = new PhotonVision();
   public static final Intake intake = new Intake();
@@ -63,7 +60,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    climber.changeMode();
+    climber.resetEncoder();
     CameraServer.startAutomaticCapture();
 
     driveTrain.configMotors();
@@ -113,7 +110,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    driveTrain.changeMode();
+    driveTrain.resetEncoder();
     m_autonomousCommand = m_oi.getAutonomousCommand();
 
     if (m_autonomousCommand != null) {
@@ -134,11 +131,9 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-    driveTrain.changeMode();
-    climber.changeMode();
+    driveTrain.resetEncoder();
+    climber.resetEncoder();
     intake.openCompressor();
-
-    // limelight.driverMode();
 
     // This makes sure that the autonomous stops running when
     // teleop starts running. If you want the autonomous to
@@ -176,17 +171,13 @@ public class Robot extends TimedRobot {
 
     SmartDashboard.putNumber("Left Degrees", Robot.climber.getLeftEncoder());
     SmartDashboard.putNumber("Right Degrees", Robot.climber.getRightEncoder());
-    SmartDashboard.putNumber("Powerrrrr", shooter.getSmallWheelPowerPV());
 
     // Adds controller values to Shuffle Board
     SmartDashboard.putNumber("DPAD", m_oi.getDriverDpad());
     SmartDashboard.putNumber("Driver Right Trigger", (double) (Math.round(m_oi.getDriverRightTrigger() * 1000)) / 1000);
     SmartDashboard.putNumber("Intake Right Trigger", (double) (Math.round(m_oi.getIntakeRightTrigger() * 1000)) / 1000);
 
-    // Adds Pneumatics to Shuffle Board
-    // SmartDashboard.putNumber("Compresser Pressure", pneu.compressorReading());
-
-    SmartDashboard.putNumber("Front wheel velocity", shooter.getFrontMotorVelocity() * 600 / 2048);
-    SmartDashboard.putNumber("Back wheel velocity", shooter.getBackMotorVelocity() * 600 / 2048);
+    SmartDashboard.putNumber("Front wheel velocity", RobotMap.convertMotorVelToRPM(shooter.getFrontMotorVelocity()));
+    SmartDashboard.putNumber("Back wheel velocity", RobotMap.convertMotorVelToRPM(shooter.getBackMotorVelocity()));
   }
 }

@@ -9,8 +9,8 @@ import frc.robot.Robot;
 import frc.robot.RobotMap;
 
 public class Shooter extends SubsystemBase {
-    public TalonFX frontMotor = new TalonFX(RobotMap.SHOOTER_FRONT_MOTOR_ID);
-    public TalonFX backMotor = new TalonFX(RobotMap.SHOOTER_BACK_MOTOR_ID);
+    public TalonFX frontMotor = new TalonFX(RobotMap.Shooter.SHOOTER_FRONT_MOTOR_ID);
+    public TalonFX backMotor = new TalonFX(RobotMap.Shooter.SHOOTER_BACK_MOTOR_ID);
 
     @Override
     public void periodic() {
@@ -46,22 +46,22 @@ public class Shooter extends SubsystemBase {
         setBackMotor(speed);
     }
 
-    public double getSmallWheelPowerPV() {
+    public double distToSmallWheelPower() {
         double dist = Robot.limelight.getDistance();
         return ((-.0210 * dist * dist) + (.111 * dist) + -.586);
     }
 
-    public double getBigWheelPowerPV() {
+    public double distToBigWheelPower() {
         double dist = Robot.limelight.getDistance();
         return ((-.00647 * dist * dist) + (.0507 * dist) + .1545);
     }
 
-    public double getSmallWheelRPM() {
+    public double distToSmallWheelRPM() {
         double dist = Robot.limelight.getDistance();
         return (460.41 * dist) + 574.07;
     }
 
-    public double getBigWheelRPM() {
+    public double distToBigWheelRPM() {
         double dist = Robot.limelight.getDistance();
         return (-158.26 * dist) + 2111.04;
     }
@@ -75,10 +75,10 @@ public class Shooter extends SubsystemBase {
         frontMotor.configPeakOutputForward(1, 0);
         frontMotor.configPeakOutputReverse(-1, 0);
 
-        frontMotor.config_kF(0, RobotMap.frontGains.kF, 0);
-        frontMotor.config_kP(0, RobotMap.frontGains.kP, 0);
-        frontMotor.config_kI(0, RobotMap.frontGains.kI, 0);
-        frontMotor.config_kD(0, RobotMap.frontGains.kD, 0);
+        frontMotor.config_kF(0, RobotMap.Shooter.frontGains.kF, 0);
+        frontMotor.config_kP(0, RobotMap.Shooter.frontGains.kP, 0);
+        frontMotor.config_kI(0, RobotMap.Shooter.frontGains.kI, 0);
+        frontMotor.config_kD(0, RobotMap.Shooter.frontGains.kD, 0);
 
         backMotor.configFactoryDefault();
         backMotor.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor, 0, 0);
@@ -88,9 +88,9 @@ public class Shooter extends SubsystemBase {
         backMotor.configPeakOutputForward(1, 0);
         backMotor.configPeakOutputReverse(-1, 0);
 
-        backMotor.config_kF(0, RobotMap.backGains.kF, 0);
-        backMotor.config_kP(0, RobotMap.backGains.kP, 0);
-        backMotor.config_kI(0, RobotMap.backGains.kI, 0);
-        backMotor.config_kD(0, RobotMap.backGains.kD, 0);
+        backMotor.config_kF(0, RobotMap.Shooter.backGains.kF, 0);
+        backMotor.config_kP(0, RobotMap.Shooter.backGains.kP, 0);
+        backMotor.config_kI(0, RobotMap.Shooter.backGains.kI, 0);
+        backMotor.config_kD(0, RobotMap.Shooter.backGains.kD, 0);
     }
 }

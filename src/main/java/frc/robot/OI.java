@@ -6,9 +6,8 @@ import edu.wpi.first.wpilibj.shuffleboard.*;
 import frc.robot.commands.TurnDegrees;
 import frc.robot.commands.MoveDirection;
 import frc.robot.commands.PlayMusic;
-import frc.robot.commands.auto_ThreeBallAuto;
-import frc.robot.commands.auto_ThreeBallAuto2;
-import frc.robot.commands.auto_TwoBallAuto;
+import frc.robot.commands.Sequences.auto_ThreeBallAuto;
+import frc.robot.commands.Sequences.auto_TwoBallAuto;
 import edu.wpi.first.wpilibj2.command.Command;
 import java.util.Map;
 import edu.wpi.first.networktables.NetworkTableEntry;
@@ -21,29 +20,24 @@ public class OI {
     SendableChooser<Command> m_chooser = new SendableChooser<>();
 
     private static ShuffleboardTab tab = Shuffleboard.getTab("Speed");
-    NetworkTableEntry teleMaxSpeed = tab.add("Teleop Max Speed", RobotMap.DRIVE_SPEED_MODIFIER)
+    NetworkTableEntry teleMaxSpeed = tab.add("Teleop Max Speed", RobotMap.DriveTrain.DRIVE_SPEED_MODIFIER)
             .withSize(2, 1).withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min", 0))
             .getEntry();
-    NetworkTableEntry autoMaxSpeed = tab.add("Autonomous Max Speed", RobotMap.AUTONOMOUS_SPEED)
+    NetworkTableEntry autoMaxSpeed = tab.add("Autonomous Max Speed", RobotMap.DriveTrain.AUTONOMOUS_SPEED)
             .withSize(2, 1).withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min", 0))
             .getEntry();
 
-    NetworkTableEntry bigWheelSpeed = tab.add("Big Wheel RPM", RobotMap.BIG_WHEEL_SPEED)
+    NetworkTableEntry bigWheelSpeed = tab.add("Big Wheel RPM", RobotMap.Shooter.BIG_WHEEL_SPEED)
             .withSize(2, 1).withWidget(BuiltInWidgets.kTextView)
             .getEntry();
 
-    NetworkTableEntry smallWheelSpeed = tab.add("Small Wheel RPM", RobotMap.SMALL_WHEEL_SPEED)
+    NetworkTableEntry smallWheelSpeed = tab.add("Small Wheel RPM", RobotMap.Shooter.SMALL_WHEEL_SPEED)
             .withSize(2, 1).withWidget(BuiltInWidgets.kTextView)
             .getEntry();
 
     /*
      * == COMMANDS ==
      */
-
-    // big : .69 small: -.51 - teleop
-    // LOW GOAL : BIG, .22 SMALL, -.3
-    // HIGH GOAL : BIG, .38 SMALL, -.5
-    // HIGH GOAL TARMAC: BIG, .70 SMALL, .10
     private final Command m_DOL = new MoveDirection(5);
     private final Command m_TurnRight = new TurnDegrees(90);
     private final Command m_ThreeBallAuto = new auto_ThreeBallAuto();
@@ -63,19 +57,19 @@ public class OI {
 
     // SHUFFLEBOARD SPEED TAB
     public double getTeleopSpeed() {
-        return teleMaxSpeed.getDouble(RobotMap.DRIVE_SPEED_MODIFIER);
+        return teleMaxSpeed.getDouble(RobotMap.DriveTrain.DRIVE_SPEED_MODIFIER);
     }
 
     public double getBigWheelSpeed() {
-        return bigWheelSpeed.getDouble(RobotMap.BIG_WHEEL_SPEED);
+        return bigWheelSpeed.getDouble(RobotMap.Shooter.BIG_WHEEL_SPEED);
     }
 
     public double getSmallWheelSpeed() {
-        return smallWheelSpeed.getDouble(RobotMap.SMALL_WHEEL_SPEED);
+        return smallWheelSpeed.getDouble(RobotMap.Shooter.SMALL_WHEEL_SPEED);
     }
 
     public double getAutoSpeed() {
-        return autoMaxSpeed.getDouble(RobotMap.AUTONOMOUS_SPEED);
+        return autoMaxSpeed.getDouble(RobotMap.DriveTrain.AUTONOMOUS_SPEED);
     }
 
     public Command getAutonomousCommand() {
@@ -87,7 +81,7 @@ public class OI {
      */
 
     // Driver controller
-    private XboxController driverController = new XboxController(RobotMap.DRIVER_CONTROLLER_PORT);
+    private XboxController driverController = new XboxController(RobotMap.Controller.DRIVER_CONTROLLER_PORT);
 
     public double getDriverRawJoystick() {
         return driverController.getLeftX();
@@ -126,7 +120,7 @@ public class OI {
     }
 
     // Intake controller
-    private XboxController intakeController = new XboxController(RobotMap.INTAKE_CONTROLLER_PORT);
+    private XboxController intakeController = new XboxController(RobotMap.Controller.INTAKE_CONTROLLER_PORT);
 
     public double getIntakeRightTrigger() {
         return intakeController.getRightTriggerAxis();

@@ -1,7 +1,9 @@
-package frc.robot.commands;
+package frc.robot.commands.Sequences;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Robot;
+import frc.robot.commands.MoveElevator;
+import frc.robot.commands.ShootBallRPM;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 
 /**
@@ -20,10 +22,10 @@ public class auto_customSequence extends SequentialCommandGroup {
         public auto_customSequence() {
                 addCommands(
                                 new MoveElevator(-1, .1),
-                                new ShootBall3(-Robot.m_oi.getSmallWheelSpeed(),
+                                new ShootBallRPM(-Robot.m_oi.getSmallWheelSpeed(),
                                                 Robot.m_oi.getBigWheelSpeed(), .6),
                                 new ParallelCommandGroup(
-                                                new ShootBall3(-Robot.m_oi.getSmallWheelSpeed(),
+                                                new ShootBallRPM(-Robot.m_oi.getSmallWheelSpeed(),
                                                                 Robot.m_oi.getBigWheelSpeed(), 2),
                                                 new MoveElevator(.8, 2)));
 

@@ -1,4 +1,4 @@
-package frc.robot;
+package frc.robot.Utility;
 
 public class Gains {
     public final double kP;

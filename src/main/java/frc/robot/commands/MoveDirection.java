@@ -26,17 +26,19 @@ public class MoveDirection extends CommandBase {
   public void initialize() {
     pid.setTolerance(.1);
 
-    Robot.driveTrain.changeMode();
+    Robot.driveTrain.resetEncoder();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    pidcalc = MathUtil.clamp(pid.calculate(Robot.driveTrain.encoderDegrees() / RobotMap.FT_PER_ENCODER_DEGREE, feet),
+    pidcalc = MathUtil.clamp(
+        pid.calculate(Robot.driveTrain.encoderDegrees() / RobotMap.DriveTrain.FT_PER_ENCODER_DEGREE, feet),
         -Robot.m_oi.getAutoSpeed(), Robot.m_oi.getAutoSpeed());
     SmartDashboard.putNumber("Direction PID Output", pidcalc);
     SmartDashboard.putData("Direction PID", pid);
-    SmartDashboard.putNumber("Current Position", Robot.driveTrain.encoderDegrees() / RobotMap.FT_PER_ENCODER_DEGREE);
+    SmartDashboard.putNumber("Current Position",
+        Robot.driveTrain.encoderDegrees() / RobotMap.DriveTrain.FT_PER_ENCODER_DEGREE);
     SmartDashboard.putNumber("Goal Position", feet);
     Robot.driveTrain.motors.tankDrive(pidcalc, pidcalc);
   }
@@ -52,7 +54,7 @@ public class MoveDirection extends CommandBase {
   public boolean isFinished() {
     if (pid.atSetpoint()) {
 
-      Robot.driveTrain.changeMode();
+      Robot.driveTrain.resetEncoder();
       return true;
     }
     return false;

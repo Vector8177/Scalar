@@ -61,7 +61,7 @@ public class TurnDegrees extends CommandBase {
     public boolean isFinished() {
         if (pid.atSetpoint() || time.get() > .75) {
 
-            Robot.driveTrain.changeMode();
+            Robot.driveTrain.resetEncoder();
             return true;
         }
         return false;

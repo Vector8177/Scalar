@@ -29,7 +29,7 @@ public class Climber extends SubsystemBase {
         climberSolenoid.set(Value.kOff);
     }
 
-    public void changeMode() {
+    public void resetEncoder() {
         leftClimber.setSelectedSensorPosition(0);
         rightClimber.setSelectedSensorPosition(0);
 

@@ -34,7 +34,7 @@ public class Intake extends SubsystemBase {
     intakeSRX.set(TalonSRXControlMode.PercentOutput, power);
   }
 
-  Compressor compressor = new Compressor(RobotMap.PHEUMATICS_ID, PneumaticsModuleType.CTREPCM);
+  Compressor compressor = new Compressor(RobotMap.Intake.PHEUMATICS_ID, PneumaticsModuleType.CTREPCM);
   DoubleSolenoid solenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 0, 1);
 
   public double compressorReading() {

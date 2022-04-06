@@ -1,6 +1,8 @@
-package frc.robot.commands;
+package frc.robot.commands.Sequences;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.commands.MoveElevator;
+import frc.robot.commands.ShootBallRPM;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 
 /**
@@ -17,9 +19,9 @@ public class auto_fenderSequence extends SequentialCommandGroup {
     public auto_fenderSequence() {
         addCommands(
                 new MoveElevator(-1, .15),
-                new ShootBall3(-1500, 2400, .3),
+                new ShootBallRPM(-1500, 2400, .3),
                 new ParallelCommandGroup(
-                        new ShootBall3(-1500, 2400, 1.5),
+                        new ShootBallRPM(-1500, 2400, 1.5),
                         new MoveElevator(.75, 1.5)));
 
     }

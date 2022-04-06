@@ -1,7 +1,10 @@
-package frc.robot.commands;
+package frc.robot.commands.Teleop;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
+import frc.robot.commands.Sequences.auto_customSequence;
+import frc.robot.commands.Sequences.auto_fenderSequence;
+import frc.robot.commands.Sequences.auto_tarmacSequence;
 
 public class teleop_Shooter extends CommandBase {
     boolean xPressed = false;

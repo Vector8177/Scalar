@@ -15,10 +15,10 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class DriveTrain extends SubsystemBase {
-  public WPI_TalonFX frontRight = new WPI_TalonFX(RobotMap.FRONT_RIGHT_MOTOR_ID);
-  public WPI_TalonFX backRight = new WPI_TalonFX(RobotMap.BACK_RIGHT_MOTOR_ID);
-  public WPI_TalonFX frontLeft = new WPI_TalonFX(RobotMap.FRONT_LEFT_MOTOR_ID);
-  public WPI_TalonFX backLeft = new WPI_TalonFX(RobotMap.BACK_LEFT_MOTOR_ID);
+  public WPI_TalonFX frontRight = new WPI_TalonFX(RobotMap.DriveTrain.FRONT_RIGHT_MOTOR_ID);
+  public WPI_TalonFX backRight = new WPI_TalonFX(RobotMap.DriveTrain.BACK_RIGHT_MOTOR_ID);
+  public WPI_TalonFX frontLeft = new WPI_TalonFX(RobotMap.DriveTrain.FRONT_LEFT_MOTOR_ID);
+  public WPI_TalonFX backLeft = new WPI_TalonFX(RobotMap.DriveTrain.BACK_LEFT_MOTOR_ID);
 
   public DifferentialDrive motors = new DifferentialDrive(frontLeft, frontRight);
 
@@ -54,20 +54,13 @@ public class DriveTrain extends SubsystemBase {
     setLeftMotors(speed);
   }
 
-  public void changeMode() {
+  public void resetEncoder() {
     frontRight.setSelectedSensorPosition(0);
     frontLeft.setSelectedSensorPosition(0);
   }
 
   public double encoderDegrees() {
     return frontRight.getSelectedSensorPosition();
-  }
-
-  public String allEncoder() {
-    return "" + (-frontRight.getSelectedSensorPosition()) + " "
-        + (-frontLeft.getSelectedSensorPosition() / RobotMap.UNITS_PER_REVOLUTION) + " "
-        + (-backLeft.getSelectedSensorPosition() / RobotMap.UNITS_PER_REVOLUTION) + " "
-        + (-backRight.getSelectedSensorPosition() / RobotMap.UNITS_PER_REVOLUTION);
   }
 
   public void configMotors() {

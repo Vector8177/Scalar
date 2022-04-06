@@ -2,7 +2,7 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands;
+package frc.robot.commands.Teleop;
 
 import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -40,7 +40,7 @@ public class teleop_ArcadeDrive extends CommandBase {
     double speed = (rightTrigger - leftTrigger) * Robot.m_oi.getTeleopSpeed();
 
     double rampSpeed = ramp.calculate(speed);
-    double turnSpeed = (leftStickX * RobotMap.TURN_SPEED_MODIFIER);
+    double turnSpeed = (leftStickX * RobotMap.DriveTrain.TURN_SPEED_MODIFIER);
 
     Robot.driveTrain.motors.curvatureDrive(rampSpeed, turnSpeed, leftTrigger == 0);
   }

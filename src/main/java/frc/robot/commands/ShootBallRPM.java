@@ -4,21 +4,19 @@
 
 package frc.robot.commands;
 
-import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
-
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
-import frc.robot.subsystems.Shooter;
+import frc.robot.RobotMap;
 
-public class ShootBall3 extends CommandBase {
+public class ShootBallRPM extends CommandBase {
     double backMotor;
     double frontMotor;
     double time;
     Timer timer = null;
 
     /** Creates a new ArcadeDrive. */
-    public ShootBall3(double backMotor, double frontMotor, double time) {
+    public ShootBallRPM(double backMotor, double frontMotor, double time) {
         this.backMotor = backMotor;
         this.frontMotor = frontMotor;
         this.time = time;
@@ -35,8 +33,8 @@ public class ShootBall3 extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        double frontRPMtoUnits = frontMotor * 2048.0 / 600.0;
-        double backRPMtoUnits = backMotor * 2048.0 / 600.0;
+        double frontRPMtoUnits = RobotMap.convertRPMToMotorVel(frontMotor);
+        double backRPMtoUnits = RobotMap.convertRPMToMotorVel(backMotor);
 
         Robot.shooter.setFrontMotorV(frontRPMtoUnits);
         Robot.shooter.setBackMotorV(backRPMtoUnits);
