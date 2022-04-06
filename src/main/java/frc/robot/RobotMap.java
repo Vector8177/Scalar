@@ -20,6 +20,12 @@ public class RobotMap {
     public static final double aD = 0.000000006;
     public static final double aF = 0.00;
 
+    // Ziegler Nichols Method; See wiki PID article; T = .28; kP oscillation = .28;
+    public static final Gains frontGains = new Gains(.14, 0, 0, .0495, 300, 1);
+
+    // Ziegler Nichols Method; See wiki PID article; T = .28; kP oscillation = .24;
+    public static final Gains backGains = new Gains(.12, 0, 0, .0495, 300, 1);
+
     // Controller
     public static final int DRIVER_CONTROLLER_PORT = 0;
     public static final int INTAKE_CONTROLLER_PORT = 1;
@@ -40,12 +46,12 @@ public class RobotMap {
     // public static final double DISTANCE_CALCULATOR = equation based on distance
 
     // Speed
-    public static final double DRIVE_SPEED_MODIFIER = .75;
+    public static final double DRIVE_SPEED_MODIFIER = 1;
     public static final double LEFT_JOYSTICK_SPEED_MODIFIER = 1;
     public static final double TURN_SPEED_MODIFIER = .4;
     public static final double AUTONOMOUS_SPEED = .65;
-    public static final double BIG_WHEEL_SPEED = 3600;
-    public static final double SMALL_WHEEL_SPEED = 3600;
+    public static final double BIG_WHEEL_SPEED = 2600;
+    public static final double SMALL_WHEEL_SPEED = 1600;
     public static final double CLIMBER_TELEOP_SPEED = 1;
     public static final double RAMPING_MULTIPLIER = 1;
 

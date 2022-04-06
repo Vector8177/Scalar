@@ -28,12 +28,12 @@ public class OI {
             .withSize(2, 1).withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min", 0))
             .getEntry();
 
-    NetworkTableEntry bigWheelSpeed = tab.add("Big Wheel Speed", RobotMap.BIG_WHEEL_SPEED)
-            .withSize(2, 1).withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min", 0))
+    NetworkTableEntry bigWheelSpeed = tab.add("Big Wheel RPM", RobotMap.BIG_WHEEL_SPEED)
+            .withSize(2, 1).withWidget(BuiltInWidgets.kTextView)
             .getEntry();
 
-    NetworkTableEntry smallWheelSpeed = tab.add("Small Wheel Speed", RobotMap.SMALL_WHEEL_SPEED)
-            .withSize(2, 1).withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min", -1))
+    NetworkTableEntry smallWheelSpeed = tab.add("Small Wheel RPM", RobotMap.SMALL_WHEEL_SPEED)
+            .withSize(2, 1).withWidget(BuiltInWidgets.kTextView)
             .getEntry();
 
     /*

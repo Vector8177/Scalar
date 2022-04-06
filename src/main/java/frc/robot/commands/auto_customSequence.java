@@ -9,21 +9,23 @@ import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
  * backward.
  */
 public class auto_customSequence extends SequentialCommandGroup {
-    /**
-     * Creates a new ComplexAuto.
-     *
-     * @param drive The drive subsystem this command will run on
-     * @param hatch The hatch subsystem this command will run on
-     */
-    public auto_customSequence() {
-        addCommands(
-                new MoveElevator(-1, .15),
-                new ShootBall2(-1875 ,
-                        2500, 1),
-                new ParallelCommandGroup(
-                        new ShootBall2(-1875,
-                                2500, 2),
-                        new MoveElevator(.8, 2)));
+        /**
+         * Creates a new ComplexAuto.
+         *
+         * @param drive The drive subsystem this command will run on
+         * @param hatch The hatch subsystem this command will run on
+         */
+        // Small wheel = Back wheel = negative
+        // big wheel = front wheel = positive
+        public auto_customSequence() {
+                addCommands(
+                                new MoveElevator(-1, .1),
+                                new ShootBall3(-Robot.m_oi.getSmallWheelSpeed(),
+                                                Robot.m_oi.getBigWheelSpeed(), .6),
+                                new ParallelCommandGroup(
+                                                new ShootBall3(-Robot.m_oi.getSmallWheelSpeed(),
+                                                                Robot.m_oi.getBigWheelSpeed(), 2),
+                                                new MoveElevator(.8, 2)));
 
-    }
+        }
 }
