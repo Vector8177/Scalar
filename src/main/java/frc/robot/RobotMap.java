@@ -20,7 +20,7 @@ public class RobotMap {
         public static final int BACK_LEFT_MOTOR_ID = 4;
 
         // Speed
-        public static final double DRIVE_SPEED_MODIFIER = 1;
+        public static final double DRIVE_SPEED_MODIFIER = .85;
         public static final double LEFT_JOYSTICK_SPEED_MODIFIER = 1;
         public static final double TURN_SPEED_MODIFIER = .4;
         public static final double AUTONOMOUS_SPEED = .65;
@@ -56,6 +56,8 @@ public class RobotMap {
         // Default SmartDashboard Values
         public static final double BIG_WHEEL_SPEED = 2600;
         public static final double SMALL_WHEEL_SPEED = 1600;
+
+        public static final double SHOOT_SPEED_MODIFIER = 0.93;
 
         // Ziegler Nichols Method; See wiki PID article
         // T = .28; kP oscillation = .28;

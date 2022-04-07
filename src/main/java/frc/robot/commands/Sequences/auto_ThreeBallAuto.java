@@ -7,6 +7,7 @@ import frc.robot.commands.MoveDirection;
 import frc.robot.commands.MoveElevator;
 import frc.robot.commands.MoveIntake;
 import frc.robot.commands.ShootBall;
+import frc.robot.commands.ShootBallRPM;
 import frc.robot.commands.TurnDegrees;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 
@@ -25,29 +26,28 @@ public class auto_ThreeBallAuto extends SequentialCommandGroup {
                 Robot.intake.openCompressor();
                 addCommands(
                                 new ParallelCommandGroup(
-                                                new MoveDirection(3.425),
+                                                new MoveDirection(3.125),
                                                 new IntakeBall(1.0, 1.0)),
-                                new MoveDirection(-4.905),
+                                new MoveDirection(-4.605),
                                 new MoveIntake(false),
                                 new TurnDegrees(30),
-                                new ParallelCommandGroup(
-                                                new ShootBall(-.36, .38, .5)),
                                 new MoveElevator(-.5, .2),
+                                new ShootBallRPM(-1700, 2500, .5),
                                 new ParallelCommandGroup(
-                                                new ShootBall(-.36, .38, 1.5),
+                                                new ShootBallRPM(-1700, 2500, 1.5),
                                                 new IntakeBall(1, 1.5),
                                                 new MoveElevator(1, 1.5)),
-                                new TurnDegrees(44),
+                                new TurnDegrees(48),
                                 new ParallelCommandGroup(
                                                 new MoveDirection(7.825),
                                                 new MoveElevator(1, 2),
                                                 new IntakeBall(1, 2.25)),
                                 new MoveDirection(-7.525),
-                                new TurnDegrees(-51),
+                                new TurnDegrees(-53),
                                 new MoveElevator(-.5, .2),
-                                new ShootBall(-.36, .37, .75),
+                                new ShootBallRPM(-1500, 2400, .75),
                                 new ParallelCommandGroup(
-                                                new ShootBall(-.35, .37, 1.5),
+                                                new ShootBallRPM(-1500, 2400, 1.5),
                                                 new IntakeBall(1, 1.5),
                                                 new MoveElevator(1, 1.5)));
 

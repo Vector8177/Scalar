@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.shuffleboard.*;
 import frc.robot.commands.TurnDegrees;
 import frc.robot.commands.MoveDirection;
 import frc.robot.commands.PlayMusic;
+import frc.robot.commands.Sequences.auto_FourBallAuto;
 import frc.robot.commands.Sequences.auto_ThreeBallAuto;
 import frc.robot.commands.Sequences.auto_TwoBallAuto;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -34,6 +35,9 @@ public class OI {
     NetworkTableEntry smallWheelSpeed = tab.add("Small Wheel RPM", RobotMap.Shooter.SMALL_WHEEL_SPEED)
             .withSize(2, 1).withWidget(BuiltInWidgets.kTextView)
             .getEntry();
+    NetworkTableEntry shooterMultiplier = tab.add("Shooter Multiplier", RobotMap.Shooter.SHOOT_SPEED_MODIFIER)
+            .withSize(2, 1).withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min", .6))
+            .getEntry();
 
     /*
      * == COMMANDS ==
@@ -42,12 +46,14 @@ public class OI {
     private final Command m_TurnRight = new TurnDegrees(90);
     private final Command m_ThreeBallAuto = new auto_ThreeBallAuto();
     private final Command m_TwoBallAuto = new auto_TwoBallAuto();
+    private final Command m_FourBallAuto = new auto_FourBallAuto();
     private final Command m_PlayGummy = new PlayMusic("gummy.chrp");
 
     public OI() {
         m_chooser.addOption("Drive Off Line (5 ft)", m_DOL);
         m_chooser.addOption("Turn 90 Degrees", m_TurnRight);
         m_chooser.setDefaultOption("Three Ball Auto", m_ThreeBallAuto);
+        m_chooser.setDefaultOption("Four Ball Auto", m_FourBallAuto);
         m_chooser.addOption("Two Ball Auto", m_TwoBallAuto);
         m_chooser.addOption("Play Gummy Bear Song", m_PlayGummy);
 
@@ -70,6 +76,10 @@ public class OI {
 
     public double getAutoSpeed() {
         return autoMaxSpeed.getDouble(RobotMap.DriveTrain.AUTONOMOUS_SPEED);
+    }
+
+    public double getShootSpeed() {
+        return shooterMultiplier.getDouble(RobotMap.Shooter.SHOOT_SPEED_MODIFIER);
     }
 
     public Command getAutonomousCommand() {

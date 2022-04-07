@@ -58,12 +58,12 @@ public class Shooter extends SubsystemBase {
 
     public double distToSmallWheelRPM() {
         double dist = Robot.limelight.getDistance();
-        return (460.41 * dist) + 574.07;
+        return Robot.m_oi.getShootSpeed() * ((-1.515 * dist * dist) + (632.92 * dist) + 191.322);
     }
 
     public double distToBigWheelRPM() {
         double dist = Robot.limelight.getDistance();
-        return (-158.26 * dist) + 2111.04;
+        return Robot.m_oi.getShootSpeed() * ((-47.74 * dist * dist) + (189.63 * dist) + 1371.24);
     }
 
     public void motorSetup() {

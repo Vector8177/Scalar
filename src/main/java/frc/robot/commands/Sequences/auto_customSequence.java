@@ -27,7 +27,7 @@ public class auto_customSequence extends SequentialCommandGroup {
                                 new ParallelCommandGroup(
                                                 new ShootBallRPM(-Robot.m_oi.getSmallWheelSpeed(),
                                                                 Robot.m_oi.getBigWheelSpeed(), 2),
-                                                new MoveElevator(.8, 2)));
+                                                new MoveElevator(.65, 2)));
 
         }
 }

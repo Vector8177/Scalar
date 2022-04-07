@@ -147,8 +147,8 @@
           },
           "0,0": {
             "size": [
-              4,
-              3
+              5,
+              4
             ],
             "content": {
               "_type": "Camera Stream",
@@ -157,7 +157,7 @@
               "Crosshair/Show crosshair": true,
               "Crosshair/Crosshair color": "#FFFFFFFF",
               "Controls/Show controls": true,
-              "Controls/Rotation": "HALF",
+              "Controls/Rotation": "NONE",
               "compression": -1.0,
               "fps": -1,
               "imageWidth": -1,
@@ -186,10 +186,10 @@
               "_title": "Right Degrees"
             }
           },
-          "4,0": {
+          "4,4": {
             "size": [
-              2,
-              2
+              1,
+              1
             ],
             "content": {
               "_type": "Text View",
@@ -197,10 +197,10 @@
               "_title": "Back wheel velocity"
             }
           },
-          "4,2": {
+          "3,4": {
             "size": [
-              2,
-              2
+              1,
+              1
             ],
             "content": {
               "_type": "Text View",
@@ -208,7 +208,7 @@
               "_title": "Front wheel velocity"
             }
           },
-          "2,4": {
+          "5,0": {
             "size": [
               1,
               1
@@ -219,7 +219,7 @@
               "_title": "Distance"
             }
           },
-          "3,4": {
+          "5,1": {
             "size": [
               1,
               1
@@ -331,6 +331,17 @@
               "_title": "SysIdOverflow",
               "Colors/Color when true": "#7CFC00FF",
               "Colors/Color when false": "#8B0000FF"
+            }
+          },
+          "5,2": {
+            "size": [
+              1,
+              2
+            ],
+            "content": {
+              "_type": "PID Controller",
+              "_source0": "network_table:///SmartDashboard/Turning PID",
+              "_title": "SmartDashboard/Turning PID"
             }
           }
         }
@@ -2317,9 +2328,9 @@
     }
   ],
   "windowGeometry": {
-    "x": -4.800000190734863,
-    "y": 3.200000047683716,
-    "width": 1550.4000244140625,
-    "height": 838.4000244140625
+    "x": -6.400000095367432,
+    "y": 0.0,
+    "width": 1542.4000244140625,
+    "height": 830.4000244140625
   }
 }
