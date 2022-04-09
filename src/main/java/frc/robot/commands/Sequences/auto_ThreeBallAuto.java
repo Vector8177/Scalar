@@ -6,7 +6,6 @@ import frc.robot.commands.IntakeBall;
 import frc.robot.commands.MoveDirection;
 import frc.robot.commands.MoveElevator;
 import frc.robot.commands.MoveIntake;
-import frc.robot.commands.ShootBall;
 import frc.robot.commands.ShootBallRPM;
 import frc.robot.commands.TurnDegrees;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
@@ -30,20 +29,20 @@ public class auto_ThreeBallAuto extends SequentialCommandGroup {
                                                 new IntakeBall(1.0, 1.0)),
                                 new MoveDirection(-4.605),
                                 new MoveIntake(false),
-                                new TurnDegrees(30),
+                                new TurnDegrees(30, 1),
                                 new MoveElevator(-.5, .2),
                                 new ShootBallRPM(-1700, 2500, .5),
                                 new ParallelCommandGroup(
                                                 new ShootBallRPM(-1700, 2500, 1.5),
                                                 new IntakeBall(1, 1.5),
                                                 new MoveElevator(1, 1.5)),
-                                new TurnDegrees(48),
+                                new TurnDegrees(48, 1),
                                 new ParallelCommandGroup(
                                                 new MoveDirection(7.825),
                                                 new MoveElevator(1, 2),
                                                 new IntakeBall(1, 2.25)),
                                 new MoveDirection(-7.525),
-                                new TurnDegrees(-53),
+                                new TurnDegrees(-53, 1),
                                 new MoveElevator(-.5, .2),
                                 new ShootBallRPM(-1500, 2400, .75),
                                 new ParallelCommandGroup(

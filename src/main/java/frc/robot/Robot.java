@@ -111,6 +111,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     driveTrain.resetEncoder();
+    driveTrain.configMotors();
     m_autonomousCommand = m_oi.getAutonomousCommand();
 
     if (m_autonomousCommand != null) {

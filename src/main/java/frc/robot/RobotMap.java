@@ -57,7 +57,7 @@ public class RobotMap {
         public static final double BIG_WHEEL_SPEED = 2600;
         public static final double SMALL_WHEEL_SPEED = 1600;
 
-        public static final double SHOOT_SPEED_MODIFIER = 0.93;
+        public static final double SHOOT_SPEED_MODIFIER = 0.95;
 
         // Ziegler Nichols Method; See wiki PID article
         // T = .28; kP oscillation = .28;

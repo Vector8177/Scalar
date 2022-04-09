@@ -32,11 +32,11 @@ public class auto_ThreeBallAuto2 extends SequentialCommandGroup {
                                                 new ShootBall(-.74 * 1.2, .22, 1.5),
                                                 new MoveElevator(.8, 1.5),
                                                 new IntakeBall(1.0, 1.5)),
-                                new TurnDegrees(107.67),
+                                new TurnDegrees(107.67, 1),
                                 new ParallelCommandGroup(
                                                 new MoveDirection(8.7583),
                                                 new IntakeBall(1.0, 2)),
-                                new TurnDegrees(-67.67),
+                                new TurnDegrees(-67.67, 1),
                                 new MoveDirection(-2),
                                 new ShootBall(-.74 * 1.2, .22, 1),
                                 new ParallelCommandGroup(

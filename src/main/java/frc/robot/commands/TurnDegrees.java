@@ -15,12 +15,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class TurnDegrees extends CommandBase {
     private final double degrees;
     private double pidcalc;
+    private double timee;
     PIDController pid = new PIDController(0.075, 0.0, 0.012);
     Timer time = new Timer();
 
     /** Creates a new ArcadeDrive. */
-    public TurnDegrees(double degreess) {
+    public TurnDegrees(double degreess, double timee) {
         degrees = degreess;
+        this.timee = timee;
     }
 
     // Called when the command is initially scheduled.
@@ -29,7 +31,8 @@ public class TurnDegrees extends CommandBase {
         time.start();
         time.reset();
         Robot.ahrs.zeroYaw();
-        pid.setTolerance(1);
+        pid.setTolerance(.5);
+        pid.setIntegratorRange(0, 10);
         pid.enableContinuousInput(-180, 180);
     }
 
@@ -59,7 +62,7 @@ public class TurnDegrees extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        if (pid.atSetpoint() || time.get() > .75) {
+        if (pid.atSetpoint() || time.get() > timee) {
 
             Robot.driveTrain.resetEncoder();
             return true;
