@@ -18,7 +18,6 @@ public class auto_OneBallAuto extends SequentialCommandGroup {
          */
         public auto_OneBallAuto() {
                 addCommands(
-                                new MoveElevator(-1, .2),
                                 new ShootBall(-.5, .375, .3),
                                 new ParallelCommandGroup(
                                                 new ShootBall(-.5, .375, .75),

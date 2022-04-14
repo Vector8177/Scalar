@@ -29,7 +29,6 @@ public class auto_FourBallAuto extends SequentialCommandGroup {
                                                 new IntakeBall(1.0, 1.0)),
                                 new MoveDirection(-4.745),
                                 new MoveIntake(false),
-                                new MoveElevator(-1, .2),
                                 new ParallelCommandGroup(
                                                 new ShootBallRPM(-1500, 2400, 1.5),
                                                 new MoveElevator(1, 1.5)),

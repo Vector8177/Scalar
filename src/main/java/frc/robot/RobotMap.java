@@ -1,5 +1,6 @@
 package frc.robot;
 
+import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
 import frc.robot.Utility.Gains;
 
 public class RobotMap {
@@ -57,7 +58,7 @@ public class RobotMap {
         public static final double BIG_WHEEL_SPEED = 2600;
         public static final double SMALL_WHEEL_SPEED = 1600;
 
-        public static final double SHOOT_SPEED_MODIFIER = 0.95;
+        public static final double SHOOT_SPEED_MODIFIER = 0.98;
 
         // Ziegler Nichols Method; See wiki PID article
         // T = .28; kP oscillation = .28;
@@ -76,5 +77,24 @@ public class RobotMap {
         // Speed
         public static final double CLIMBER_TELEOP_SPEED = 1;
         public static final double CLIMBER_DPAD_SPEED = .5;
+    }
+
+    public static final class PathPlanner {
+        public static final double ksVolts = 0.14792;
+        public static final double kvVoltSecondsPerMeter = .011551;
+        public static final double kaVoltSecondsSquaredPerMeter = 0.0017413;
+
+        // Example value only - as above, this must be tuned for your drive!
+        public static final double kPDriveVel = 0.015177;
+
+        public static final double kMaxSpeedMetersPerSecond = 3;
+        public static final double kMaxAccelerationMetersPerSecondSquared = 3;
+
+        public static final double kRamseteB = 2;
+        public static final double kRamseteZeta = 0.7;
+
+        public static final double kTrackwidthMeters = 0.5207;
+        public static final DifferentialDriveKinematics kDriveKinematics = new DifferentialDriveKinematics(
+                kTrackwidthMeters);
     }
 }

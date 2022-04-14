@@ -21,7 +21,6 @@ public class auto_customSequence extends SequentialCommandGroup {
         // big wheel = front wheel = positive
         public auto_customSequence() {
                 addCommands(
-                                new MoveElevator(-1, .1),
                                 new ShootBallRPM(-Robot.m_oi.getSmallWheelSpeed(),
                                                 Robot.m_oi.getBigWheelSpeed(), .6),
                                 new ParallelCommandGroup(

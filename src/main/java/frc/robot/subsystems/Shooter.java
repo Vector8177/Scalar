@@ -4,6 +4,8 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
+import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
@@ -12,6 +14,9 @@ public class Shooter extends SubsystemBase {
     public TalonFX frontMotor = new TalonFX(RobotMap.Shooter.SHOOTER_FRONT_MOTOR_ID);
     public TalonFX backMotor = new TalonFX(RobotMap.Shooter.SHOOTER_BACK_MOTOR_ID);
 
+    DigitalInput highBeam = new DigitalInput(1);
+    DigitalInput lowBeam = new DigitalInput(0);
+
     @Override
     public void periodic() {
 
@@ -19,6 +24,14 @@ public class Shooter extends SubsystemBase {
 
     public void setFrontMotor(double speed) {
         frontMotor.set(ControlMode.PercentOutput, speed);
+    }
+
+    public boolean getHighBeamBreak() {
+        return highBeam.get();
+    }
+
+    public boolean getLowBeamBreak() {
+        return lowBeam.get();
     }
 
     public void setBackMotor(double speed) {

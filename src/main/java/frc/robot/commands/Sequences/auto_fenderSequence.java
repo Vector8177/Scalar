@@ -18,7 +18,6 @@ public class auto_fenderSequence extends SequentialCommandGroup {
      */
     public auto_fenderSequence() {
         addCommands(
-                new MoveElevator(-1, .1),
                 new ShootBallRPM(-1500, 2500, .3),
                 new ParallelCommandGroup(
                         new ShootBallRPM(-1500, 2500, 1.5),

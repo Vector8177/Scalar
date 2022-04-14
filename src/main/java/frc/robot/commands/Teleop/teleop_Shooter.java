@@ -16,14 +16,21 @@ public class teleop_Shooter extends CommandBase {
     @Override
     public void execute() {
         double rightTrigger = Robot.m_oi.getIntakeRightTrigger();
-        double leftTrigger = -Robot.m_oi.getIntakeLeftTrigger();
+        double leftTrigger = Robot.m_oi.getIntakeLeftTrigger();
         boolean rightBumper = Robot.m_oi.rightIntakeBumperPressed();
         boolean leftBumper = Robot.m_oi.leftIntakeBumperPressed();
         boolean bButton = Robot.m_oi.bIntakeButtonPressed();
         boolean xButton = Robot.m_oi.xIntakeButtonPressed();
 
-        Robot.intake.setElevatorMotor(leftTrigger + rightTrigger);
-        Robot.intake.setIntakeMotor(leftTrigger + rightTrigger);
+        double elevatorPower = rightTrigger - leftTrigger;
+        if (elevatorPower > 0 && (Robot.shooter.getLowBeamBreak() && Robot.shooter.getHighBeamBreak())) {
+            Robot.intake.setElevatorMotor(elevatorPower);
+        } else if (elevatorPower < 0) {
+            Robot.intake.setElevatorMotor(elevatorPower);
+        } else {
+            Robot.intake.setElevatorMotor(0);
+        }
+        Robot.intake.setIntakeMotor(elevatorPower);
 
         if (bButton) {
             Robot.intake.setIntakeMotor(1);

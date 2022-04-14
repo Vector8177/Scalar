@@ -168,6 +168,8 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("GOALLL Angle", limelight.getYaw());
     SmartDashboard.putNumber("Current Angle", ahrs.getYaw());
 
+    SmartDashboard.putBoolean("BeamBreak", shooter.getHighBeamBreak());
+
     SmartDashboard.putNumber("Distance", limelight.getDistance());
 
     SmartDashboard.putNumber("Left Degrees", Robot.climber.getLeftEncoder());
