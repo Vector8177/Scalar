@@ -30,6 +30,7 @@ public class auto_ThreeBallAuto extends SequentialCommandGroup {
                                 new MoveDirection(-4.605),
                                 new MoveIntake(false),
                                 new TurnDegrees(30, 1),
+                                new MoveElevator(-.5, .2),
                                 new ShootBallRPM(-1700, 2500, .5),
                                 new ParallelCommandGroup(
                                                 new ShootBallRPM(-1700, 2500, 1.5),
