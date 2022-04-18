@@ -3,6 +3,7 @@ package frc.robot.commands.Sequences;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 import frc.robot.commands.IntakeBall;
 import frc.robot.commands.MoveDirection;
 import frc.robot.commands.MoveElevator;
@@ -33,13 +34,13 @@ public class auto_FourBallAuto extends SequentialCommandGroup {
                                 new ParallelCommandGroup(
                                                 new ShootBallRPM(-1500, 2400, 1.5),
                                                 new MoveElevator(1, 1.5)),
-                                new TurnDegrees(73.64, 1),
+                                new TurnDegrees(73.64, 1, RobotMap.DriveTrain.autoPID),
                                 new ParallelCommandGroup(
                                                 new MoveDirection(20.8),
                                                 new IntakeBall(1.0, 5),
                                                 new MoveElevator(1.0, 2.5)),
                                 new MoveDirection(-20.3),
-                                new TurnDegrees(-73.64, 1),
+                                new TurnDegrees(-73.64, 1, RobotMap.DriveTrain.autoPID),
                                 new MoveElevator(-.8, .2),
                                 new MoveIntake(false),
                                 new ParallelCommandGroup(

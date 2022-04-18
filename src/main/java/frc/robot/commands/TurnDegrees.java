@@ -6,6 +6,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
+import frc.robot.Utility.Gains;
 import edu.wpi.first.math.controller.PIDController;
 
 import edu.wpi.first.math.MathUtil;
@@ -15,14 +16,16 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class TurnDegrees extends CommandBase {
     private final double degrees;
     private double pidcalc;
-    private double timee;
-    PIDController pid = new PIDController(0.075, 0.0, 0.012);
+    private double duration;
+    private Gains pidValues;
+    PIDController pid;
     Timer time = new Timer();
 
     /** Creates a new ArcadeDrive. */
-    public TurnDegrees(double degreess, double timee) {
-        degrees = degreess;
-        this.timee = timee;
+    public TurnDegrees(double degrees, double duration, Gains pidValues) {
+        this.degrees = degrees;
+        this.duration = duration;
+        this.pidValues = pidValues;
     }
 
     // Called when the command is initially scheduled.
@@ -31,6 +34,7 @@ public class TurnDegrees extends CommandBase {
         time.start();
         time.reset();
         Robot.ahrs.zeroYaw();
+        pid = new PIDController(pidValues.kP, pidValues.kI, pidValues.kD);
         pid.setTolerance(.5);
         pid.setIntegratorRange(0, 10);
         pid.enableContinuousInput(-180, 180);
@@ -62,7 +66,7 @@ public class TurnDegrees extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        if (pid.atSetpoint() || time.get() > timee) {
+        if (pid.atSetpoint() || time.get() > duration) {
 
             Robot.driveTrain.resetEncoder();
             return true;

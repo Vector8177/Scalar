@@ -28,6 +28,10 @@ public class RobotMap {
 
         // Distance
         public static final double FT_PER_ENCODER_DEGREE = 13703;
+
+        // PID
+        public static final Gains autoPID = new Gains(0.075, 0.0, 0.012, 0, 0, 0);
+        public static final Gains tarmacPID = new Gains(0.075, 0.0, 0.012, 0, 0, 0);
     }
 
     public static final class Controller {

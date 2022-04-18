@@ -2,6 +2,7 @@ package frc.robot.commands.Sequences;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 import frc.robot.commands.MoveElevator;
 import frc.robot.commands.ShootBallRPM;
 import frc.robot.commands.TurnDegrees;
@@ -20,7 +21,7 @@ public class auto_tarmacSequence extends SequentialCommandGroup {
          */
         public auto_tarmacSequence() {
                 addCommands(
-                                new TurnDegrees(Robot.limelight.getYaw(), .75),
+                                new TurnDegrees(Robot.limelight.getYaw(), .75, RobotMap.DriveTrain.tarmacPID),
                                 new ShootBallRPM(-Robot.shooter.distToSmallWheelRPM(),
                                                 Robot.shooter.distToBigWheelRPM(), .6),
                                 new ParallelCommandGroup(

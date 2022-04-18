@@ -43,7 +43,7 @@ public class OI {
      * == COMMANDS ==
      */
     private final Command m_DOL = new MoveDirection(5);
-    private final Command m_TurnRight = new TurnDegrees(90, 1);
+    private final Command m_TurnRight = new TurnDegrees(90, 1, RobotMap.DriveTrain.autoPID);
     private final Command m_ThreeBallAuto = new auto_ThreeBallAuto();
     private final Command m_TwoBallAuto = new auto_TwoBallAuto();
     private final Command m_FourBallAuto = new auto_FourBallAuto();
