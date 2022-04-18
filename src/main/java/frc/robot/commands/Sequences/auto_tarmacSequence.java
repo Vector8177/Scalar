@@ -1,12 +1,14 @@
 package frc.robot.commands.Sequences;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.MoveElevator;
 import frc.robot.commands.ShootBallRPM;
 import frc.robot.commands.TurnDegrees;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
 
 /**
  * A complex auto command that drives forward, releases a hatch, and then drives
@@ -21,13 +23,15 @@ public class auto_tarmacSequence extends SequentialCommandGroup {
          */
         public auto_tarmacSequence() {
                 addCommands(
-                                new TurnDegrees(Robot.limelight.getYaw(), .75, RobotMap.DriveTrain.tarmacPID),
-                                new ShootBallRPM(-Robot.shooter.distToSmallWheelRPM(),
-                                                Robot.shooter.distToBigWheelRPM(), .6),
-                                new ParallelCommandGroup(
+                                new ParallelDeadlineGroup(new SequentialCommandGroup(
                                                 new ShootBallRPM(-Robot.shooter.distToSmallWheelRPM(),
-                                                                Robot.shooter.distToBigWheelRPM(), 2),
-                                                new MoveElevator(.8, 2)));
+                                                                Robot.shooter.distToBigWheelRPM(), .6),
+                                                new ParallelCommandGroup(
+                                                                new ShootBallRPM(-Robot.shooter.distToSmallWheelRPM(),
+                                                                                Robot.shooter.distToBigWheelRPM(), 2),
+                                                                new MoveElevator(.8, 2))),
+                                                new TurnDegrees(Robot.limelight.getYaw(), 0,
+                                                                RobotMap.DriveTrain.tarmacPID)));
 
         }
 }

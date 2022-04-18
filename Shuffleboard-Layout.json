@@ -199,7 +199,7 @@
           },
           "2,4": {
             "size": [
-              1,
+              2,
               1
             ],
             "content": {
@@ -342,6 +342,52 @@
               "_type": "PID Controller",
               "_source0": "network_table:///SmartDashboard/Turning PID",
               "_title": "SmartDashboard/Turning PID"
+            }
+          },
+          "4,4": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/odometry x",
+              "_title": "odometry x"
+            }
+          },
+          "5,4": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/odometry y",
+              "_title": "odometry y"
+            }
+          },
+          "0,6": {
+            "size": [
+              2,
+              2
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/BeamBreak",
+              "_title": "BeamBreak",
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
+            }
+          },
+          "3,6": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/heading",
+              "_title": "heading"
             }
           }
         }
@@ -2321,6 +2367,318 @@
               "_title": "PhotonVision",
               "Layout/Label position": "BOTTOM",
               "_children": []
+            }
+          },
+          "6,18": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///LiveWindow/Ungrouped/DigitalInput[0]/Value",
+              "_title": "Ungrouped/DigitalInput[0]/Value",
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
+            }
+          },
+          "7,18": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///LiveWindow/Ungrouped/DigitalInput[1]/Value",
+              "_title": "Ungrouped/DigitalInput[1]/Value",
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
+            }
+          },
+          "8,18": {
+            "size": [
+              1,
+              2
+            ],
+            "content": {
+              "_type": "PID Controller",
+              "_source0": "network_table:///LiveWindow/Ungrouped/PIDController[76]",
+              "_title": "Ungrouped/PIDController[76]"
+            }
+          },
+          "9,18": {
+            "size": [
+              1,
+              2
+            ],
+            "content": {
+              "_type": "PID Controller",
+              "_source0": "network_table:///LiveWindow/Ungrouped/PIDController[77]",
+              "_title": "Ungrouped/PIDController[77]"
+            }
+          },
+          "10,18": {
+            "size": [
+              1,
+              2
+            ],
+            "content": {
+              "_type": "PID Controller",
+              "_source0": "network_table:///LiveWindow/Ungrouped/PIDController[78]",
+              "_title": "Ungrouped/PIDController[78]"
+            }
+          },
+          "11,18": {
+            "size": [
+              1,
+              2
+            ],
+            "content": {
+              "_type": "PID Controller",
+              "_source0": "network_table:///LiveWindow/Ungrouped/PIDController[79]",
+              "_title": "Ungrouped/PIDController[79]"
+            }
+          },
+          "12,18": {
+            "size": [
+              1,
+              2
+            ],
+            "content": {
+              "_type": "PID Controller",
+              "_source0": "network_table:///LiveWindow/Ungrouped/PIDController[80]",
+              "_title": "Ungrouped/PIDController[80]"
+            }
+          },
+          "13,18": {
+            "size": [
+              1,
+              2
+            ],
+            "content": {
+              "_type": "PID Controller",
+              "_source0": "network_table:///LiveWindow/Ungrouped/PIDController[81]",
+              "_title": "Ungrouped/PIDController[81]"
+            }
+          },
+          "14,18": {
+            "size": [
+              1,
+              2
+            ],
+            "content": {
+              "_type": "PID Controller",
+              "_source0": "network_table:///LiveWindow/Ungrouped/PIDController[82]",
+              "_title": "Ungrouped/PIDController[82]"
+            }
+          },
+          "15,18": {
+            "size": [
+              1,
+              2
+            ],
+            "content": {
+              "_type": "PID Controller",
+              "_source0": "network_table:///LiveWindow/Ungrouped/PIDController[83]",
+              "_title": "Ungrouped/PIDController[83]"
+            }
+          },
+          "16,18": {
+            "size": [
+              1,
+              2
+            ],
+            "content": {
+              "_type": "PID Controller",
+              "_source0": "network_table:///LiveWindow/Ungrouped/PIDController[84]",
+              "_title": "Ungrouped/PIDController[84]"
+            }
+          },
+          "6,19": {
+            "size": [
+              1,
+              2
+            ],
+            "content": {
+              "_type": "PID Controller",
+              "_source0": "network_table:///LiveWindow/Ungrouped/PIDController[85]",
+              "_title": "Ungrouped/PIDController[85]"
+            }
+          },
+          "7,19": {
+            "size": [
+              1,
+              2
+            ],
+            "content": {
+              "_type": "PID Controller",
+              "_source0": "network_table:///LiveWindow/Ungrouped/PIDController[86]",
+              "_title": "Ungrouped/PIDController[86]"
+            }
+          },
+          "0,20": {
+            "size": [
+              1,
+              2
+            ],
+            "content": {
+              "_type": "PID Controller",
+              "_source0": "network_table:///LiveWindow/Ungrouped/PIDController[87]",
+              "_title": "Ungrouped/PIDController[87]"
+            }
+          },
+          "1,20": {
+            "size": [
+              1,
+              2
+            ],
+            "content": {
+              "_type": "PID Controller",
+              "_source0": "network_table:///LiveWindow/Ungrouped/PIDController[88]",
+              "_title": "Ungrouped/PIDController[88]"
+            }
+          },
+          "2,20": {
+            "size": [
+              1,
+              2
+            ],
+            "content": {
+              "_type": "PID Controller",
+              "_source0": "network_table:///LiveWindow/Ungrouped/PIDController[89]",
+              "_title": "Ungrouped/PIDController[89]"
+            }
+          },
+          "3,20": {
+            "size": [
+              1,
+              2
+            ],
+            "content": {
+              "_type": "PID Controller",
+              "_source0": "network_table:///LiveWindow/Ungrouped/PIDController[90]",
+              "_title": "Ungrouped/PIDController[90]"
+            }
+          },
+          "8,20": {
+            "size": [
+              1,
+              2
+            ],
+            "content": {
+              "_type": "PID Controller",
+              "_source0": "network_table:///LiveWindow/Ungrouped/PIDController[91]",
+              "_title": "Ungrouped/PIDController[91]"
+            }
+          },
+          "9,20": {
+            "size": [
+              1,
+              2
+            ],
+            "content": {
+              "_type": "PID Controller",
+              "_source0": "network_table:///LiveWindow/Ungrouped/PIDController[92]",
+              "_title": "Ungrouped/PIDController[92]"
+            }
+          },
+          "10,20": {
+            "size": [
+              1,
+              2
+            ],
+            "content": {
+              "_type": "PID Controller",
+              "_source0": "network_table:///LiveWindow/Ungrouped/PIDController[93]",
+              "_title": "Ungrouped/PIDController[93]"
+            }
+          },
+          "11,20": {
+            "size": [
+              1,
+              2
+            ],
+            "content": {
+              "_type": "PID Controller",
+              "_source0": "network_table:///LiveWindow/Ungrouped/PIDController[94]",
+              "_title": "Ungrouped/PIDController[94]"
+            }
+          },
+          "12,20": {
+            "size": [
+              1,
+              2
+            ],
+            "content": {
+              "_type": "PID Controller",
+              "_source0": "network_table:///LiveWindow/Ungrouped/PIDController[95]",
+              "_title": "Ungrouped/PIDController[95]"
+            }
+          },
+          "13,20": {
+            "size": [
+              1,
+              2
+            ],
+            "content": {
+              "_type": "PID Controller",
+              "_source0": "network_table:///LiveWindow/Ungrouped/PIDController[96]",
+              "_title": "Ungrouped/PIDController[96]"
+            }
+          },
+          "14,20": {
+            "size": [
+              1,
+              2
+            ],
+            "content": {
+              "_type": "PID Controller",
+              "_source0": "network_table:///LiveWindow/Ungrouped/PIDController[97]",
+              "_title": "Ungrouped/PIDController[97]"
+            }
+          },
+          "15,20": {
+            "size": [
+              1,
+              2
+            ],
+            "content": {
+              "_type": "PID Controller",
+              "_source0": "network_table:///LiveWindow/Ungrouped/PIDController[98]",
+              "_title": "Ungrouped/PIDController[98]"
+            }
+          },
+          "16,20": {
+            "size": [
+              1,
+              2
+            ],
+            "content": {
+              "_type": "PID Controller",
+              "_source0": "network_table:///LiveWindow/Ungrouped/PIDController[99]",
+              "_title": "Ungrouped/PIDController[99]"
+            }
+          },
+          "6,21": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///LiveWindow/Ungrouped/PIDController[100]/p",
+              "_title": "Ungrouped/PIDController[100]/p"
+            }
+          },
+          "7,21": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///LiveWindow/Ungrouped/PIDController[100]/i",
+              "_title": "Ungrouped/PIDController[100]/i"
             }
           }
         }

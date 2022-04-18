@@ -66,11 +66,15 @@ public class TurnDegrees extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        if (pid.atSetpoint() || time.get() > duration) {
+        if (duration != 0) {
+            if (pid.atSetpoint() || time.get() > duration) {
 
-            Robot.driveTrain.resetEncoder();
-            return true;
+                Robot.driveTrain.resetEncoder();
+                return true;
+            }
+            return false;
+        } else {
+            return false;
         }
-        return false;
     }
 }
