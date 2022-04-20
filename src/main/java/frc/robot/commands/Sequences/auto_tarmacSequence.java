@@ -1,10 +1,10 @@
 package frc.robot.commands.Sequences;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.MoveElevator;
+import frc.robot.commands.MoveIntake;
 import frc.robot.commands.ShootBallRPM;
 import frc.robot.commands.TurnDegrees;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
@@ -23,6 +23,7 @@ public class auto_tarmacSequence extends SequentialCommandGroup {
          */
         public auto_tarmacSequence() {
                 addCommands(
+                                new MoveIntake(true),
                                 new ParallelDeadlineGroup(new SequentialCommandGroup(
                                                 new ShootBallRPM(-Robot.shooter.distToSmallWheelRPM(),
                                                                 Robot.shooter.distToBigWheelRPM(), .6),

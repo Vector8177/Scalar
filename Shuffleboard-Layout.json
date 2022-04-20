@@ -344,28 +344,6 @@
               "_title": "SmartDashboard/Turning PID"
             }
           },
-          "4,4": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/odometry x",
-              "_title": "odometry x"
-            }
-          },
-          "5,4": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/odometry y",
-              "_title": "odometry y"
-            }
-          },
           "0,6": {
             "size": [
               2,
@@ -388,6 +366,39 @@
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/heading",
               "_title": "heading"
+            }
+          },
+          "4,4": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///Shuffleboard/Speed/Shooter Multiplier",
+              "_title": "Shooter Multiplier"
+            }
+          },
+          "4,6": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/odometry x",
+              "_title": "odometry x"
+            }
+          },
+          "7,6": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/odometry y",
+              "_title": "odometry y"
             }
           }
         }

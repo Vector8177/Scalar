@@ -30,7 +30,7 @@ public class IntakeBall extends CommandBase {
     @Override
     public void execute() {
         Robot.intake.setIntakeMotor(power);
-        Robot.intake.openIntakeReverseSolenoid();
+        Robot.intake.forwardOpen = false;
     }
 
     // Called once the command ends or is interrupted.

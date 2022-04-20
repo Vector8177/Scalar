@@ -19,11 +19,18 @@ public class Intake extends SubsystemBase {
   TalonSRX elevatorSRX = new TalonSRX(7);
   TalonSRX intakeSRX = new TalonSRX(8);
 
+  public boolean forwardOpen = true;
+
   public Intake() {
   }
 
   @Override
   public void periodic() {
+    if (forwardOpen) {
+      openIntakeForwardSolenoid();
+    } else {
+      openIntakeReverseSolenoid();
+    }
   }
 
   public void setElevatorMotor(double power) {
