@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Robot;
 import frc.robot.commands.MoveElevator;
 import frc.robot.commands.ShootBallRPM;
+import frc.robot.commands.Teleop.teleop_ShooterNew;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 
 /**
@@ -27,6 +28,7 @@ public class auto_customSequence extends SequentialCommandGroup {
                                                 new ShootBallRPM(-Robot.m_oi.getSmallWheelSpeed(),
                                                                 Robot.m_oi.getBigWheelSpeed(), 2),
                                                 new MoveElevator(.65, 2)));
+                teleop_ShooterNew.resetValues(false);
 
         }
 }

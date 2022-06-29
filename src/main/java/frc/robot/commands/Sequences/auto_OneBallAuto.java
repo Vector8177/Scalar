@@ -1,8 +1,9 @@
 package frc.robot.commands.Sequences;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.commands.MoveDirection;
 import frc.robot.commands.MoveElevator;
-import frc.robot.commands.ShootBall;
+import frc.robot.commands.ShootBallRPM;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 
 /**
@@ -18,10 +19,11 @@ public class auto_OneBallAuto extends SequentialCommandGroup {
          */
         public auto_OneBallAuto() {
                 addCommands(
-                                new ShootBall(-.5, .375, .3),
+                                new ShootBallRPM(-2250, 1400, .3),
                                 new ParallelCommandGroup(
-                                                new ShootBall(-.5, .375, .75),
-                                                new MoveElevator(1, .75)));
+                                                new ShootBallRPM(-2250, 1400, .75),
+                                                new MoveElevator(1, .75)),
+                                new MoveDirection(7));
 
         }
 }

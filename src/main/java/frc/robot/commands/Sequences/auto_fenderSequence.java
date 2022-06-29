@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.MoveElevator;
 import frc.robot.commands.MoveIntake;
 import frc.robot.commands.ShootBallRPM;
+import frc.robot.commands.Teleop.teleop_ShooterNew;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 
 /**
@@ -24,6 +25,6 @@ public class auto_fenderSequence extends SequentialCommandGroup {
                 new ParallelCommandGroup(
                         new ShootBallRPM(-1500, 2500, 1.5),
                         new MoveElevator(.7, 1.5)));
-
+        teleop_ShooterNew.resetValues(false);
     }
 }

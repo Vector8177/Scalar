@@ -7,8 +7,8 @@ import frc.robot.commands.MoveElevator;
 import frc.robot.commands.MoveIntake;
 import frc.robot.commands.ShootBallRPM;
 import frc.robot.commands.TurnDegrees;
+import frc.robot.commands.Teleop.teleop_ShooterNew;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
-import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
 
 /**
  * A complex auto command that drives forward, releases a hatch, and then drives
@@ -24,15 +24,15 @@ public class auto_tarmacSequence extends SequentialCommandGroup {
         public auto_tarmacSequence() {
                 addCommands(
                                 new MoveIntake(true),
-                                new ParallelDeadlineGroup(new SequentialCommandGroup(
+                                new TurnDegrees(Robot.limelight.getYaw(), .5,
+                                                RobotMap.DriveTrain.tarmacPID),
+                                new ShootBallRPM(-Robot.shooter.distToSmallWheelRPM(),
+                                                Robot.shooter.distToBigWheelRPM(), .6),
+                                new ParallelCommandGroup(
                                                 new ShootBallRPM(-Robot.shooter.distToSmallWheelRPM(),
-                                                                Robot.shooter.distToBigWheelRPM(), .6),
-                                                new ParallelCommandGroup(
-                                                                new ShootBallRPM(-Robot.shooter.distToSmallWheelRPM(),
-                                                                                Robot.shooter.distToBigWheelRPM(), 2),
-                                                                new MoveElevator(.8, 2))),
-                                                new TurnDegrees(Robot.limelight.getYaw(), 0,
-                                                                RobotMap.DriveTrain.tarmacPID)));
+                                                                Robot.shooter.distToBigWheelRPM(), 2),
+                                                new MoveElevator(.8, 1.5)));
+                teleop_ShooterNew.resetValues(false);
 
         }
 }

@@ -7,6 +7,7 @@ import frc.robot.commands.TurnDegrees;
 import frc.robot.commands.MoveDirection;
 import frc.robot.commands.PlayMusic;
 import frc.robot.commands.Sequences.auto_FourBallAuto;
+import frc.robot.commands.Sequences.auto_OneBallAuto;
 import frc.robot.commands.Sequences.auto_ThreeBallAuto;
 import frc.robot.commands.Sequences.auto_TwoBallAuto;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -44,6 +45,7 @@ public class OI {
      */
     private final Command m_DOL = new MoveDirection(5);
     private final Command m_TurnRight = new TurnDegrees(90, 1, RobotMap.DriveTrain.autoPID);
+    private final Command m_OneBallAuto = new auto_OneBallAuto();
     private final Command m_ThreeBallAuto = new auto_ThreeBallAuto();
     private final Command m_TwoBallAuto = new auto_TwoBallAuto();
     private final Command m_FourBallAuto = new auto_FourBallAuto();
@@ -55,6 +57,7 @@ public class OI {
         m_chooser.setDefaultOption("Three Ball Auto", m_ThreeBallAuto);
         m_chooser.addOption("Four Ball Auto", m_FourBallAuto);
         m_chooser.addOption("Two Ball Auto", m_TwoBallAuto);
+        m_chooser.addOption("One Ball Auto", m_OneBallAuto);
         m_chooser.addOption("Play Gummy Bear Song", m_PlayGummy);
 
         // Put the chooser on the dashboard

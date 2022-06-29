@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.Teleop.teleop_ArcadeDrive;
 import frc.robot.commands.Teleop.teleop_Climber;
 import frc.robot.commands.Teleop.teleop_Intake;
-import frc.robot.commands.Teleop.teleop_Shooter;
+import frc.robot.commands.Teleop.teleop_ShooterNew;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Intake;
@@ -32,13 +32,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * build.gradle file in the
  * project.
  */
+
 public class Robot extends TimedRobot {
   // NavX
   public static final AHRS ahrs = new AHRS(SPI.Port.kMXP);
 
   // Teleop Commands
   teleop_ArcadeDrive arcadeDrive = new teleop_ArcadeDrive();
-  teleop_Shooter tShooter = new teleop_Shooter();
+  teleop_ShooterNew tShooter = new teleop_ShooterNew();
   teleop_Climber tClimber = new teleop_Climber();
   teleop_Intake tIntake = new teleop_Intake();
 

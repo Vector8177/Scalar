@@ -29,7 +29,7 @@ public class MoveElevator extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        Robot.intake.setElevatorMotor(power);
+        Robot.intake.setElevatorMotor(-power);
     }
 
     // Called once the command ends or is interrupted.

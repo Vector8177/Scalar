@@ -22,7 +22,7 @@ public class RobotMap {
 
         // Speed
         public static final double DRIVE_SPEED_MODIFIER = .85;
-        public static final double LEFT_JOYSTICK_SPEED_MODIFIER = 1;
+        public static final double LEFT_JOYSTICK_SPEED_MODIFIER = .6;
         public static final double TURN_SPEED_MODIFIER = .4;
         public static final double AUTONOMOUS_SPEED = .65;
 
@@ -73,13 +73,13 @@ public class RobotMap {
 
     public static final class Climber {
         // Maximum Encoder Degree Values For Climbers
-        public static final double UNEXTENDED_LEFT_CLIMBER_MAX = -225825;
-        public static final double UNEXTENDED_RIGHT_CLIMBER_MAX = 220135;
-        public static final double EXTENDED_LEFT_CLIMBER_MAX = -315118;
-        public static final double EXTENDED_RIGHT_CLIMBER_MAX = 342550;
+        public static final double UNEXTENDED_LEFT_CLIMBER_MAX = -207112;
+        public static final double UNEXTENDED_RIGHT_CLIMBER_MAX = 201781;
+        public static final double EXTENDED_LEFT_CLIMBER_MAX = -290893;
+        public static final double EXTENDED_RIGHT_CLIMBER_MAX = 296143;
 
         // Speed
-        public static final double CLIMBER_TELEOP_SPEED = 1;
+        public static final double CLIMBER_TELEOP_SPEED = .85;
         public static final double CLIMBER_DPAD_SPEED = .5;
     }
 

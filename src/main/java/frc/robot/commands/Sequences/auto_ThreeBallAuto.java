@@ -32,9 +32,9 @@ public class auto_ThreeBallAuto extends SequentialCommandGroup {
                                 new MoveIntake(true),
                                 new TurnDegrees(30, 1, RobotMap.DriveTrain.autoPID),
                                 new MoveElevator(-.5, .2),
-                                new ShootBallRPM(-1500, 2500, .5),
+                                new ShootBallRPM(-1800, 1830, .5),
                                 new ParallelCommandGroup(
-                                                new ShootBallRPM(-1500, 2500, 1.5),
+                                                new ShootBallRPM(-1800, 1830, 1.5),
                                                 new IntakeBall(1, 1.5),
                                                 new MoveElevator(1, 1.5)),
                                 new TurnDegrees(48, 1, RobotMap.DriveTrain.autoPID),
@@ -45,9 +45,9 @@ public class auto_ThreeBallAuto extends SequentialCommandGroup {
                                 new MoveDirection(-7.525),
                                 new TurnDegrees(-51, 1, RobotMap.DriveTrain.autoPID),
                                 new MoveElevator(-.5, .2),
-                                new ShootBallRPM(-1500, 2400, .75),
+                                new ShootBallRPM(-1500, 2500, .75),
                                 new ParallelCommandGroup(
-                                                new ShootBallRPM(-1500, 2400, 1.5),
+                                                new ShootBallRPM(-1500, 2500, 1.5),
                                                 new IntakeBall(1, 1.5),
                                                 new MoveElevator(1, 1.5)));
 
