@@ -21,10 +21,9 @@ public class auto_fenderSequence extends SequentialCommandGroup {
     public auto_fenderSequence() {
         addCommands(
                 new MoveIntake(true),
-                new ShootBallRPM(-1500, 2500, .3),
+                new ShootBallRPM(-1500, 2500, .5),
                 new ParallelCommandGroup(
                         new ShootBallRPM(-1500, 2500, 1.5),
-                        new MoveElevator(.7, 1.5)));
-        teleop_ShooterNew.resetValues(false);
+                        new MoveElevator(0.75, 1.5)));
     }
 }

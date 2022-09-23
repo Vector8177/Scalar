@@ -1,6 +1,7 @@
 package frc.robot.commands.Teleop;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.Robot;
 import frc.robot.commands.Sequences.auto_customSequence;
 import frc.robot.commands.Sequences.auto_fenderSequence;
@@ -24,9 +25,9 @@ public class teleop_Shooter extends CommandBase {
 
         double elevatorPower = rightTrigger - leftTrigger;
         if (elevatorPower > 0 && (Robot.shooter.getLowBeamBreak() && Robot.shooter.getHighBeamBreak())) {
-            Robot.intake.setElevatorMotor(elevatorPower);
+            Robot.intake.setElevatorMotor(elevatorPower * .6);
         } else if (elevatorPower < 0) {
-            Robot.intake.setElevatorMotor(elevatorPower);
+            Robot.intake.setElevatorMotor(elevatorPower * .6);
         } else {
             Robot.intake.setElevatorMotor(0);
         }
@@ -40,6 +41,7 @@ public class teleop_Shooter extends CommandBase {
             new auto_fenderSequence().schedule();
         }
         if (leftBumper) {
+            CommandScheduler.getInstance().cancelAll();
             new auto_tarmacSequence().schedule();
         }
         if (xButton && !xPressed) {

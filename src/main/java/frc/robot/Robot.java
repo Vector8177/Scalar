@@ -62,6 +62,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     climber.resetEncoder();
+    intake.resetEncoders();
     CameraServer.startAutomaticCapture();
 
     driveTrain.configMotors();
@@ -112,6 +113,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     driveTrain.resetEncoder();
+    intake.resetEncoders();
     driveTrain.configMotors();
     m_autonomousCommand = m_oi.getAutonomousCommand();
 
@@ -134,6 +136,7 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
     driveTrain.resetEncoder();
+    intake.resetEncoders();
     climber.resetEncoder();
     intake.openCompressor();
 
@@ -156,7 +159,6 @@ public class Robot extends TimedRobot {
   public void testInit() {
     // Cancels all running commands at the start of test mode.
     CommandScheduler.getInstance().cancelAll();
-
   }
 
   /** This function is called periodically during test mode. */
@@ -169,7 +171,10 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("GOALLL Angle", limelight.getYaw());
     SmartDashboard.putNumber("Current Angle", ahrs.getYaw());
 
-    SmartDashboard.putBoolean("BeamBreak", shooter.getHighBeamBreak());
+    SmartDashboard.putNumber("Elevator Encoder",  intake.elevatorEncoderDegrees());
+
+    SmartDashboard.putBoolean("High Beam Break", shooter.getHighBeamBreak());
+    SmartDashboard.putBoolean("Low Beam Break", shooter.getLowBeamBreak());
 
     SmartDashboard.putNumber("Distance", limelight.getDistance());
 

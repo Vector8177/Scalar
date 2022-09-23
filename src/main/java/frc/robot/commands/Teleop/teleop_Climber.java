@@ -15,28 +15,28 @@ public class teleop_Climber extends CommandBase {
     public void execute() {
 
         if (Robot.m_oi.leftDriverBumperPressed()) {
-            Robot.climber.setClimberMotors(RobotMap.Climber.CLIMBER_TELEOP_SPEED);
+            Robot.climber.setClimberMotors(RobotMap.Climber.CLIMBER_TELEOP_DOWN_SPEED);
         } else if (Robot.m_oi.rightDriverBumperPressed()) {
             if (!forwardOpen) {
                 if (Robot.climber.getLeftEncoder() >= RobotMap.Climber.UNEXTENDED_LEFT_CLIMBER_MAX) {
-                    Robot.climber.setLeftClimber(-RobotMap.Climber.CLIMBER_TELEOP_SPEED);
+                    Robot.climber.setLeftClimber(-RobotMap.Climber.CLIMBER_TELEOP_UP_SPEED);
                 } else {
                     Robot.climber.setLeftClimber(0);
                 }
                 if (Robot.climber.getRightEncoder() <= RobotMap.Climber.UNEXTENDED_RIGHT_CLIMBER_MAX) {
-                    Robot.climber.setRightClimber(RobotMap.Climber.CLIMBER_TELEOP_SPEED);
+                    Robot.climber.setRightClimber(RobotMap.Climber.CLIMBER_TELEOP_UP_SPEED);
                 } else {
                     Robot.climber.setRightClimber(0);
                 }
             } else {
                 if (Robot.climber.getLeftEncoder() >= RobotMap.Climber.EXTENDED_LEFT_CLIMBER_MAX) {
-                    Robot.climber.setLeftClimber(-RobotMap.Climber.CLIMBER_TELEOP_SPEED);
+                    Robot.climber.setLeftClimber(-RobotMap.Climber.CLIMBER_TELEOP_UP_SPEED);
                 } else {
                     Robot.climber.setLeftClimber(0);
                 }
 
                 if (Robot.climber.getRightEncoder() <= RobotMap.Climber.EXTENDED_RIGHT_CLIMBER_MAX) {
-                    Robot.climber.setRightClimber(RobotMap.Climber.CLIMBER_TELEOP_SPEED);
+                    Robot.climber.setRightClimber(RobotMap.Climber.CLIMBER_TELEOP_UP_SPEED);
                 } else {
                     Robot.climber.setRightClimber(0);
                 }

@@ -1,9 +1,12 @@
 package frc.robot.commands.Teleop;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.Robot;
 import frc.robot.commands.IntakeBall;
 import frc.robot.commands.MoveElevator;
+import frc.robot.commands.MoveElevatorEnc;
+import frc.robot.commands.MoveIntake;
 import frc.robot.commands.Sequences.auto_customSequence;
 import frc.robot.commands.Sequences.auto_fenderSequence;
 import frc.robot.commands.Sequences.auto_tarmacSequence;
@@ -40,24 +43,33 @@ public class teleop_ShooterNew extends CommandBase {
             oneBall = true;
             timer = 0;
         }
-        if (timer > 50 && oneBall && !Robot.shooter.getLowBeamBreak() && !Robot.shooter.getHighBeamBreak()) {
+        if (timer > 10 && oneBall && !Robot.shooter.getLowBeamBreak() && !Robot.shooter.getHighBeamBreak()) {
             oneBall = false;
             twoBalls = true;
         }
 
         double elevatorPower = rightTrigger - leftTrigger;
         if (elevatorPower > 0 && !twoBalls) {
-            Robot.intake.setElevatorMotor(-elevatorPower);
+            Robot.intake.setElevatorMotor(-elevatorPower *.6);
         } else if (elevatorPower < 0) {
-            Robot.intake.setElevatorMotor(-elevatorPower);
+            Robot.intake.setElevatorMotor(-elevatorPower *.6);
         } else {
             Robot.intake.setElevatorMotor(0);
             if (!ballStored && twoBalls) {
-                new MoveElevator(-1, .15).schedule();
+                CommandScheduler.getInstance().cancelAll();
+                new MoveIntake(true).schedule();
+                new MoveElevator(-0.5, 0.25).schedule();
+                timer = 0;
                 ballStored = true;
             }
         }
         Robot.intake.setIntakeMotor(elevatorPower);
+
+        if (twoBalls) {
+            if (Robot.shooter.getLowBeamBreak() && Robot.shooter.getHighBeamBreak() && timer > 250) {
+                teleop_ShooterNew.resetValues(false);
+            }
+        }
 
         // EJECTION CODE
         if (bButton) {
@@ -68,9 +80,11 @@ public class teleop_ShooterNew extends CommandBase {
         // SHOOTING SEQUENCES
         if (rightBumper) {
             new auto_fenderSequence().schedule();
+            teleop_ShooterNew.resetValues(false);
         }
         if (leftBumper) {
             new auto_tarmacSequence().schedule();
+            teleop_ShooterNew.resetValues(false);
         }
         if (xButton && !xPressed) {
             new auto_customSequence().schedule();

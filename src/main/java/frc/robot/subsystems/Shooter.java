@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
@@ -86,6 +87,7 @@ public class Shooter extends SubsystemBase {
         frontMotor.configNominalOutputReverse(0, 0);
         frontMotor.configPeakOutputForward(1, 0);
         frontMotor.configPeakOutputReverse(-1, 0);
+        frontMotor.setNeutralMode(NeutralMode.Coast);
 
         frontMotor.config_kF(0, RobotMap.Shooter.frontGains.kF, 0);
         frontMotor.config_kP(0, RobotMap.Shooter.frontGains.kP, 0);
@@ -99,10 +101,13 @@ public class Shooter extends SubsystemBase {
         backMotor.configNominalOutputReverse(0, 0);
         backMotor.configPeakOutputForward(1, 0);
         backMotor.configPeakOutputReverse(-1, 0);
+        backMotor.setNeutralMode(NeutralMode.Coast);
 
         backMotor.config_kF(0, RobotMap.Shooter.backGains.kF, 0);
         backMotor.config_kP(0, RobotMap.Shooter.backGains.kP, 0);
         backMotor.config_kI(0, RobotMap.Shooter.backGains.kI, 0);
         backMotor.config_kD(0, RobotMap.Shooter.backGains.kD, 0);
     }
+
+    
 }

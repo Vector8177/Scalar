@@ -12,12 +12,14 @@ import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.TalonSRXControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 public class Intake extends SubsystemBase {
-  TalonSRX elevatorSRX = new TalonSRX(7);
-  TalonSRX intakeSRX = new TalonSRX(8);
+  TalonFX elevatorMotor = new TalonFX(RobotMap.Intake.ELEVATOR_MOTOR_ID);
+  TalonSRX intakeMotor = new TalonSRX(RobotMap.Intake.INTAKE_MOTOR_ID);
 
   public boolean forwardOpen = true;
 
@@ -34,11 +36,11 @@ public class Intake extends SubsystemBase {
   }
 
   public void setElevatorMotor(double power) {
-    elevatorSRX.set(TalonSRXControlMode.PercentOutput, power);
+    elevatorMotor.set(TalonFXControlMode.PercentOutput, power);
   }
 
   public void setIntakeMotor(double power) {
-    intakeSRX.set(TalonSRXControlMode.PercentOutput, power);
+    intakeMotor.set(TalonSRXControlMode.PercentOutput, -power);
   }
 
   Compressor compressor = new Compressor(RobotMap.Intake.PHEUMATICS_ID, PneumaticsModuleType.CTREPCM);
@@ -67,6 +69,14 @@ public class Intake extends SubsystemBase {
   public void openCompressor() {
     compressor.enableDigital();
 
+  }
+
+  public double elevatorEncoderDegrees() {
+    return elevatorMotor.getSelectedSensorPosition();
+  }
+
+  public void resetEncoders() {
+    elevatorMotor.setSelectedSensorPosition(0);
   }
 
 }

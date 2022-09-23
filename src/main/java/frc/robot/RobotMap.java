@@ -50,7 +50,10 @@ public class RobotMap {
 
     public static final class Intake {
         public static final int PHEUMATICS_ID = 0;
+        public static final int INTAKE_MOTOR_ID = 8;
         public static final double INTAKE_MOTOR_MODIFIER = .4;
+        public static final int ELEVATOR_MOTOR_ID = 12;
+        public static final double ELEVATOR_ROTATION_TO_ENCODER = 6721;
     }
 
     public static final class Shooter {
@@ -73,13 +76,14 @@ public class RobotMap {
 
     public static final class Climber {
         // Maximum Encoder Degree Values For Climbers
-        public static final double UNEXTENDED_LEFT_CLIMBER_MAX = -207112;
-        public static final double UNEXTENDED_RIGHT_CLIMBER_MAX = 201781;
-        public static final double EXTENDED_LEFT_CLIMBER_MAX = -290893;
-        public static final double EXTENDED_RIGHT_CLIMBER_MAX = 296143;
+        public static final double UNEXTENDED_LEFT_CLIMBER_MAX = -143000;
+        public static final double UNEXTENDED_RIGHT_CLIMBER_MAX = 143000;
+        public static final double EXTENDED_LEFT_CLIMBER_MAX = -250000;
+        public static final double EXTENDED_RIGHT_CLIMBER_MAX = 250000;
 
         // Speed
-        public static final double CLIMBER_TELEOP_SPEED = .85;
+        public static final double CLIMBER_TELEOP_UP_SPEED = .6;
+        public static final double CLIMBER_TELEOP_DOWN_SPEED = .7;
         public static final double CLIMBER_DPAD_SPEED = .5;
     }
 

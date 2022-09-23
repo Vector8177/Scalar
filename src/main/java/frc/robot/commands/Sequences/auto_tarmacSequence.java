@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.MoveElevator;
+import frc.robot.commands.MoveElevatorEnc;
 import frc.robot.commands.MoveIntake;
 import frc.robot.commands.ShootBallRPM;
 import frc.robot.commands.TurnDegrees;
@@ -27,12 +28,12 @@ public class auto_tarmacSequence extends SequentialCommandGroup {
                                 new TurnDegrees(Robot.limelight.getYaw(), .5,
                                                 RobotMap.DriveTrain.tarmacPID),
                                 new ShootBallRPM(-Robot.shooter.distToSmallWheelRPM(),
-                                                Robot.shooter.distToBigWheelRPM(), .6),
+                                                Robot.shooter.distToBigWheelRPM(), .75),
                                 new ParallelCommandGroup(
                                                 new ShootBallRPM(-Robot.shooter.distToSmallWheelRPM(),
-                                                                Robot.shooter.distToBigWheelRPM(), 2),
-                                                new MoveElevator(.8, 1.5)));
-                teleop_ShooterNew.resetValues(false);
-
+                                                                Robot.shooter.distToBigWheelRPM(), 1),
+                                                new MoveElevatorEnc(12,-1))
+                                                ); // FIRST VALUE IS AMOUNT OF ROTATIONTOSN !!!!!!!!!!!!!
+                
         }
 }
