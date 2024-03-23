@@ -15,6 +15,7 @@ import frc.robot.commands.TurnDegrees;
  * A complex auto command that drives forward, releases a hatch, and then drives
  * backward.
  */
+
 public class auto_FourBallAuto extends SequentialCommandGroup {
         /**
          * Creates a new ComplexAuto.

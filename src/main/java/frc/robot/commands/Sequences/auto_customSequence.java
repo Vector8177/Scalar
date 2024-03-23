@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
  * A complex auto command that drives forward, releases a hatch, and then drives
  * backward.
  */
+
 public class auto_customSequence extends SequentialCommandGroup {
         /**
          * Creates a new ComplexAuto.

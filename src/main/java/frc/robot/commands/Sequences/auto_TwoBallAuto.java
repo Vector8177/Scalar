@@ -25,10 +25,11 @@ public class auto_TwoBallAuto extends SequentialCommandGroup {
                 addCommands(
                                 new ParallelCommandGroup(
                                                 new MoveDirection(4.25),
-                                                new IntakeBall(1.0, 1.75)),
+                                                new IntakeBall(1.0, 1.75),
+                                                new MoveElevator(1, 1.3)),
                                 new MoveIntake(false),
                                 new MoveDirection(-5.95),
-                                new MoveElevator(-1, .15),
+                                new MoveElevator(-1, .2),
                                 new ShootBall(-.30, .39, 1),
                                 new ParallelCommandGroup(
                                                 new ShootBall(-.30, .39, 1),

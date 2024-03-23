@@ -39,17 +39,17 @@ public class Robot extends TimedRobot {
 
   // Teleop Commands
   teleop_ArcadeDrive arcadeDrive = new teleop_ArcadeDrive();
-  teleop_ShooterNew tShooter = new teleop_ShooterNew();
-  teleop_Climber tClimber = new teleop_Climber();
-  teleop_Intake tIntake = new teleop_Intake();
+  // teleop_ShooterNew tShooter = new teleop_ShooterNew();
+  // teleop_Climber tClimber = new teleop_Climber();
+  // teleop_Intake tIntake = new teleop_Intake();
 
   // Subsystems
   public static final DriveTrain driveTrain = new DriveTrain();
 
-  public static final PhotonVision limelight = new PhotonVision();
-  public static final Intake intake = new Intake();
-  public static final Climber climber = new Climber();
-  public static final Shooter shooter = new Shooter();
+  // public static final PhotonVision limelight = new PhotonVision();
+  // public static final Intake intake = new Intake();
+  // public static final Climber climber = new Climber();
+  // public static final Shooter shooter = new Shooter();
 
   public static final OI m_oi = new OI();
   private Command m_autonomousCommand;
@@ -61,10 +61,10 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    climber.resetEncoder();
-    intake.resetEncoders();
-    CameraServer.startAutomaticCapture();
-
+    // climber.resetEncoder();
+    // intake.resetEncoders();
+    // CameraServer.startAutomaticCapture();
+// 
     driveTrain.configMotors();
 
     // Instantiate our RobotContainer. This will perform all our button bindings,
@@ -114,12 +114,12 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     driveTrain.resetEncoder();
     intake.resetEncoders();
-    driveTrain.configMotors();
-    m_autonomousCommand = m_oi.getAutonomousCommand();
+    // driveTrain.configMotors();
+    // m_autonomousCommand = m_oi.getAutonomousCommand();
 
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.schedule();
-    }
+    // if (m_autonomousCommand != null) {
+    //   m_autonomousCommand.schedule();
+    // }
 
   }
 
@@ -136,9 +136,9 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
     driveTrain.resetEncoder();
-    intake.resetEncoders();
-    climber.resetEncoder();
-    intake.openCompressor();
+    // intake.resetEncoders();
+    // climber.resetEncoder();
+    // intake.openCompressor();
 
     // This makes sure that the autonomous stops running when
     // teleop starts running. If you want the autonomous to
@@ -150,9 +150,9 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     arcadeDrive.execute();
-    tShooter.execute();
-    tIntake.execute();
-    tClimber.execute();
+    // tShooter.execute();
+    // tIntake.execute();
+    // tClimber.execute();
   }
 
   @Override
@@ -168,25 +168,25 @@ public class Robot extends TimedRobot {
 
   public static void updateShuffleboard() {
     // Adds NavX values to Shuffle Board
-    SmartDashboard.putNumber("GOALLL Angle", limelight.getYaw());
-    SmartDashboard.putNumber("Current Angle", ahrs.getYaw());
+    // SmartDashboard.putNumber("GOALLL Angle", limelight.getYaw());
+    // SmartDashboard.putNumber("Current Angle", ahrs.getYaw());
 
-    SmartDashboard.putNumber("Elevator Encoder",  intake.elevatorEncoderDegrees());
+    // SmartDashboard.putNumber("Elevator Encoder",  intake.elevatorEncoderDegrees());
 
-    SmartDashboard.putBoolean("High Beam Break", shooter.getHighBeamBreak());
-    SmartDashboard.putBoolean("Low Beam Break", shooter.getLowBeamBreak());
+    // SmartDashboard.putBoolean("High Beam Break", shooter.getHighBeamBreak());
+    // SmartDashboard.putBoolean("Low Beam Break", shooter.getLowBeamBreak());
 
-    SmartDashboard.putNumber("Distance", limelight.getDistance());
+    // SmartDashboard.putNumber("Distance", limelight.getDistance());
 
-    SmartDashboard.putNumber("Left Degrees", Robot.climber.getLeftEncoder());
-    SmartDashboard.putNumber("Right Degrees", Robot.climber.getRightEncoder());
+    // SmartDashboard.putNumber("Left Degrees", Robot.climber.getLeftEncoder());
+    // SmartDashboard.putNumber("Right Degrees", Robot.climber.getRightEncoder());
 
     // Adds controller values to Shuffle Board
     SmartDashboard.putNumber("DPAD", m_oi.getDriverDpad());
     SmartDashboard.putNumber("Driver Right Trigger", (double) (Math.round(m_oi.getDriverRightTrigger() * 1000)) / 1000);
     SmartDashboard.putNumber("Intake Right Trigger", (double) (Math.round(m_oi.getIntakeRightTrigger() * 1000)) / 1000);
 
-    SmartDashboard.putNumber("Front wheel velocity", RobotMap.convertMotorVelToRPM(shooter.getFrontMotorVelocity()));
-    SmartDashboard.putNumber("Back wheel velocity", RobotMap.convertMotorVelToRPM(shooter.getBackMotorVelocity()));
+    // SmartDashboard.putNumber("Front wheel velocity", RobotMap.convertMotorVelToRPM(shooter.getFrontMotorVelocity()));
+    // SmartDashboard.putNumber("Back wheel velocity", RobotMap.convertMotorVelToRPM(shooter.getBackMotorVelocity()));
   }
 }

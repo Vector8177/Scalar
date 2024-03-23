@@ -12,6 +12,7 @@ public class MoveElevatorEnc extends CommandBase {
     double rotations;
     double power;
 
+
     /** Creates a new ArcadeDrive. */
     public MoveElevatorEnc(double rotations, double power) {
         this.rotations = rotations;
@@ -27,6 +28,7 @@ public class MoveElevatorEnc extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
+        
             Robot.intake.setElevatorMotor(power);
     }
 

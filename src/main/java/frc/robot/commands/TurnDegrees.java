@@ -33,7 +33,7 @@ public class TurnDegrees extends CommandBase {
     public void initialize() {
         time.start();
         time.reset();
-        Robot.ahrs.zeroYaw();
+        // Robot.ahrs.zeroYaw();
         pid = new PIDController(pidValues.kP, pidValues.kI, pidValues.kD);
         pid.setTolerance(.5);
         pid.setIntegratorRange(0, 10);
@@ -43,20 +43,20 @@ public class TurnDegrees extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        float yaw = Robot.ahrs.getYaw();
-        pidcalc = MathUtil.clamp(pid.calculate(yaw, degrees), -Robot.m_oi.getAutoSpeed(),
-                Robot.m_oi.getAutoSpeed());
-        SmartDashboard.putNumber("Turning PID Output", pidcalc);
-        SmartDashboard.putData("Turning PID", pid);
-        SmartDashboard.putNumber("Goal Angle", degrees);
-
-        Robot.driveTrain.motors.tankDrive(pidcalc, -pidcalc);
+        // float yaw = Robot.ahrs.getYaw();
+        // pidcalc = MathUtil.clamp(pid.calculate(yaw, dcalc);
     }
 
     public double getPIDOutput() {
         return pidcalc;
     }
+// degrees), -Robot.m_oi.getAutoSpeed(),
+//                 Robot.m_oi.getAutoSpeed());
+//         SmartDashboard.putNumber("Turning PID Output", pidcalc);
+//         SmartDashboard.putData("Turning PID", pid);
+//         SmartDashboard.putNumber("Goal Angle", degrees);
 
+//         Robot.driveTrain.motors.tankDrive(pidcalc, -pi
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {

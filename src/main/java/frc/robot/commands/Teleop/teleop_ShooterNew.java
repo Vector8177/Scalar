@@ -13,6 +13,7 @@ import frc.robot.commands.Sequences.auto_tarmacSequence;
 
 public class teleop_ShooterNew extends CommandBase {
 
+    
     // BOOLEAN VARIABLES
     boolean xPressed = false;
     boolean highBeamBreak = false;
